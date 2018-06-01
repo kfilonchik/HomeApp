@@ -14,6 +14,7 @@
 		04332CCF20B816D300274E48 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04332CCE20B816D300274E48 /* Assets.xcassets */; };
 		04332CD220B816D300274E48 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04332CD020B816D300274E48 /* LaunchScreen.storyboard */; };
 		04928F7320BFE4E1008A7978 /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04928F7220BFE4E1008A7978 /* DetailsViewController.swift */; };
+		04928F7D20C02EE2008A7978 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04928F7C20C02EE2008A7978 /* SettingsTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		04332CD120B816D300274E48 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		04332CD320B816D300274E48 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		04928F7220BFE4E1008A7978 /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
+		04928F7C20C02EE2008A7978 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,16 +60,57 @@
 		04332CC320B816D000274E48 /* test */ = {
 			isa = PBXGroup;
 			children = (
+				04928F7920C02D35008A7978 /* Controller */,
+				04928F7820C02D2F008A7978 /* View */,
+				04928F7720C02D29008A7978 /* Model */,
 				04332CC420B816D000274E48 /* AppDelegate.swift */,
-				04332CC620B816D000274E48 /* ViewController.swift */,
-				04332CC820B816D000274E48 /* Main.storyboard */,
-				04332CCE20B816D300274E48 /* Assets.xcassets */,
 				04332CD020B816D300274E48 /* LaunchScreen.storyboard */,
 				04332CD320B816D300274E48 /* Info.plist */,
-				04332CCB20B816D000274E48 /* test.xcdatamodeld */,
-				04928F7220BFE4E1008A7978 /* DetailsViewController.swift */,
 			);
 			path = test;
+			sourceTree = "<group>";
+		};
+		04928F7720C02D29008A7978 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				04332CCB20B816D000274E48 /* test.xcdatamodeld */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		04928F7820C02D2F008A7978 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				04332CC820B816D000274E48 /* Main.storyboard */,
+				04332CCE20B816D300274E48 /* Assets.xcassets */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		04928F7920C02D35008A7978 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				04928F7B20C02DBF008A7978 /* Dasboard */,
+				04928F7A20C02D92008A7978 /* SettingsPage */,
+				04332CC620B816D000274E48 /* ViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		04928F7A20C02D92008A7978 /* SettingsPage */ = {
+			isa = PBXGroup;
+			children = (
+				04928F7C20C02EE2008A7978 /* SettingsTableViewController.swift */,
+			);
+			path = SettingsPage;
+			sourceTree = "<group>";
+		};
+		04928F7B20C02DBF008A7978 /* Dasboard */ = {
+			isa = PBXGroup;
+			children = (
+				04928F7220BFE4E1008A7978 /* DetailsViewController.swift */,
+			);
+			path = Dasboard;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -144,6 +187,7 @@
 				04332CC720B816D000274E48 /* ViewController.swift in Sources */,
 				04332CC520B816D000274E48 /* AppDelegate.swift in Sources */,
 				04332CCD20B816D000274E48 /* test.xcdatamodeld in Sources */,
+				04928F7D20C02EE2008A7978 /* SettingsTableViewController.swift in Sources */,
 				04928F7320BFE4E1008A7978 /* DetailsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -295,7 +339,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = kflonchik.test;
+				PRODUCT_BUNDLE_IDENTIFIER = kflonchik.domovoy;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -313,7 +357,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = kflonchik.test;
+				PRODUCT_BUNDLE_IDENTIFIER = kflonchik.domovoy;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
