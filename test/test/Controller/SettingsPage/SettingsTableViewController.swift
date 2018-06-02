@@ -11,7 +11,7 @@ import UIKit
 
 class SettingsTableViewController: UITableViewController {
     
-    var cellName = ["Verbindung FritzBox", "Geräte", "Zeitpläne", "GPS Einstellungen", "Über"]
+    var cellName = ["test"]
 
     override func viewDidLoad() {
         super.viewDidLoad()
