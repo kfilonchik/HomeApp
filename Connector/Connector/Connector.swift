@@ -10,7 +10,7 @@ import UIKit
 import Foundation
 
 class Connector:NSObject {
-    let userName:String = "Mathis"
+    let userName:String = "domovoi"
     var passWord:String?{
         didSet{
             getSessionID()
