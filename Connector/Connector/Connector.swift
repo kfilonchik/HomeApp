@@ -68,7 +68,11 @@ class Connector:NSObject {
     func getSwitchState(_ deviceID: String)->Int{
         return 1
     }
-    func setSwitchState(deviceID: String, state: Int){
+    func setSwitchState(deviceID: String, state: Bool){
+        var stateStr = ""
+        if state == true{stateStr = "setswitchon"}
+        else {stateStr = "setswitchoff" }
+        mainOperatorThermostat.performOperation(ain: deviceID, cmd: stateStr, sID: sessionID!, parameter:"")
         
     }
     func getThermosetateList()->[[String : String]]{

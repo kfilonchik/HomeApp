@@ -11,7 +11,8 @@ import UIKit
 class ViewController: UIViewController {
     let aFritzConnector = Connector()
     
-    var deviceID:Int?
+    var thermosID:Int?
+    var switchID:Int?
     var disText:String?
     var idIndexer = [String]()
     var deviceList: [[String : String]]?{
@@ -28,6 +29,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var resultText: UITextField!
     @IBOutlet weak var sollTempEingabe: UITextField!
     @IBOutlet weak var sollTempDisplay: UITextField!
+    @IBOutlet weak var switchStateFromFritz: UITextField!
     
     
     @IBAction func okButton(_ sender: UIButton) {
@@ -35,7 +37,8 @@ class ViewController: UIViewController {
     }
     
     @IBAction func doStuff(_ sender: UIButton) {
-        deviceID = idIndexer.index(of: "11960 0086040")
+        thermosID = idIndexer.index(of: "11960 0086040")
+        switchID = idIndexer.index(of: "08761 0437714")
         aFritzConnector.getAllDevices()
     }
     
@@ -43,16 +46,21 @@ class ViewController: UIViewController {
         aFritzConnector.setTemperature(deviceID: "11960 0086040", temperature: sollTempEingabe.text!)
     }
     
+    @IBAction func aSwitch(_ sender: UISwitch) {
+        aFritzConnector.setSwitchState(deviceID: "08761 0437714", state: sender.isOn)
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         aFritzConnector.startUpConnector(self)
     }
     func updateUI(){
-        if deviceID != nil{
+        if thermosID != nil{
             print("update UI ausgelöst")
-            sollTempDisplay.text = deviceList?[deviceID!]["tsoll"]
-            print("to soll im array ist \(deviceList?[deviceID!]["tsoll"]) ")
-            resultText.text = deviceList?[deviceID!]["name"]
+            sollTempDisplay.text = deviceList?[thermosID!]["tsoll"]
+            resultText.text = deviceList?[thermosID!]["name"]
+            switchStateFromFritz.text = deviceList?[switchID!]["state"]
         }
 
     }
