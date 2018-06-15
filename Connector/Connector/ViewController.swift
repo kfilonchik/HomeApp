@@ -24,6 +24,15 @@ class ViewController: UIViewController {
         }
     }
     
+    let container = AppDelegate.persistentContainer
+    let context = AppDelegate.viewContext
+    
+    
+    func coreDataTest(){
+        let stdAppSettings = AppSettings(context: context)
+        stdAppSettings.unserName = "domovoi"
+        let abc = stdAppSettings.unserName
+    }
     
     @IBOutlet weak var pwField: UITextField!
     @IBOutlet weak var resultText: UITextField!

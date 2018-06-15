@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		89299B4020D47A0E00B534A8 /* AppSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89299B3F20D47A0E00B534A8 /* AppSettings.swift */; };
 		8953804520C479C3003937C6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8953804420C479C3003937C6 /* AppDelegate.swift */; };
 		8953804720C479C3003937C6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8953804620C479C3003937C6 /* ViewController.swift */; };
 		8953804A20C479C3003937C6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8953804820C479C3003937C6 /* Main.storyboard */; };
@@ -23,6 +24,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		89299B3F20D47A0E00B534A8 /* AppSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettings.swift; sourceTree = "<group>"; };
 		8953804120C479C3003937C6 /* Connector.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Connector.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8953804420C479C3003937C6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8953804620C479C3003937C6 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -51,9 +53,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		89299B4120D47A3D00B534A8 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				89A0AD8820D42ECD00647F5B /* Model.xcdatamodeld */,
+				89299B3F20D47A0E00B534A8 /* AppSettings.swift */,
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
 		8953803820C479C3003937C6 = {
 			isa = PBXGroup;
 			children = (
+				89299B4120D47A3D00B534A8 /* CoreData */,
 				8953804320C479C3003937C6 /* Connector */,
 				8953804220C479C3003937C6 /* Products */,
 			);
@@ -72,7 +84,6 @@
 			children = (
 				8953805A20C47A15003937C6 /* Connector.swift */,
 				8953804420C479C3003937C6 /* AppDelegate.swift */,
-				89A0AD8820D42ECD00647F5B /* Model.xcdatamodeld */,
 				8953804620C479C3003937C6 /* ViewController.swift */,
 				8953804820C479C3003937C6 /* Main.storyboard */,
 				8953805C20C47A15003937C6 /* AllThermostatsReceiver.swift */,
@@ -166,6 +177,7 @@
 				8953806320C47A15003937C6 /* AllThermostatsReceiver.swift in Sources */,
 				8953806020C47A15003937C6 /* RequesterDelegate.swift in Sources */,
 				8953805F20C47A15003937C6 /* Md5Maker.swift in Sources */,
+				89299B4020D47A0E00B534A8 /* AppSettings.swift in Sources */,
 				89A0AD8A20D42ECE00647F5B /* Model.xcdatamodeld in Sources */,
 				8953806120C47A15003937C6 /* Connector.swift in Sources */,
 				8953805D20C47A15003937C6 /* FritzSessionManager.swift in Sources */,
