@@ -19,6 +19,7 @@
 		8953806120C47A15003937C6 /* Connector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8953805A20C47A15003937C6 /* Connector.swift */; };
 		8953806220C47A15003937C6 /* OperationThermostat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8953805B20C47A15003937C6 /* OperationThermostat.swift */; };
 		8953806320C47A15003937C6 /* AllThermostatsReceiver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8953805C20C47A15003937C6 /* AllThermostatsReceiver.swift */; };
+		89A0AD8A20D42ECE00647F5B /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 89A0AD8820D42ECD00647F5B /* Model.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		8953805A20C47A15003937C6 /* Connector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Connector.swift; sourceTree = "<group>"; };
 		8953805B20C47A15003937C6 /* OperationThermostat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OperationThermostat.swift; sourceTree = "<group>"; };
 		8953805C20C47A15003937C6 /* AllThermostatsReceiver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllThermostatsReceiver.swift; sourceTree = "<group>"; };
+		89A0AD8920D42ECE00647F5B /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +72,7 @@
 			children = (
 				8953805A20C47A15003937C6 /* Connector.swift */,
 				8953804420C479C3003937C6 /* AppDelegate.swift */,
+				89A0AD8820D42ECD00647F5B /* Model.xcdatamodeld */,
 				8953804620C479C3003937C6 /* ViewController.swift */,
 				8953804820C479C3003937C6 /* Main.storyboard */,
 				8953805C20C47A15003937C6 /* AllThermostatsReceiver.swift */,
@@ -163,6 +166,7 @@
 				8953806320C47A15003937C6 /* AllThermostatsReceiver.swift in Sources */,
 				8953806020C47A15003937C6 /* RequesterDelegate.swift in Sources */,
 				8953805F20C47A15003937C6 /* Md5Maker.swift in Sources */,
+				89A0AD8A20D42ECE00647F5B /* Model.xcdatamodeld in Sources */,
 				8953806120C47A15003937C6 /* Connector.swift in Sources */,
 				8953805D20C47A15003937C6 /* FritzSessionManager.swift in Sources */,
 			);
@@ -366,6 +370,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		89A0AD8820D42ECD00647F5B /* Model.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				89A0AD8920D42ECE00647F5B /* Model.xcdatamodel */,
+			);
+			currentVersion = 89A0AD8920D42ECE00647F5B /* Model.xcdatamodel */;
+			path = Model.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 8953803920C479C3003937C6 /* Project object */;
 }
