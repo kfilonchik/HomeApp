@@ -3,7 +3,7 @@
     <entity name="AppSettings" representedClassName=".AppSettings" syncable="YES" codeGenerationType="category">
         <attribute name="fritzID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="passWord" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="unserName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="userName" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <entity name="DashboardTile" representedClassName=".DashboardTile" isAbstract="YES" syncable="YES" codeGenerationType="class">
         <attribute name="id" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
@@ -47,6 +47,11 @@
         <relationship name="partOfGroups" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ThermostatGroup" inverseName="thermostats" inverseEntity="ThermostatGroup" syncable="YES"/>
         <relationship name="partOfScenes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Scene" inverseName="thermostats" inverseEntity="Scene" syncable="YES"/>
         <relationship name="tile" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ThermostatTile" inverseName="thermostat" inverseEntity="ThermostatTile" syncable="YES"/>
+        <uniquenessConstraints>
+            <uniquenessConstraint>
+                <constraint value="id"/>
+            </uniquenessConstraint>
+        </uniquenessConstraints>
     </entity>
     <entity name="ThermostatGroup" representedClassName=".ThermostatGroup" syncable="YES" codeGenerationType="class">
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>

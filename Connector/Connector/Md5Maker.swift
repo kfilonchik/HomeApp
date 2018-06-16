@@ -1,6 +1,6 @@
 //
 //  Md5Maker.swift
-//  httpRequest
+//  Calculates a checksum of challenge and password for connecting to the fritzBox
 //
 //  Created by Jokto on 27.05.18.
 //  Copyright © 2018 MobileAnwendungen. All rights reserved.

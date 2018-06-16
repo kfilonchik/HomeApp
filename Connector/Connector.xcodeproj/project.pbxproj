@@ -13,13 +13,13 @@
 		8953804A20C479C3003937C6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8953804820C479C3003937C6 /* Main.storyboard */; };
 		8953804C20C479C4003937C6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8953804B20C479C4003937C6 /* Assets.xcassets */; };
 		8953804F20C479C4003937C6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8953804D20C479C4003937C6 /* LaunchScreen.storyboard */; };
-		8953805D20C47A15003937C6 /* FritzSessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8953805620C47A14003937C6 /* FritzSessionManager.swift */; };
+		8953805D20C47A15003937C6 /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8953805620C47A14003937C6 /* SessionManager.swift */; };
 		8953805E20C47A15003937C6 /* LabelDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8953805720C47A15003937C6 /* LabelDelegate.swift */; };
 		8953805F20C47A15003937C6 /* Md5Maker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8953805820C47A15003937C6 /* Md5Maker.swift */; };
 		8953806020C47A15003937C6 /* RequesterDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8953805920C47A15003937C6 /* RequesterDelegate.swift */; };
 		8953806120C47A15003937C6 /* Connector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8953805A20C47A15003937C6 /* Connector.swift */; };
-		8953806220C47A15003937C6 /* OperationThermostat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8953805B20C47A15003937C6 /* OperationThermostat.swift */; };
-		8953806320C47A15003937C6 /* AllThermostatsReceiver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8953805C20C47A15003937C6 /* AllThermostatsReceiver.swift */; };
+		8953806220C47A15003937C6 /* Operation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8953805B20C47A15003937C6 /* Operation.swift */; };
+		8953806320C47A15003937C6 /* AllDevicesReceiver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8953805C20C47A15003937C6 /* AllDevicesReceiver.swift */; };
 		89A0AD8A20D42ECE00647F5B /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 89A0AD8820D42ECD00647F5B /* Model.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
@@ -32,13 +32,13 @@
 		8953804B20C479C4003937C6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8953804E20C479C4003937C6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8953805020C479C4003937C6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		8953805620C47A14003937C6 /* FritzSessionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FritzSessionManager.swift; sourceTree = "<group>"; };
+		8953805620C47A14003937C6 /* SessionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionManager.swift; sourceTree = "<group>"; };
 		8953805720C47A15003937C6 /* LabelDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LabelDelegate.swift; sourceTree = "<group>"; };
 		8953805820C47A15003937C6 /* Md5Maker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Md5Maker.swift; sourceTree = "<group>"; };
 		8953805920C47A15003937C6 /* RequesterDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequesterDelegate.swift; sourceTree = "<group>"; };
 		8953805A20C47A15003937C6 /* Connector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Connector.swift; sourceTree = "<group>"; };
-		8953805B20C47A15003937C6 /* OperationThermostat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OperationThermostat.swift; sourceTree = "<group>"; };
-		8953805C20C47A15003937C6 /* AllThermostatsReceiver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllThermostatsReceiver.swift; sourceTree = "<group>"; };
+		8953805B20C47A15003937C6 /* Operation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Operation.swift; sourceTree = "<group>"; };
+		8953805C20C47A15003937C6 /* AllDevicesReceiver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllDevicesReceiver.swift; sourceTree = "<group>"; };
 		89A0AD8920D42ECE00647F5B /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -53,11 +53,32 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		891997DF20D5087D00A6FEC7 /* Delegates */ = {
+			isa = PBXGroup;
+			children = (
+				8953804420C479C3003937C6 /* AppDelegate.swift */,
+				8953805720C47A15003937C6 /* LabelDelegate.swift */,
+				8953805920C47A15003937C6 /* RequesterDelegate.swift */,
+			);
+			path = Delegates;
+			sourceTree = "<group>";
+		};
+		891997E020D508C400A6FEC7 /* GUI */ = {
+			isa = PBXGroup;
+			children = (
+				8953804620C479C3003937C6 /* ViewController.swift */,
+				8953804820C479C3003937C6 /* Main.storyboard */,
+				8953804D20C479C4003937C6 /* LaunchScreen.storyboard */,
+			);
+			path = GUI;
+			sourceTree = "<group>";
+		};
 		89299B4120D47A3D00B534A8 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
 				89A0AD8820D42ECD00647F5B /* Model.xcdatamodeld */,
 				89299B3F20D47A0E00B534A8 /* AppSettings.swift */,
+				8953804B20C479C4003937C6 /* Assets.xcassets */,
 			);
 			path = CoreData;
 			sourceTree = "<group>";
@@ -65,6 +86,8 @@
 		8953803820C479C3003937C6 = {
 			isa = PBXGroup;
 			children = (
+				891997E020D508C400A6FEC7 /* GUI */,
+				891997DF20D5087D00A6FEC7 /* Delegates */,
 				89299B4120D47A3D00B534A8 /* CoreData */,
 				8953804320C479C3003937C6 /* Connector */,
 				8953804220C479C3003937C6 /* Products */,
@@ -83,17 +106,10 @@
 			isa = PBXGroup;
 			children = (
 				8953805A20C47A15003937C6 /* Connector.swift */,
-				8953804420C479C3003937C6 /* AppDelegate.swift */,
-				8953804620C479C3003937C6 /* ViewController.swift */,
-				8953804820C479C3003937C6 /* Main.storyboard */,
-				8953805C20C47A15003937C6 /* AllThermostatsReceiver.swift */,
-				8953805620C47A14003937C6 /* FritzSessionManager.swift */,
-				8953805720C47A15003937C6 /* LabelDelegate.swift */,
+				8953805620C47A14003937C6 /* SessionManager.swift */,
+				8953805C20C47A15003937C6 /* AllDevicesReceiver.swift */,
+				8953805B20C47A15003937C6 /* Operation.swift */,
 				8953805820C47A15003937C6 /* Md5Maker.swift */,
-				8953805B20C47A15003937C6 /* OperationThermostat.swift */,
-				8953805920C47A15003937C6 /* RequesterDelegate.swift */,
-				8953804B20C479C4003937C6 /* Assets.xcassets */,
-				8953804D20C479C4003937C6 /* LaunchScreen.storyboard */,
 				8953805020C479C4003937C6 /* Info.plist */,
 			);
 			path = Connector;
@@ -170,17 +186,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8953806220C47A15003937C6 /* OperationThermostat.swift in Sources */,
+				8953806220C47A15003937C6 /* Operation.swift in Sources */,
 				8953804720C479C3003937C6 /* ViewController.swift in Sources */,
 				8953805E20C47A15003937C6 /* LabelDelegate.swift in Sources */,
 				8953804520C479C3003937C6 /* AppDelegate.swift in Sources */,
-				8953806320C47A15003937C6 /* AllThermostatsReceiver.swift in Sources */,
+				8953806320C47A15003937C6 /* AllDevicesReceiver.swift in Sources */,
 				8953806020C47A15003937C6 /* RequesterDelegate.swift in Sources */,
 				8953805F20C47A15003937C6 /* Md5Maker.swift in Sources */,
 				89299B4020D47A0E00B534A8 /* AppSettings.swift in Sources */,
 				89A0AD8A20D42ECE00647F5B /* Model.xcdatamodeld in Sources */,
 				8953806120C47A15003937C6 /* Connector.swift in Sources */,
-				8953805D20C47A15003937C6 /* FritzSessionManager.swift in Sources */,
+				8953805D20C47A15003937C6 /* SessionManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

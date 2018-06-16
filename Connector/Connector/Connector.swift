@@ -20,9 +20,9 @@ class Connector:NSObject {
     }
     let fritzID:String = "7ncvvd2irftxy2fv"
     let baseURL:String = "https://clapotis.de/MobileAnwendungenSS18/"
-    let mainSessionManager = FritzSessionManager()
-    let mainOperatorThermostat = OperationThermostat()
-    let allDeviceReceiver = AllThermostatsReceiver()
+    let aSessionManager = SessionManager()
+    let anOperation = Operation()
+    let anAllDeviceReceiver = AllDevicesReceiver()
     var sessionID:String?
     var retryCounter = 0
     var deviceList: [[String : String]]?
@@ -40,26 +40,26 @@ class Connector:NSObject {
     }
     
     func getSessionID(){
-        mainSessionManager.requestSID(userName: userName, passWord: passWord!, fritzID: fritzID, baseURL: baseURL, caller: self)
+        aSessionManager.requestSID(userName: userName, passWord: passWord!, fritzID: fritzID, baseURL: baseURL, caller: self)
 
     }
     func startMainOperatorThermostat(){
-        mainOperatorThermostat.startOperator(userName: userName, passWord: passWord!, fritzID: fritzID, baseURL: baseURL, delegate: self)
+        anOperation.setOperationReady(userName: userName, passWord: passWord!, fritzID: fritzID, baseURL: baseURL, delegate: self)
     }
     
     func startAllDeviceReceiver(){
-        allDeviceReceiver.startOperator(userName: userName, passWord: passWord!, fritzID: fritzID, baseURL: baseURL, delegate: self)
+        anAllDeviceReceiver.startOperator(userName: userName, passWord: passWord!, fritzID: fritzID, baseURL: baseURL, delegate: self)
     }
     
     func getAllDevices(){
         if sessionID != nil{
             print("getAllDevices ausgelöst")
-            allDeviceReceiver.getThermostatList(cmd: "getdevicelistinfos", sID: sessionID!)
+            anAllDeviceReceiver.getAllDevices(cmd: "getdevicelistinfos", sID: sessionID!)
         }
     }
     
     func setTemperature(deviceID: String, temperature: String){
-        mainOperatorThermostat.performOperation(ain: deviceID, cmd: "sethkrtsoll", sID: sessionID!, parameter: temperature)
+        anOperation.performOperation(ain: deviceID, cmd: "sethkrtsoll", sID: sessionID!, parameter: temperature)
     }
     
     func getTemperature(_ deviceID: String) -> Float{
@@ -72,7 +72,7 @@ class Connector:NSObject {
         var stateStr = ""
         if state == true{stateStr = "setswitchon"}
         else {stateStr = "setswitchoff" }
-        mainOperatorThermostat.performOperation(ain: deviceID, cmd: stateStr, sID: sessionID!, parameter:"")
+        anOperation.performOperation(ain: deviceID, cmd: stateStr, sID: sessionID!, parameter:"")
         
     }
     func getThermosetateList()->[[String : String]]{

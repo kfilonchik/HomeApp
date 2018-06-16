@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import CoreData
 
-class AllThermostatsReceiver: NSObject {
+class AllDevicesReceiver: NSObject {
     
     var currentParsingElement:String?
     var userName:String?
@@ -17,8 +18,11 @@ class AllThermostatsReceiver: NSObject {
     var baseURL:String?
     var delegate: RequesterDelegate?
     var paramterAnswer: String?
-    var thermostatsArray = [[String: String]]()
+    var devicesArray = [[String: String]]()
     var attributeDict = [String: String]()
+    
+    let container = AppDelegate.persistentContainer
+    let context = AppDelegate.viewContext
     
     func startOperator(userName: String, passWord: String, fritzID: String, baseURL: String, delegate: RequesterDelegate){
         self.userName = userName
@@ -33,8 +37,8 @@ class AllThermostatsReceiver: NSObject {
         return toConvert.addingPercentEncoding(withAllowedCharacters: csCopy)!
     }
     
-    func getThermostatList(cmd: String, sID: String){
-        thermostatsArray.removeAll()
+    func getAllDevices(cmd: String, sID: String){
+        devicesArray.removeAll()
         let urlString = "\(baseURL!)deviceList.php?fritz_id=\(fritzID!)&cmd=\(cmd)&sid=\(sID)"
         let perfUrl = URL(string: urlString)
         let taskOperation = URLSession.shared.dataTask(with: perfUrl!) { (data, response, error) in
@@ -52,7 +56,7 @@ class AllThermostatsReceiver: NSObject {
         taskOperation.resume()
     }
 }
-extension AllThermostatsReceiver:XMLParserDelegate {
+extension AllDevicesReceiver:XMLParserDelegate {
     
     func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String] = [:]) {
         currentParsingElement = elementName
@@ -75,7 +79,7 @@ extension AllThermostatsReceiver:XMLParserDelegate {
     
     func parser(_ parser: XMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
         if elementName == "device" {
-            thermostatsArray.append(attributeDict)
+            devicesArray.append(attributeDict)
             attributeDict.removeAll(keepingCapacity: false)
             
         }
@@ -83,12 +87,44 @@ extension AllThermostatsReceiver:XMLParserDelegate {
     
     func parserDidEndDocument(_ parser: XMLParser) {
         DispatchQueue.main.async {
-            //print("end document")
-            self.delegate?.replyDeviceList(self.thermostatsArray)
+            self.delegate?.replyDeviceList(self.devicesArray)
+            self.writeToCoreData(self.devicesArray)
         }
     }
     
     func parser(_ parser: XMLParser, parseErrorOccurred parseError: Error) {
         print("parseErrorOccurred: \(parseError)")
     }
+    
+    func writeToCoreData(_ devicesArray: [[String: String]]){
+        context.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
+        for device in devicesArray{
+            if device["state"] == nil{
+                let thermostat = Thermostat(context: context)
+                thermostat.id = device["id"]
+                thermostat.title = device["name"]
+                thermostat.actual_temp = Float(device["tist"]!)!/2
+                thermostat.alive = true
+                let tsoll = Float(device["tsoll"]!)
+                if tsoll! < 57.0{
+                    thermostat.target_temp = tsoll!/2
+                }
+                else{
+                    thermostat.target_temp = tsoll!
+                }
+                do{
+                    try context.save()
+                } catch {
+                    print(error)
+                }
+                
+            }
+            if device["state"] != nil{
+                //write all switch stuff to db
+                print("schalter")
+            }
+        }
+        
+    }
+    
 }

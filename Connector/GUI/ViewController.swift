@@ -7,9 +7,10 @@
 //
 
 import UIKit
+import CoreData
 
 class ViewController: UIViewController {
-    let aFritzConnector = Connector()
+    let aConnector = Connector()
     
     var thermosID:Int?
     var switchID:Int?
@@ -23,16 +24,9 @@ class ViewController: UIViewController {
             }
         }
     }
-    
     let container = AppDelegate.persistentContainer
     let context = AppDelegate.viewContext
     
-    
-    func coreDataTest(){
-        let stdAppSettings = AppSettings(context: context)
-        stdAppSettings.unserName = "domovoi"
-        let abc = stdAppSettings.unserName
-    }
     
     @IBOutlet weak var pwField: UITextField!
     @IBOutlet weak var resultText: UITextField!
@@ -42,27 +36,41 @@ class ViewController: UIViewController {
     
     
     @IBAction func okButton(_ sender: UIButton) {
-        aFritzConnector.setPW(pwField.text!)
+        aConnector.setPW(pwField.text!)
     }
     
     @IBAction func doStuff(_ sender: UIButton) {
         thermosID = idIndexer.index(of: "11960 0086040")
         switchID = idIndexer.index(of: "08761 0437714")
-        aFritzConnector.getAllDevices()
+        aConnector.getAllDevices()
+
+        
     }
     
+    @IBAction func doCoreData(_ sender: UIButton) {
+        let request: NSFetchRequest<Thermostat> = Thermostat.fetchRequest()
+        let result = try? context.fetch(request)
+        for aresult in result!{
+            print(aresult.target_temp)
+        }
+    }
+    
+    
     @IBAction func sendTempOKbtn(_ sender: UIButton) {
-        aFritzConnector.setTemperature(deviceID: "11960 0086040", temperature: sollTempEingabe.text!)
+        aConnector.setTemperature(deviceID: "11960 0086040", temperature: sollTempEingabe.text!)
     }
     
     @IBAction func aSwitch(_ sender: UISwitch) {
-        aFritzConnector.setSwitchState(deviceID: "08761 0437714", state: sender.isOn)
+        aConnector.setSwitchState(deviceID: "08761 0437714", state: sender.isOn)
     }
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        aFritzConnector.startUpConnector(self)
+        let stdAppSettings = AppSettings(context: context)
+        stdAppSettings.userName = "domovoi"
+        stdAppSettings.fritzID = "7ncvvd2irftxy2fv"
+        aConnector.startUpConnector(self)
     }
     func updateUI(){
         if thermosID != nil{

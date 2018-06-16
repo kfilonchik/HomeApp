@@ -1,6 +1,6 @@
 //
 //  SessionManager.swift
-//  httpRequest
+//  Generates a valid Session to communicate with the fritzbox
 //
 //  Created by Jokto on 27.05.18.
 //  Copyright © 2018 MobileAnwendungen. All rights reserved.
@@ -9,7 +9,7 @@
 import UIKit
 import Foundation
 
-class FritzSessionManager:NSObject {
+class SessionManager:NSObject {
     
     var challenge:String?
     var sID:String = "0000000000000000"
@@ -62,7 +62,7 @@ class FritzSessionManager:NSObject {
 }
 
 //-------------------------------------------------
-extension FritzSessionManager:XMLParserDelegate {
+extension SessionManager:XMLParserDelegate {
     
     func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String] = [:]) {
         currentParsingElement = elementName

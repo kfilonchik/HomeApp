@@ -8,7 +8,7 @@
 
 import UIKit
 
-class OperationThermostat: NSObject {
+class Operation: NSObject {
 
     var currentParsingElement:String?
     var userName:String?
@@ -18,7 +18,7 @@ class OperationThermostat: NSObject {
     var delegate: RequesterDelegate?
     var paramterAnswer: String?
     
-    func startOperator(userName: String, passWord: String, fritzID: String, baseURL: String, delegate: RequesterDelegate){
+    func setOperationReady(userName: String, passWord: String, fritzID: String, baseURL: String, delegate: RequesterDelegate){
         self.userName = userName
         self.passWord = passWord
         self.fritzID = fritzID
@@ -50,7 +50,7 @@ class OperationThermostat: NSObject {
         taskOperation.resume()
     }
 }
-extension OperationThermostat:XMLParserDelegate {
+extension Operation:XMLParserDelegate {
     
     func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String] = [:]) {
         currentParsingElement = elementName
