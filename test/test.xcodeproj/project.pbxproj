@@ -15,6 +15,8 @@
 		04332CD220B816D300274E48 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04332CD020B816D300274E48 /* LaunchScreen.storyboard */; };
 		04928F7320BFE4E1008A7978 /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04928F7220BFE4E1008A7978 /* DetailsViewController.swift */; };
 		04928F7D20C02EE2008A7978 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04928F7C20C02EE2008A7978 /* SettingsTableViewController.swift */; };
+		04991ECA20D42A8700667C1A /* SignUpControllerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04991EC920D42A8700667C1A /* SignUpControllerViewController.swift */; };
+		04BF020120D3F1290094866E /* CollectionCellViewControllerCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BF020020D3F1290094866E /* CollectionCellViewControllerCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +30,8 @@
 		04332CD320B816D300274E48 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		04928F7220BFE4E1008A7978 /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
 		04928F7C20C02EE2008A7978 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
+		04991EC920D42A8700667C1A /* SignUpControllerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpControllerViewController.swift; sourceTree = "<group>"; };
+		04BF020020D3F1290094866E /* CollectionCellViewControllerCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionCellViewControllerCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,6 +94,7 @@
 		04928F7920C02D35008A7978 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				04991ECB20D42A8D00667C1A /* SignUp */,
 				04928F7B20C02DBF008A7978 /* Dasboard */,
 				04928F7A20C02D92008A7978 /* SettingsPage */,
 				04332CC620B816D000274E48 /* ViewController.swift */,
@@ -109,8 +114,17 @@
 			isa = PBXGroup;
 			children = (
 				04928F7220BFE4E1008A7978 /* DetailsViewController.swift */,
+				04BF020020D3F1290094866E /* CollectionCellViewControllerCollectionViewCell.swift */,
 			);
 			path = Dasboard;
+			sourceTree = "<group>";
+		};
+		04991ECB20D42A8D00667C1A /* SignUp */ = {
+			isa = PBXGroup;
+			children = (
+				04991EC920D42A8700667C1A /* SignUpControllerViewController.swift */,
+			);
+			path = SignUp;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -185,10 +199,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				04332CC720B816D000274E48 /* ViewController.swift in Sources */,
+				04991ECA20D42A8700667C1A /* SignUpControllerViewController.swift in Sources */,
 				04332CC520B816D000274E48 /* AppDelegate.swift in Sources */,
 				04332CCD20B816D000274E48 /* test.xcdatamodeld in Sources */,
 				04928F7D20C02EE2008A7978 /* SettingsTableViewController.swift in Sources */,
 				04928F7320BFE4E1008A7978 /* DetailsViewController.swift in Sources */,
+				04BF020120D3F1290094866E /* CollectionCellViewControllerCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

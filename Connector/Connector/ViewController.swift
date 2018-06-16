@@ -73,6 +73,7 @@ extension ViewController: LabelDelegate{
     func currentDeviceStateList(_ deviceList:[[String : String]]) {
         print("currentDeviceStateList im ViewController ausgelöst")
         self.deviceList = deviceList
+        print(deviceList)
         self.updateUI()
     }
     
