@@ -10,7 +10,6 @@ import Foundation
 
 protocol RequesterDelegate {
     func transferSID(_ sessionID: String)
-    func refreshSID()
     func replyMainOperatorThermostat(_ reply: String)
     func replyDeviceList(_ deviceList:[[String: String]])
 }

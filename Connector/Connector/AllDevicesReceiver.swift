@@ -1,6 +1,6 @@
 //
 //  SessionManager.swift
-//  httpRequest
+//  connects to fritz box and downloads all data to core data
 //
 //  Created by Jokto on 27.05.18.
 //  Copyright © 2018 MobileAnwendungen. All rights reserved.
@@ -97,9 +97,9 @@ extension AllDevicesReceiver:XMLParserDelegate {
     }
     
     func writeToCoreData(_ devicesArray: [[String: String]]){
-        context.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
+        context.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy // upsorting rule
         for device in devicesArray{
-            if device["state"] == nil{
+            if device["state"] == nil{ //device is a thermostat
                 let thermostat = Thermostat(context: context)
                 thermostat.id = device["id"]
                 thermostat.title = device["name"]
@@ -112,19 +112,27 @@ extension AllDevicesReceiver:XMLParserDelegate {
                 else{
                     thermostat.target_temp = tsoll!
                 }
-                do{
-                    try context.save()
-                } catch {
-                    print(error)
-                }
-                
             }
-            if device["state"] != nil{
-                //write all switch stuff to db
-                print("schalter")
+            if device["state"] != nil{ // device is a switch
+                let aSwitch = SwitchDevice(context: context)
+                aSwitch.id = device["id"]
+                aSwitch.title = device["name"]
+                if device["state"] == "0"{
+                    aSwitch.state = false
+                }
+                else if device["state"] == "1"{
+                    aSwitch.state = true
+                }
+
             }
         }
         
+        do{ // persist data
+            try context.save()
+            
+        } catch {
+            print(error)
+        }
     }
     
 }

@@ -36,7 +36,6 @@ class Connector:NSObject {
             startMainOperatorThermostat()
             startAllDeviceReceiver()
         }
-
     }
     
     func getSessionID(){
@@ -62,24 +61,12 @@ class Connector:NSObject {
         anOperation.performOperation(ain: deviceID, cmd: "sethkrtsoll", sID: sessionID!, parameter: temperature)
     }
     
-    func getTemperature(_ deviceID: String) -> Float{
-        return 25.3
-    }
-    func getSwitchState(_ deviceID: String)->Int{
-        return 1
-    }
     func setSwitchState(deviceID: String, state: Bool){
         var stateStr = ""
         if state == true{stateStr = "setswitchon"}
         else {stateStr = "setswitchoff" }
         anOperation.performOperation(ain: deviceID, cmd: stateStr, sID: sessionID!, parameter:"")
         
-    }
-    func getThermosetateList()->[[String : String]]{
-        return [["": ""]]
-    }
-    func getSwitchList()->[[String : String]]{
-        return [["": ""]]
     }
     
     func setPW(_ pw: String){
@@ -98,11 +85,6 @@ extension Connector:RequesterDelegate{
     func replyDeviceList(_ deviceList: [[String : String]]) {
         self.deviceList = deviceList
         uiDelegate?.currentDeviceStateList(deviceList)
-    }
-    
-    
-    func refreshSID() {
-        getSessionID()
     }
     
     func transferSID(_ sessionID: String) {

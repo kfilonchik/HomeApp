@@ -21,6 +21,7 @@
 		8953806220C47A15003937C6 /* Operation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8953805B20C47A15003937C6 /* Operation.swift */; };
 		8953806320C47A15003937C6 /* AllDevicesReceiver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8953805C20C47A15003937C6 /* AllDevicesReceiver.swift */; };
 		89A0AD8A20D42ECE00647F5B /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 89A0AD8820D42ECD00647F5B /* Model.xcdatamodeld */; };
+		89F6F6CA20D5426F0064C8CD /* deleteTables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F6F6C920D5426F0064C8CD /* deleteTables.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +41,7 @@
 		8953805B20C47A15003937C6 /* Operation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Operation.swift; sourceTree = "<group>"; };
 		8953805C20C47A15003937C6 /* AllDevicesReceiver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllDevicesReceiver.swift; sourceTree = "<group>"; };
 		89A0AD8920D42ECE00647F5B /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		89F6F6C920D5426F0064C8CD /* deleteTables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = deleteTables.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +88,7 @@
 		8953803820C479C3003937C6 = {
 			isa = PBXGroup;
 			children = (
+				89F6F6C820D542480064C8CD /* usefulStuff */,
 				891997E020D508C400A6FEC7 /* GUI */,
 				891997DF20D5087D00A6FEC7 /* Delegates */,
 				89299B4120D47A3D00B534A8 /* CoreData */,
@@ -113,6 +116,14 @@
 				8953805020C479C4003937C6 /* Info.plist */,
 			);
 			path = Connector;
+			sourceTree = "<group>";
+		};
+		89F6F6C820D542480064C8CD /* usefulStuff */ = {
+			isa = PBXGroup;
+			children = (
+				89F6F6C920D5426F0064C8CD /* deleteTables.swift */,
+			);
+			path = usefulStuff;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -195,6 +206,7 @@
 				8953805F20C47A15003937C6 /* Md5Maker.swift in Sources */,
 				89299B4020D47A0E00B534A8 /* AppSettings.swift in Sources */,
 				89A0AD8A20D42ECE00647F5B /* Model.xcdatamodeld in Sources */,
+				89F6F6CA20D5426F0064C8CD /* deleteTables.swift in Sources */,
 				8953806120C47A15003937C6 /* Connector.swift in Sources */,
 				8953805D20C47A15003937C6 /* SessionManager.swift in Sources */,
 			);

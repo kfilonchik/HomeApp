@@ -48,10 +48,16 @@ class ViewController: UIViewController {
     }
     
     @IBAction func doCoreData(_ sender: UIButton) {
-        let request: NSFetchRequest<Thermostat> = Thermostat.fetchRequest()
-        let result = try? context.fetch(request)
+        let thermostats: NSFetchRequest<Thermostat> = Thermostat.fetchRequest()
+        let result = try? context.fetch(thermostats)
         for aresult in result!{
             print(aresult.target_temp)
+        }
+        
+        let switches: NSFetchRequest<SwitchDevice> = SwitchDevice.fetchRequest()
+        let result2 = try? context.fetch(switches)
+        for aresult in result2!{
+            print(aresult.state)
         }
     }
     
