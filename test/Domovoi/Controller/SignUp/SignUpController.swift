@@ -7,37 +7,24 @@
 //
 
 import UIKit
+import CoreData
 
 class SignUpController: UIViewController {
     
     let aConnector = Connector()
     
-    var thermosID:Int?
-    var switchID:Int?
-    var disText:String?
-    var idIndexer = [String]()
-    var deviceList: [[String : String]]?{
-        didSet{
-            idIndexer.removeAll()
-            for aDev in deviceList!{
-                idIndexer.append(aDev["id"]!)
-            }
-        }
-    }
     let container = AppDelegate.persistentContainer
     let context = AppDelegate.viewContext
     
     
     @IBOutlet weak var textFritzID: UITextField!
-    
     @IBOutlet weak var textPassword: UITextField!
- 
     @IBOutlet weak var textUserName: UITextField!
     
     
     
     @IBAction func Sign(_ sender: UIButton) {
-       
+       print("login gedrückt")
         
        
     /*
@@ -47,25 +34,22 @@ class SignUpController: UIViewController {
  */
     
     // check for empty fields
-        /*
+        
         var userFritzID = textFritzID.text
         let userName = textUserName.text
         let userPassword = textPassword.text
+        let stdAppSettings = AppSettings(context: context)
+        stdAppSettings.userName = textUserName.text
+        stdAppSettings.fritzID = textFritzID.text
         
-        if (userFritzID!.isEmpty || userPassword!.isEmpty || userName!.isEmpty) {
+        if (userFritzID! == "" || userPassword!.isEmpty || userName!.isEmpty) {
+            print("in empty if")
             displayAllertMessage(userMessage: "All fields required")
             return;
         }
-         */
-        let fritzID = textFritzID.text
-        let userName = textUserName.text
         
         
-        aConnector.setPW(textPassword.text!)
-       // aConnector.setUserName(userName!)
-        //aConnector.setFritzID(fritzID!)
-        
-        UserDefaults.standard.set(true, forKey: "isLogged");
+        UserDefaults.standard.set(false, forKey: "isLogged");
         UserDefaults.standard.synchronize()
         self.dismiss(animated: true, completion: nil)
     }
@@ -78,10 +62,8 @@ class SignUpController: UIViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-       /* let stdAppSettings = AppSettings(context: context)
-        stdAppSettings.userName = textUserName.text
-        stdAppSettings.fritzID = textFritzID.text */
-        /* aConnector.startUpConnector(self) */
+
+
 
         // Do any additional setup after loading the view.
     }

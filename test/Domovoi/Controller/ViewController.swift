@@ -58,14 +58,13 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     //Show firstly sign up page
     override func viewDidAppear(_ animated: Bool) {
         
-        let isUserLogged = UserDefaults.standard.bool(forKey: "isLogged");
+        let isUserLogged = UserDefaults.standard.bool(forKey: "isLogged")
 
         if(!isUserLogged){
 
         self.performSegue(withIdentifier: "mainPage", sender: self)
         
         }
-
     }
 
     

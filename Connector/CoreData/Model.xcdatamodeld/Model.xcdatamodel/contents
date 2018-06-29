@@ -95,7 +95,7 @@
         <relationship name="thermostat" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Thermostat" inverseName="tile" inverseEntity="Thermostat" syncable="YES"/>
     </entity>
     <elements>
-        <element name="AppSettings" positionX="-9450" positionY="-837" width="128" height="90"/>
+        <element name="AppSettings" positionX="-9450" positionY="-837" width="128" height="88"/>
         <element name="DashboardTile" positionX="-10017" positionY="-973" width="128" height="75"/>
         <element name="Scene" positionX="-10017" positionY="-673" width="128" height="105"/>
         <element name="SceneTile" positionX="-10017" positionY="-837" width="128" height="58"/>

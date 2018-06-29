@@ -19,17 +19,17 @@
 		04CE5E0B20DD4F060095A863 /* Connector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CE5E0A20DD4F060095A863 /* Connector.swift */; };
 		04CE5E1020DD4F4F0095A863 /* Operation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CE5E0C20DD4F4E0095A863 /* Operation.swift */; };
 		04CE5E1120DD4F4F0095A863 /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CE5E0D20DD4F4E0095A863 /* SessionManager.swift */; };
-		04CE5E1220DD4F4F0095A863 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 04CE5E0E20DD4F4E0095A863 /* Info.plist */; };
 		04CE5E1320DD4F4F0095A863 /* Md5Maker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CE5E0F20DD4F4F0095A863 /* Md5Maker.swift */; };
 		04CE5E1520DD4F730095A863 /* AllDevicesReceiver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CE5E1420DD4F730095A863 /* AllDevicesReceiver.swift */; };
 		04CE5E1920DD50AB0095A863 /* LabelDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CE5E1720DD50AB0095A863 /* LabelDelegate.swift */; };
 		04CE5E1A20DD50AB0095A863 /* RequesterDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CE5E1820DD50AB0095A863 /* RequesterDelegate.swift */; };
 		04CE5E1D20DD56340095A863 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 04CE5E1B20DD56330095A863 /* Model.xcdatamodeld */; };
 		04CE5E1F20DD56490095A863 /* AppSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CE5E1E20DD56490095A863 /* AppSettings.swift */; };
+		894275A720E66F0600CA3139 /* ManageDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 894275A620E66F0600CA3139 /* ManageDB.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		04332CC120B816D000274E48 /* test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = test.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		04332CC120B816D000274E48 /* Domovoi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Domovoi.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		04332CC420B816D000274E48 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		04332CC620B816D000274E48 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		04332CC920B816D000274E48 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -43,7 +43,6 @@
 		04CE5E0A20DD4F060095A863 /* Connector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Connector.swift; sourceTree = "<group>"; };
 		04CE5E0C20DD4F4E0095A863 /* Operation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Operation.swift; path = ../../../Connector/Connector/Operation.swift; sourceTree = "<group>"; };
 		04CE5E0D20DD4F4E0095A863 /* SessionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SessionManager.swift; path = ../../../Connector/Connector/SessionManager.swift; sourceTree = "<group>"; };
-		04CE5E0E20DD4F4E0095A863 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = ../../../Connector/Connector/Info.plist; sourceTree = "<group>"; };
 		04CE5E0F20DD4F4F0095A863 /* Md5Maker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Md5Maker.swift; path = ../../../Connector/Connector/Md5Maker.swift; sourceTree = "<group>"; };
 		04CE5E1420DD4F730095A863 /* AllDevicesReceiver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AllDevicesReceiver.swift; path = ../../../Connector/Connector/AllDevicesReceiver.swift; sourceTree = "<group>"; };
 		04CE5E1720DD50AB0095A863 /* LabelDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LabelDelegate.swift; path = ../../../../Connector/Delegates/LabelDelegate.swift; sourceTree = "<group>"; };
@@ -51,6 +50,7 @@
 		04CE5E1C20DD56330095A863 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		04CE5E1E20DD56490095A863 /* AppSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppSettings.swift; path = ../../../Connector/CoreData/AppSettings.swift; sourceTree = "<group>"; };
 		04CE5E2620DD73DB0095A863 /* Connector-header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Connector-header.h"; sourceTree = "<group>"; };
+		894275A620E66F0600CA3139 /* ManageDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageDB.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,7 +68,8 @@
 			isa = PBXGroup;
 			children = (
 				04CE5E2620DD73DB0095A863 /* Connector-header.h */,
-				04332CC320B816D000274E48 /* test */,
+				04332CC320B816D000274E48 /* Domovoi */,
+				894275A520E66EBA00CA3139 /* DevelopmentStuff */,
 				04332CC220B816D000274E48 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -76,21 +77,21 @@
 		04332CC220B816D000274E48 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				04332CC120B816D000274E48 /* test.app */,
+				04332CC120B816D000274E48 /* Domovoi.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		04332CC320B816D000274E48 /* test */ = {
+		04332CC320B816D000274E48 /* Domovoi */ = {
 			isa = PBXGroup;
 			children = (
-				04CE5E0920DD4D170095A863 /* Connector */,
-				04928F7920C02D35008A7978 /* Controller */,
-				04928F7820C02D2F008A7978 /* View */,
 				04928F7720C02D29008A7978 /* Model */,
+				04928F7820C02D2F008A7978 /* View */,
+				04928F7920C02D35008A7978 /* Controller */,
+				04CE5E0920DD4D170095A863 /* Connector */,
 				04332CD320B816D300274E48 /* Info.plist */,
 			);
-			path = test;
+			path = Domovoi;
 			sourceTree = "<group>";
 		};
 		04928F7720C02D29008A7978 /* Model */ = {
@@ -116,7 +117,6 @@
 			isa = PBXGroup;
 			children = (
 				04332CC620B816D000274E48 /* ViewController.swift */,
-				04CE5E1620DD4FC20095A863 /* Delegetes */,
 				04991ECB20D42A8D00667C1A /* SignUp */,
 				04928F7B20C02DBF008A7978 /* Dasboard */,
 				04928F7A20C02D92008A7978 /* SettingsPage */,
@@ -152,32 +152,40 @@
 		04CE5E0920DD4D170095A863 /* Connector */ = {
 			isa = PBXGroup;
 			children = (
-				04CE5E1420DD4F730095A863 /* AllDevicesReceiver.swift */,
-				04CE5E0E20DD4F4E0095A863 /* Info.plist */,
-				04CE5E0F20DD4F4F0095A863 /* Md5Maker.swift */,
-				04CE5E0C20DD4F4E0095A863 /* Operation.swift */,
-				04CE5E0D20DD4F4E0095A863 /* SessionManager.swift */,
+				04CE5E1620DD4FC20095A863 /* Delegates */,
 				04CE5E0A20DD4F060095A863 /* Connector.swift */,
+				04CE5E0D20DD4F4E0095A863 /* SessionManager.swift */,
+				04CE5E0F20DD4F4F0095A863 /* Md5Maker.swift */,
+				04CE5E1420DD4F730095A863 /* AllDevicesReceiver.swift */,
+				04CE5E0C20DD4F4E0095A863 /* Operation.swift */,
 			);
 			path = Connector;
 			sourceTree = "<group>";
 		};
-		04CE5E1620DD4FC20095A863 /* Delegetes */ = {
+		04CE5E1620DD4FC20095A863 /* Delegates */ = {
 			isa = PBXGroup;
 			children = (
+				04332CC420B816D000274E48 /* AppDelegate.swift */,
 				04CE5E1720DD50AB0095A863 /* LabelDelegate.swift */,
 				04CE5E1820DD50AB0095A863 /* RequesterDelegate.swift */,
-				04332CC420B816D000274E48 /* AppDelegate.swift */,
 			);
-			path = Delegetes;
+			path = Delegates;
+			sourceTree = "<group>";
+		};
+		894275A520E66EBA00CA3139 /* DevelopmentStuff */ = {
+			isa = PBXGroup;
+			children = (
+				894275A620E66F0600CA3139 /* ManageDB.swift */,
+			);
+			path = DevelopmentStuff;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		04332CC020B816D000274E48 /* test */ = {
+		04332CC020B816D000274E48 /* Domovoi */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 04332CD620B816D300274E48 /* Build configuration list for PBXNativeTarget "test" */;
+			buildConfigurationList = 04332CD620B816D300274E48 /* Build configuration list for PBXNativeTarget "Domovoi" */;
 			buildPhases = (
 				04332CBD20B816D000274E48 /* Sources */,
 				04332CBE20B816D000274E48 /* Frameworks */,
@@ -187,9 +195,9 @@
 			);
 			dependencies = (
 			);
-			name = test;
+			name = Domovoi;
 			productName = test;
-			productReference = 04332CC120B816D000274E48 /* test.app */;
+			productReference = 04332CC120B816D000274E48 /* Domovoi.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -208,7 +216,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 04332CBC20B816D000274E48 /* Build configuration list for PBXProject "test" */;
+			buildConfigurationList = 04332CBC20B816D000274E48 /* Build configuration list for PBXProject "Domovoi" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -221,7 +229,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				04332CC020B816D000274E48 /* test */,
+				04332CC020B816D000274E48 /* Domovoi */,
 			);
 		};
 /* End PBXProject section */
@@ -231,7 +239,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				04CE5E1220DD4F4F0095A863 /* Info.plist in Resources */,
 				04332CD220B816D300274E48 /* LaunchScreen.storyboard in Resources */,
 				04332CCF20B816D300274E48 /* Assets.xcassets in Resources */,
 				04332CCA20B816D000274E48 /* Main.storyboard in Resources */,
@@ -253,6 +260,7 @@
 				04928F7D20C02EE2008A7978 /* SettingsTableViewController.swift in Sources */,
 				04CE5E1020DD4F4F0095A863 /* Operation.swift in Sources */,
 				04CE5E1A20DD50AB0095A863 /* RequesterDelegate.swift in Sources */,
+				894275A720E66F0600CA3139 /* ManageDB.swift in Sources */,
 				04CE5E1F20DD56490095A863 /* AppSettings.swift in Sources */,
 				04CE5E0B20DD4F060095A863 /* Connector.swift in Sources */,
 				04928F7320BFE4E1008A7978 /* DetailsViewController.swift in Sources */,
@@ -406,7 +414,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = QVP266Y9P4;
-				INFOPLIST_FILE = test/Info.plist;
+				INFOPLIST_FILE = Domovoi/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -428,7 +436,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = QVP266Y9P4;
-				INFOPLIST_FILE = test/Info.plist;
+				INFOPLIST_FILE = Domovoi/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -445,7 +453,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		04332CBC20B816D000274E48 /* Build configuration list for PBXProject "test" */ = {
+		04332CBC20B816D000274E48 /* Build configuration list for PBXProject "Domovoi" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				04332CD420B816D300274E48 /* Debug */,
@@ -454,7 +462,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		04332CD620B816D300274E48 /* Build configuration list for PBXNativeTarget "test" */ = {
+		04332CD620B816D300274E48 /* Build configuration list for PBXNativeTarget "Domovoi" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				04332CD720B816D300274E48 /* Debug */,
