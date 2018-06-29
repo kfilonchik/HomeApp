@@ -12,8 +12,7 @@ import CoreData
 
 class ManageDB: UIViewController {
 
-    let context_writer = AppDelegate.viewContext
-    let context_reader = AppDelegate.viewContext
+    let context = AppDelegate.viewContext
     //let container = AppDelegate.persistentContainer
     
     
@@ -31,13 +30,13 @@ class ManageDB: UIViewController {
     
     
     @IBAction func addWrongData(_ sender: UIButton) {
-        let stdAppSettings = AppSettings(context: context_writer)
+        let stdAppSettings = AppSettings(context: context)
         stdAppSettings.fritzID = "wrong"
         stdAppSettings.userName = "falsch"
         stdAppSettings.passWord = "faux"
         
         do{ // persist data
-            try context_writer.save()
+            try context.save()
             
         } catch {
             print(error)
@@ -47,33 +46,48 @@ class ManageDB: UIViewController {
     
     @IBAction func printBtn(_ sender: UIButton) {
         let fetchRequest: NSFetchRequest<AppSettings> = AppSettings.fetchRequest()
-        let result = try? context_reader.fetch(fetchRequest)
-        for aresult in result!{
-            print(aresult.fritzID)
-            print(aresult.userName)
-            print(aresult.passWord)
+        let result = try? context.fetch(fetchRequest)
+        print(result?.count)
+        if((result?.count)! > 0){
+            print(result![0].fritzID!)
+            print(result![0].userName!)
+            print(result![0].passWord!)
         }
+        /*result![0].fritzID! = "neuespasswort"
+        print(result![0].fritzID!)
+        
+        do{ // persist data
+            try context.save()
+            
+        } catch {
+            print(error)
+        } */
+        
+        
     }
     
     @IBAction func deleteContentBtn(_ sender: UIButton) {
-
-        print("delete procedure")
-        let fetchRequest: NSFetchRequest<AppSettings> = AppSettings.fetchRequest()
-         
-         // Create Batch Delete Request
-         let batchDeleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest as! NSFetchRequest<NSFetchRequestResult>)
-         
-         do {
-         try context_writer.execute(batchDeleteRequest)
-         
-         } catch {
-         // Error Handling
-         }
-        
-        context_writer.reset()
+        deleteAppSettings()
     }
     
-    
+    func deleteAppSettings(){
+        print("delete procedure")
+        let fetchRequest: NSFetchRequest<AppSettings> = AppSettings.fetchRequest()
+        
+        // Create Batch Delete Request
+        let batchDeleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest as! NSFetchRequest<NSFetchRequestResult>)
+        
+        do {
+            try context.execute(batchDeleteRequest)
+            
+        } catch {
+            // Error Handling
+        }
+        
+        context.reset()
+        
+        
+    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

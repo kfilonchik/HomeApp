@@ -8,46 +8,48 @@
 
 import UIKit
 import Foundation
+import CoreData
 
 class Connector:NSObject {
-    var userName:String? = "domovoi"
-    var passWord:String?{
-        didSet{
-            getSessionID()
-            startMainOperatorThermostat()
-            startAllDeviceReceiver()
-        }
-    }
-    var fritzID:String = "7ncvvd2irftxy2fv"
+    var userName:String? // = "domovoi"
+    var passWord:String?
+    var fritzID:String? // = "7ncvvd2irftxy2fv"
     let baseURL:String = "https://clapotis.de/MobileAnwendungenSS18/"
     let aSessionManager = SessionManager()
     let anOperation = Operation()
     let anAllDeviceReceiver = AllDevicesReceiver()
     var sessionID:String?
-    var retryCounter = 0
     var deviceList: [[String : String]]?
     var uiDelegate: LabelDelegate?
     
-    
-    func startUpConnector(_ viewC: LabelDelegate){
-        self.uiDelegate = viewC
-        if passWord != nil{
+    func startUpConnector(){
+        let context = AppDelegate.viewContext
+        let fetchRequest: NSFetchRequest<AppSettings> = AppSettings.fetchRequest()
+        let result = try? context.fetch(fetchRequest)
+        if (result?.count == 1){
+            passWord = result![0].passWord
+            userName = result![0].userName
+            fritzID  = result![0].fritzID
+            
             getSessionID()
-            startMainOperatorThermostat()
+            starOperatorObject()
             startAllDeviceReceiver()
+        }
+        else{
+            print("fehler beim starten des Connectors")
         }
     }
     
     func getSessionID(){
-        aSessionManager.requestSID(userName: userName!, passWord: passWord!, fritzID: fritzID, baseURL: baseURL, caller: self)
+        aSessionManager.requestSID(userName: userName!, passWord: passWord!, fritzID: fritzID!, baseURL: baseURL, caller: self)
         
     }
-    func startMainOperatorThermostat(){
-        anOperation.setOperationReady(userName: userName!, passWord: passWord!, fritzID: fritzID, baseURL: baseURL, delegate: self)
+    func starOperatorObject(){
+        anOperation.setOperationReady(userName: userName!, passWord: passWord!, fritzID: fritzID!, baseURL: baseURL, delegate: self)
     }
     
     func startAllDeviceReceiver(){
-        anAllDeviceReceiver.startOperator(userName: userName!, passWord: passWord!, fritzID: fritzID, baseURL: baseURL, delegate: self)
+        anAllDeviceReceiver.startOperator(userName: userName!, passWord: passWord!, fritzID: fritzID!, baseURL: baseURL, delegate: self)
     }
     
     func getAllDevices(){
@@ -68,18 +70,6 @@ class Connector:NSObject {
         anOperation.performOperation(ain: deviceID, cmd: stateStr, sID: sessionID!, parameter:"")
         
     }
-  /*
-    func setFritzID(_ id: String){
-        self.fritzID = id
-    }
-    func setUserName(_ un: String){
-        self.userName = un
-    }
-*/
-    func setPW(_ pw: String){
-        self.passWord = pw
-    
-    }
 }
 
 
@@ -93,6 +83,7 @@ extension Connector:RequesterDelegate{
     func replyDeviceList(_ deviceList: [[String : String]]) {
         self.deviceList = deviceList
         uiDelegate?.currentDeviceStateList(deviceList)
+        print(deviceList)
     }
     
     func transferSID(_ sessionID: String) {

@@ -8,17 +8,19 @@
 
 
 import UIKit
+import CoreData
 
 class ViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
     
     let reuseIdentifier = "cell1"
-    
     let reuseIdentifier1 = "cell2"
     let items = ["Etwas","Termostat", "Schalter"]
+    let aConnector = Connector()
+    
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return self.items.count
     }
-    
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
@@ -41,7 +43,6 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "testpage")
         
         self.present(viewController, animated: false, completion: nil)
-        
     }
 */
     override func viewDidLoad() {
@@ -55,16 +56,28 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         // Dispose of any resources that can be recreated.
     }
     
-    //Show firstly sign up page
+    //Show sign up page first
     override func viewDidAppear(_ animated: Bool) {
+        let context = AppDelegate.viewContext
+        //let isUserLogged = UserDefaults.standard.bool(forKey: "isLogged")
+        let fetchRequest: NSFetchRequest<AppSettings> = AppSettings.fetchRequest()
+        let result = try? context.fetch(fetchRequest)
         
-        let isUserLogged = UserDefaults.standard.bool(forKey: "isLogged")
-
-        if(!isUserLogged){
-
-        self.performSegue(withIdentifier: "mainPage", sender: self)
-        
+        if((result?.count)! == 0){
+            self.performSegue(withIdentifier: "mainPage", sender: self)
         }
+        else if ((result?.count)! == 1){
+            aConnector.startUpConnector()
+        }
+        
+        //temp settings to have login screen
+        //let bla = ManageDB()
+        //bla.deleteAppSettings()
+        
+        
+        /*if(!isUserLogged){
+        self.performSegue(withIdentifier: "mainPage", sender: self)
+        }*/
     }
 
     

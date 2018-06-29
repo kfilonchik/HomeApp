@@ -11,47 +11,52 @@ import CoreData
 
 class SignUpController: UIViewController {
     
-    let aConnector = Connector()
-    
-    let container = AppDelegate.persistentContainer
     let context = AppDelegate.viewContext
-    
     
     @IBOutlet weak var textFritzID: UITextField!
     @IBOutlet weak var textPassword: UITextField!
     @IBOutlet weak var textUserName: UITextField!
     
-    
-    
     @IBAction func Sign(_ sender: UIButton) {
-       print("login gedrückt")
         
        
     /*
-        let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "DashboardView")
-        
-        self.present(viewController, animated: false, completion: nil)
- */
+    let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "DashboardView")
+    self.present(viewController, animated: false, completion: nil)
+    */
     
     // check for empty fields
         
-        var userFritzID = textFritzID.text
-        let userName = textUserName.text
-        let userPassword = textPassword.text
+    let userFritzID = textFritzID.text
+    let userName = textUserName.text
+    let userPassword = textPassword.text
+
+    
+    
+    if (userFritzID!.isEmpty || userPassword!.isEmpty || userName!.isEmpty) {
+        print("in empty if")
+        displayAllertMessage(userMessage: "All fields required")
+        return;
+    }
+    else if (!userFritzID!.isEmpty && !userPassword!.isEmpty && !userName!.isEmpty){
+        print("startetd storing settings")
         let stdAppSettings = AppSettings(context: context)
         stdAppSettings.userName = textUserName.text
         stdAppSettings.fritzID = textFritzID.text
+        stdAppSettings.passWord = textPassword.text
         
-        if (userFritzID! == "" || userPassword!.isEmpty || userName!.isEmpty) {
-            print("in empty if")
-            displayAllertMessage(userMessage: "All fields required")
-            return;
+        do{ // persist data
+            try context.save()
+            
+        } catch {
+            print(error)
         }
+    }
         
         
-        UserDefaults.standard.set(false, forKey: "isLogged");
-        UserDefaults.standard.synchronize()
-        self.dismiss(animated: true, completion: nil)
+    //UserDefaults.standard.set(false, forKey: "isLogged");
+    //UserDefaults.standard.synchronize()
+    self.dismiss(animated: true, completion: nil)
     }
     func displayAllertMessage(userMessage: String) {
         let allert = UIAlertController(title: "Alert", message: userMessage, preferredStyle: .alert);
