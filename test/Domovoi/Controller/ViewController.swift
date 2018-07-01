@@ -16,6 +16,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     let reuseIdentifier1 = "cell2"
     let items = ["Etwas","Termostat", "Schalter"]
     let aConnector = Connector()
+    var toggle = false
     
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -47,7 +48,17 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
 */
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+        let context = AppDelegate.viewContext
+        let fetchRequest: NSFetchRequest<AppSettings> = AppSettings.fetchRequest()
+        let result = try? context.fetch(fetchRequest)
+        
+        if((result?.count)! == 0){
+            self.performSegue(withIdentifier: "mainPage", sender: self)
+        }
+        else if ((result?.count)! == 1){
+            aConnector.startUpConnector()
+        }
     }    
     
     
@@ -58,26 +69,20 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     
     //Show sign up page first
     override func viewDidAppear(_ animated: Bool) {
-        let context = AppDelegate.viewContext
-        //let isUserLogged = UserDefaults.standard.bool(forKey: "isLogged")
-        let fetchRequest: NSFetchRequest<AppSettings> = AppSettings.fetchRequest()
-        let result = try? context.fetch(fetchRequest)
-        
-        if((result?.count)! == 0){
-            self.performSegue(withIdentifier: "mainPage", sender: self)
+
+        aConnector.setSwitchState(deviceID: "08761 0437714", state: toggle)
+        if (toggle == true){
+                toggle = false
         }
-        else if ((result?.count)! == 1){
-            aConnector.startUpConnector()
+        else if (toggle == false){
+            toggle = true
         }
+
         
         //temp settings to have login screen
         //let bla = ManageDB()
         //bla.deleteAppSettings()
         
-        
-        /*if(!isUserLogged){
-        self.performSegue(withIdentifier: "mainPage", sender: self)
-        }*/
     }
 
     

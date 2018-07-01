@@ -66,9 +66,11 @@ extension Operation:XMLParserDelegate {
             if currentParsingElement == "value" {
                 self.paramterAnswer = foundedChar
             }
-            else{
-                print("gefunden statt value: \(foundedChar)")
+            
+            if (foundedChar == "error") {
+                self.delegate?.connectionError("Fehler beim Laden der Setzten des Status")
             }
+
         }
         
     }

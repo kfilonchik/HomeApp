@@ -19,8 +19,10 @@ class Connector:NSObject {
     let anOperation = Operation()
     let anAllDeviceReceiver = AllDevicesReceiver()
     var sessionID:String?
+    var sIDdefault:String = "0000000000000000"
     var deviceList: [[String : String]]?
     var uiDelegate: LabelDelegate?
+    var retry_counter = 0
     
     func startUpConnector(){
         let context = AppDelegate.viewContext
@@ -53,22 +55,37 @@ class Connector:NSObject {
     }
     
     func getAllDevices(){
-        if sessionID != nil{
+        if (sessionID != nil && sessionID != sIDdefault){
             print("getAllDevices ausgelöst")
             anAllDeviceReceiver.getAllDevices(cmd: "getdevicelistinfos", sID: sessionID!)
+        }
+        else{
+            print("no getAllDevices() because of missing Session ID. Will retry to get session id.")
+            getSessionID()
         }
     }
     
     func setTemperature(deviceID: String, temperature: String){
-        anOperation.performOperation(ain: deviceID, cmd: "sethkrtsoll", sID: sessionID!, parameter: temperature)
+        if (sessionID != nil && sessionID != sIDdefault){
+            anOperation.performOperation(ain: deviceID, cmd: "sethkrtsoll", sID: sessionID!, parameter: temperature)
+        }
+        else{
+            print("no setTemperature() because of missing Session ID. Will retry to get session id.")
+            getSessionID()
+        }
     }
     
     func setSwitchState(deviceID: String, state: Bool){
-        var stateStr = ""
-        if state == true{stateStr = "setswitchon"}
-        else {stateStr = "setswitchoff" }
-        anOperation.performOperation(ain: deviceID, cmd: stateStr, sID: sessionID!, parameter:"")
-        
+        if (sessionID != nil && sessionID != sIDdefault){
+            var stateStr = ""
+            if state == true{stateStr = "setswitchon"}
+            else {stateStr = "setswitchoff" }
+            anOperation.performOperation(ain: deviceID, cmd: stateStr, sID: sessionID!, parameter:"")
+        }
+        else{
+            print("no setSwitchState() because of missing Session ID. Will retry to get session id.")
+            getSessionID()
+        }
     }
 }
 
@@ -76,19 +93,33 @@ class Connector:NSObject {
 //-------------------------------------------------
 extension Connector:RequesterDelegate{
     func replyMainOperatorThermostat(_ reply: String) {
-        print("Antwort des Setzvorgangs \(reply)")
+        print("Conncetor.swift: Antwort des Setzvorgangs \(reply)")
         self.getAllDevices()
     }
     
     func replyDeviceList(_ deviceList: [[String : String]]) {
         self.deviceList = deviceList
         uiDelegate?.currentDeviceStateList(deviceList)
-        print(deviceList)
+        print("Device Liste erhalten mit \(deviceList.count) Elementen")
+        //print(deviceList)
     }
     
     func transferSID(_ sessionID: String) {
         print("SessionID erhalten: \(sessionID)")
         self.sessionID = sessionID
         self.getAllDevices()
+    }
+    func connectionError(_ message: String){
+        print(message)
+        self.sessionID = sIDdefault
+        if(retry_counter < 6){
+            print("retrying to get sessionID")
+            getSessionID()
+            retry_counter += 1
+            
+            if (retry_counter == 6){
+                print("stopped trying to connect there seems to be an error. Restart Fritz Box and App")
+            }
+        }
     }
 }

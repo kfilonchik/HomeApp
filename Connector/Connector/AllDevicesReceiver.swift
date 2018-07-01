@@ -61,12 +61,10 @@ extension AllDevicesReceiver:XMLParserDelegate {
     func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String] = [:]) {
         currentParsingElement = elementName
         
-        if elementName == "devicelist" {
-            //print("Started parsing...")
-        }
-        else if elementName == "device"{
+        if elementName == "device"{
             self.attributeDict["id"] = attributeDict["identifier"]
         }
+        
     }
     
     func parser(_ parser: XMLParser, foundCharacters string: String) {
@@ -74,6 +72,10 @@ extension AllDevicesReceiver:XMLParserDelegate {
         
         if (!foundedChar.isEmpty) {
             self.attributeDict[currentParsingElement!] = foundedChar
+        }
+        
+        if (foundedChar == "error" && self.attributeDict["id"] == nil) {
+            self.delegate?.connectionError("Fehler beim Laden der DeviceListe")
         }
     }
     

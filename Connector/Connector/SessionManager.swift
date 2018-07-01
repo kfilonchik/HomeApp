@@ -13,6 +13,7 @@ class SessionManager:NSObject {
     
     var challenge:String?
     var sID:String = "0000000000000000"
+    var blockTime:Double = 0 // Fritz Box is blocked for a certain time after a failed login try
     var currentParsingElement:String?
     var userName:String?
     var passWord:String?
@@ -21,6 +22,7 @@ class SessionManager:NSObject {
     var delegate: LabelDelegate?
     let md5calc = Md5Maker()
     var delegateRequest:RequesterDelegate?
+    var retryTimer: Timer?
     
     func setDelegate(delegate: LabelDelegate) {
         self.delegate = delegate
@@ -36,15 +38,29 @@ class SessionManager:NSObject {
     }
 
     func getSessionID(){
+        if (blockTime == 0){
+            startAfterConditionCheck()
+            print("Started sessiongetter")
+        }
+        else if (blockTime <= 16){
+            retryTimer = Timer.scheduledTimer(timeInterval: blockTime, target: self, selector: #selector(startAfterConditionCheck), userInfo: nil, repeats: false)
+            print("started Timer with blocktime and sessiongetter afterwards")
+        }
+        else{
+            print("error during connection, Check connection, Username or Password")
+            blockTime = 0
+        }
+
+    }
+    @objc func startAfterConditionCheck(){
         var sessionUrl = URL(string: baseURL!+"getChallenge.php?fritz_id="+fritzID!)
         if (challenge != nil && passWord != nil && fritzID != nil && userName != nil) {
             
             let checksum = md5calc.MD5(challenge: challenge!, password: passWord!)
-            //let URLstring = baseURL + "getSessionID.php?fritz_id="+fritzID!+"&user="+userName!+"&md5calc="+checksum!
             let urlString = ("\(baseURL!)getSessionID.php?fritz_id=\(fritzID!)&user=\(userName!)&md5calc=\(checksum)")
             sessionUrl = URL(string: urlString)
         }
-    
+        
         let task = URLSession.shared.dataTask(with: sessionUrl!) { (data, response, error) in
             
             if data == nil {
@@ -78,11 +94,15 @@ extension SessionManager:XMLParserDelegate {
             if currentParsingElement == "Challenge" {
                 challenge = foundedChar
             }
-            else if currentParsingElement == "SID"{
+            if currentParsingElement == "SID"{
                 sID = foundedChar
-                }
+            }
+            if currentParsingElement == "BlockTime"{
+                blockTime = Double(foundedChar)!
+                print("BlockTime is \(blockTime)")
             }
         }
+    }
     
     func parser(_ parser: XMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
         if elementName == "SessionInfo" {
@@ -93,11 +113,13 @@ extension SessionManager:XMLParserDelegate {
     
     func parserDidEndDocument(_ parser: XMLParser) {
         DispatchQueue.main.async {
+
             if self.sID == "0000000000000000" {
                 self.getSessionID()
             }
             else if self.sID != "0000000000000000"{
                 self.delegateRequest?.transferSID(self.sID)
+                self.blockTime = 0
                 }
             }
         }
