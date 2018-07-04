@@ -61,7 +61,7 @@ class Connector:NSObject {
         }
         else{
             print("no getAllDevices() because of missing Session ID. Will retry to get session id.")
-            getSessionID()
+            startUpConnector()
         }
     }
     
@@ -71,7 +71,7 @@ class Connector:NSObject {
         }
         else{
             print("no setTemperature() because of missing Session ID. Will retry to get session id.")
-            getSessionID()
+            startUpConnector()
         }
     }
     
@@ -84,7 +84,7 @@ class Connector:NSObject {
         }
         else{
             print("no setSwitchState() because of missing Session ID. Will retry to get session id.")
-            getSessionID()
+            startUpConnector()
         }
     }
 }
