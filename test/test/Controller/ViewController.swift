@@ -11,6 +11,12 @@ import UIKit
 
 class ViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
     
+    @IBAction func Logout(_ sender: UIButton) {
+        UserDefaults.standard.set(false, forKey: "isLogged");
+        UserDefaults.standard.synchronize()
+         self.performSegue(withIdentifier: "mainPage", sender: self)
+        
+    }
     let reuseIdentifier = "cell1"
     
     let reuseIdentifier1 = "cell2"
@@ -58,14 +64,15 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     //Show firstly sign up page
     override func viewDidAppear(_ animated: Bool) {
         
+        //self.performSegue(withIdentifier: "mainPage", sender: self);
+        
         let isUserLogged = UserDefaults.standard.bool(forKey: "isLogged");
 
         if(!isUserLogged){
 
-        self.performSegue(withIdentifier: "mainPage", sender: self)
-        
+            self.performSegue(withIdentifier: "mainPage", sender: self)
         }
-
+ 
     }
 
     

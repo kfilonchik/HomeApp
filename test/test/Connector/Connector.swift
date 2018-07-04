@@ -9,7 +9,13 @@
 import UIKit
 import Foundation
 
+
 class Connector:NSObject {
+    
+    //let container = AppDelegate.persistentContainer
+   // let context = AppDelegate.viewContext
+    
+   
     var userName:String? = "domovoi"
     var passWord:String?{
         didSet{
@@ -18,7 +24,7 @@ class Connector:NSObject {
             startAllDeviceReceiver()
         }
     }
-    var fritzID:String = "7ncvvd2irftxy2fv"
+    let fritzID:String = "7ncvvd2irftxy2fv"
     let baseURL:String = "https://clapotis.de/MobileAnwendungenSS18/"
     let aSessionManager = SessionManager()
     let anOperation = Operation()
@@ -30,7 +36,11 @@ class Connector:NSObject {
     
     
     func startUpConnector(_ viewC: LabelDelegate){
+        //let stdAppsettings = AppSettings(context: context)
         self.uiDelegate = viewC
+        //self.userName = stdAppsettings.userName
+       // self.fritzID =  stdAppsettings.fritzID
+        //self.passWord =  stdAppsettings.passWord
         if passWord != nil{
             getSessionID()
             startMainOperatorThermostat()
@@ -74,8 +84,8 @@ class Connector:NSObject {
     }
     func setUserName(_ un: String){
         self.userName = un
-    }
-*/
+    }*/
+    
     func setPW(_ pw: String){
         self.passWord = pw
     

@@ -37,6 +37,7 @@ class SignUpController: UIViewController {
     
     
     @IBAction func Sign(_ sender: UIButton) {
+        
        
         
        
@@ -57,17 +58,27 @@ class SignUpController: UIViewController {
             return;
         }
          */
-        let fritzID = textFritzID.text
-        let userName = textUserName.text
         
         
-        aConnector.setPW(textPassword.text!)
+        let stdAppsettings = AppSettings(context: context)
+        
+       // stdAppsettings.userName = textUserName.text
+       // stdAppsettings.fritzID = textFritzID.text
+        stdAppsettings.passWord = textPassword.text
+        
+        
+       aConnector.setPW(textPassword.text!)
        // aConnector.setUserName(userName!)
         //aConnector.setFritzID(fritzID!)
-        
+         aConnector.startUpConnector(self)
         UserDefaults.standard.set(true, forKey: "isLogged");
         UserDefaults.standard.synchronize()
+       // let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "DashboardView")
+        
+        //self.present(viewController, animated: false, completion: nil)
         self.dismiss(animated: true, completion: nil)
+  
+        
     }
     func displayAllertMessage(userMessage: String) {
         let allert = UIAlertController(title: "Alert", message: userMessage, preferredStyle: .alert);
@@ -78,10 +89,11 @@ class SignUpController: UIViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+       
+        
        /* let stdAppSettings = AppSettings(context: context)
         stdAppSettings.userName = textUserName.text
         stdAppSettings.fritzID = textFritzID.text */
-        /* aConnector.startUpConnector(self) */
 
         // Do any additional setup after loading the view.
     }
@@ -90,6 +102,11 @@ class SignUpController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    func updateUI(){
+        if thermosID != nil{
+            print("update UI ausgelöst")
+            
+        }
     
 
 /*
@@ -102,5 +119,31 @@ class SignUpController: UIViewController {
     }
   */
     
-  
+
+    }
+    
 }
+
+//-------------------------------------------
+extension SignUpController: LabelDelegate{
+    func currentDeviceStateList(_ deviceList:[[String : String]]) {
+        print("currentDeviceStateList im ViewController ausgelöst")
+        self.deviceList = deviceList
+        print(deviceList)
+        self.updateUI()
+    }
+    
+    
+    func addTemp(value: String) {
+        
+    }
+    
+    func addLongTex(value: String) {
+        
+    }
+    
+    func addTextToLabel(value: String) {
+        
+    }
+}
+
