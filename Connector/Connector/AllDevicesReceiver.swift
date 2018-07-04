@@ -89,7 +89,6 @@ extension AllDevicesReceiver:XMLParserDelegate {
     
     func parserDidEndDocument(_ parser: XMLParser) {
         DispatchQueue.main.async {
-            self.delegate?.replyDeviceList(self.devicesArray)
             self.writeToCoreData(self.devicesArray)
         }
     }

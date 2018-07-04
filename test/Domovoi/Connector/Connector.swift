@@ -18,6 +18,7 @@ class Connector:NSObject {
     let aSessionManager = SessionManager()
     let anOperation = Operation()
     let anAllDeviceReceiver = AllDevicesReceiver()
+    let aModelExecutor = ModelExecutor()
     var sessionID:String?
     var sIDdefault:String = "0000000000000000"
     var deviceList: [[String : String]]?
@@ -34,11 +35,12 @@ class Connector:NSObject {
             fritzID  = result![0].fritzID
             
             getSessionID()
+            aModelExecutor.startUp(self)
             starOperatorObject()
             startAllDeviceReceiver()
         }
         else{
-            print("fehler beim starten des Connectors")
+            print("fehler beim Starten des Connectors")
         }
     }
     
@@ -92,16 +94,18 @@ class Connector:NSObject {
 
 //-------------------------------------------------
 extension Connector:RequesterDelegate{
+    func taskFromModelExecutorSwitch(id: String, state: Bool) {
+        self.setSwitchState(deviceID: id, state: state)
+    }
+    
+    func taskFromModelExecutorThermostat(id: String, temperature: Float) {
+        let temperatureCalculation = String(round(temperature * 2))
+        self.setTemperature(deviceID: id, temperature: temperatureCalculation)
+    }
+    
     func replyMainOperatorThermostat(_ reply: String) {
         print("Conncetor.swift: Antwort des Setzvorgangs \(reply)")
         self.getAllDevices()
-    }
-    
-    func replyDeviceList(_ deviceList: [[String : String]]) {
-        self.deviceList = deviceList
-        uiDelegate?.currentDeviceStateList(deviceList)
-        print("Device Liste erhalten mit \(deviceList.count) Elementen")
-        //print(deviceList)
     }
     
     func transferSID(_ sessionID: String) {
