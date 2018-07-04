@@ -13,22 +13,24 @@ import CoreData
 class ManageDB: UIViewController {
 
     let context = AppDelegate.viewContext
+    let aConnector = Connector()
     //let container = AppDelegate.persistentContainer
 
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        aConnector.startUpConnector()
 
-            NotificationCenter.default.addObserver(self, selector: #selector(contextObjectsDidChange(_:)), name: Notification.Name.NSManagedObjectContextObjectsDidChange, object: nil)
-        
-            NotificationCenter.default.addObserver(self, selector: #selector(observerSelector(_:)), name: Notification.Name.NSManagedObjectContextObjectsDidChange, object: nil)
+        /*NotificationCenter.default.addObserver(self, selector: #selector(contextObjectsDidChange(_:)), name: Notification.Name.NSManagedObjectContextObjectsDidChange, object: nil)
+        */
+        NotificationCenter.default.addObserver(self, selector: #selector(observerSelector(_:)), name: Notification.Name.NSManagedObjectContextObjectsDidChange, object: nil)
     }
     
     @IBAction func addWrongData(_ sender: UIButton) {
         let stdAppSettings = AppSettings(context: context)
-        stdAppSettings.fritzID = "wrong"
-        stdAppSettings.userName = "falsch"
-        stdAppSettings.passWord = "faux"
+        stdAppSettings.fritzID = "7ncvvd2irftxy2fv"
+        stdAppSettings.userName = "domovoi"
+        stdAppSettings.passWord = "DomoSafe2018!"
         
         do{ // persist data
             try context.save()
@@ -42,11 +44,11 @@ class ManageDB: UIViewController {
     @IBAction func printBtn(_ sender: UIButton) {
         let fetchRequest: NSFetchRequest<AppSettings> = AppSettings.fetchRequest()
         let result = try? context.fetch(fetchRequest)
-        print(result?.count)
+        //print(result?.count)
         if((result?.count)! > 0){
-            print(result![0].fritzID!)
-            print(result![0].userName!)
-            print(result![0].passWord!)
+            //print(result![0].objectID)
+            result![0].userName! = "domovoi"
+            
         }
         
         
@@ -82,27 +84,27 @@ class ManageDB: UIViewController {
     }
     
     @objc func observerSelector(_ notification: Notification) {
-        print("in function")
-        if let insertedObjects = notification.userInfo?[NSInsertedObjectsKey] as? Set<NSManagedObject>, !insertedObjects.isEmpty {
-            //print(insertedObjects)
-        }
+
+        
+        let fetchRequest: NSFetchRequest<Thermostat> = Thermostat.fetchRequest()
+        let result = try? context.fetch(fetchRequest)
+        
         if let updatedObjects = notification.userInfo?[NSUpdatedObjectsKey] as? Set<NSManagedObject>, !updatedObjects.isEmpty {
-            print(updatedObjects)
+            print("inupdated")
+            for bl in updatedObjects{
+                
+                /*let cc = bl as? Thermostat
+                print("object: \(cc)")
+                print("object title: \(cc?.tile)")
+                print("change in Object\(bl)")*/
+            }
+        
+        
+            
         }
-        if let deletedObjects = notification.userInfo?[NSDeletedObjectsKey] as? Set<NSManagedObject>, !deletedObjects.isEmpty {
-            //print(deletedObjects)
-        }
-        if let refreshedObjects = notification.userInfo?[NSRefreshedObjectsKey] as? Set<NSManagedObject>, !refreshedObjects.isEmpty {
-            //print(refreshedObjects)
-        }
-        if let invalidatedObjects = notification.userInfo?[NSInvalidatedObjectsKey] as? Set<NSManagedObject>, !invalidatedObjects.isEmpty {
-            //print(invalidatedObjects)
-        }
-        if let areInvalidatedAllObjects = notification.userInfo?[NSInvalidatedAllObjectsKey] as? Bool {
-            //print(areInvalidatedAllObjects)
-        }
+
     }
-    
+/*
     @objc func contextObjectsDidChange(_ notification: Notification) {
         //print(notification)
     }
@@ -111,7 +113,7 @@ class ManageDB: UIViewController {
     }
     func contextDidSave(_ notification: Notification) {
         print(notification)
-    }
+    } */
 
     
     

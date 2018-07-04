@@ -48,17 +48,8 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
 */
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        let context = AppDelegate.viewContext
-        let fetchRequest: NSFetchRequest<AppSettings> = AppSettings.fetchRequest()
-        let result = try? context.fetch(fetchRequest)
-        
-        if((result?.count)! == 0){
-            self.performSegue(withIdentifier: "mainPage", sender: self)
-        }
-        else if ((result?.count)! == 1){
-            aConnector.startUpConnector()
-        }
+        aConnector.startUpConnector()
+
     }    
     
     
