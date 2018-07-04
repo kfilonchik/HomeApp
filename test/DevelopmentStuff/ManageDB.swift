@@ -20,9 +20,9 @@ class ManageDB: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         aConnector.startUpConnector()
-
-        /*NotificationCenter.default.addObserver(self, selector: #selector(contextObjectsDidChange(_:)), name: Notification.Name.NSManagedObjectContextObjectsDidChange, object: nil)
-        */
+/*
+        NotificationCenter.default.addObserver(self, selector: #selector(contextObjectsDidChange(_:)), name: Notification.Name.NSManagedObjectContextObjectsDidChange, object: nil)
+  */
         NotificationCenter.default.addObserver(self, selector: #selector(observerSelector(_:)), name: Notification.Name.NSManagedObjectContextObjectsDidChange, object: nil)
     }
     
@@ -90,7 +90,7 @@ class ManageDB: UIViewController {
         let result = try? context.fetch(fetchRequest)
         
         if let updatedObjects = notification.userInfo?[NSUpdatedObjectsKey] as? Set<NSManagedObject>, !updatedObjects.isEmpty {
-            print("inupdated")
+            print(" ////////inupdated ////////////")
             for bl in updatedObjects{
                 
                 /*let cc = bl as? Thermostat
@@ -106,16 +106,16 @@ class ManageDB: UIViewController {
     }
 /*
     @objc func contextObjectsDidChange(_ notification: Notification) {
-        //print(notification)
+        print("contextObjectsDidChanged \(notification)")
     }
     func contextWillSave(_ notification: Notification) {
-        print(notification)
+        print("contextWillSave \(notification)")
     }
     func contextDidSave(_ notification: Notification) {
-        print(notification)
-    } */
+        print("contextDidSave \(notification)")
+    }
 
-    
+ */
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

@@ -106,7 +106,8 @@ extension AllDevicesReceiver:XMLParserDelegate {
                 thermostat.id = device["id"]
                 thermostat.title = device["name"]
                 thermostat.actual_temp = Float(device["tist"]!)!/2
-                thermostat.alive = true
+                thermostat.lasteChangeByAllDevRec = true
+                thermostat.lastUpdate = Date()
                 let tsoll = Float(device["tsoll"]!)
                 if tsoll! < 57.0{
                     thermostat.target_temp = tsoll!/2
@@ -118,6 +119,8 @@ extension AllDevicesReceiver:XMLParserDelegate {
             if device["state"] != nil{ // device is a switch
                 let aSwitch = SwitchDevice(context: context)
                 aSwitch.id = device["id"]
+                aSwitch.lastUpdate = Date()
+                aSwitch.lasteChangeByAllDevRec = true
                 aSwitch.title = device["name"]
                 if device["state"] == "0"{
                     aSwitch.state = false
