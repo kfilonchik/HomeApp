@@ -25,6 +25,7 @@
 		04CE5E1A20DD50AB0095A863 /* RequesterDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CE5E1820DD50AB0095A863 /* RequesterDelegate.swift */; };
 		04CE5E1D20DD56340095A863 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 04CE5E1B20DD56330095A863 /* Model.xcdatamodeld */; };
 		04CE5E1F20DD56490095A863 /* AppSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CE5E1E20DD56490095A863 /* AppSettings.swift */; };
+		891E967320ED573D00212CF1 /* ModelExecutor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 891E967220ED573D00212CF1 /* ModelExecutor.swift */; };
 		894275A720E66F0600CA3139 /* ManageDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 894275A620E66F0600CA3139 /* ManageDB.swift */; };
 /* End PBXBuildFile section */
 
@@ -50,6 +51,7 @@
 		04CE5E1C20DD56330095A863 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		04CE5E1E20DD56490095A863 /* AppSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppSettings.swift; path = ../../../Connector/CoreData/AppSettings.swift; sourceTree = "<group>"; };
 		04CE5E2620DD73DB0095A863 /* Connector-header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Connector-header.h"; sourceTree = "<group>"; };
+		891E967220ED573D00212CF1 /* ModelExecutor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelExecutor.swift; sourceTree = "<group>"; };
 		894275A620E66F0600CA3139 /* ManageDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageDB.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -158,6 +160,7 @@
 				04CE5E0F20DD4F4F0095A863 /* Md5Maker.swift */,
 				04CE5E1420DD4F730095A863 /* AllDevicesReceiver.swift */,
 				04CE5E0C20DD4F4E0095A863 /* Operation.swift */,
+				891E967220ED573D00212CF1 /* ModelExecutor.swift */,
 			);
 			path = Connector;
 			sourceTree = "<group>";
@@ -257,6 +260,7 @@
 				04CE5E1D20DD56340095A863 /* Model.xcdatamodeld in Sources */,
 				04CE5E1920DD50AB0095A863 /* LabelDelegate.swift in Sources */,
 				04332CC520B816D000274E48 /* AppDelegate.swift in Sources */,
+				891E967320ED573D00212CF1 /* ModelExecutor.swift in Sources */,
 				04928F7D20C02EE2008A7978 /* SettingsTableViewController.swift in Sources */,
 				04CE5E1020DD4F4F0095A863 /* Operation.swift in Sources */,
 				04CE5E1A20DD50AB0095A863 /* RequesterDelegate.swift in Sources */,

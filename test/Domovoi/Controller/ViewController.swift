@@ -98,8 +98,8 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
 
         
         //temp settings to have login screen
-        let bla = ManageDB()
-        bla.deleteAppSettings()
+        //let bla = ManageDB()
+        //bla.deleteAppSettings()
         
     }
 

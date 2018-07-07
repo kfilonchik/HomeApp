@@ -20,17 +20,15 @@ class ManageDB: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         aConnector.startUpConnector()
-
-        /*NotificationCenter.default.addObserver(self, selector: #selector(contextObjectsDidChange(_:)), name: Notification.Name.NSManagedObjectContextObjectsDidChange, object: nil)
-        */
-        NotificationCenter.default.addObserver(self, selector: #selector(observerSelector(_:)), name: Notification.Name.NSManagedObjectContextObjectsDidChange, object: nil)
+        
     }
+
     
     @IBAction func addWrongData(_ sender: UIButton) {
         let stdAppSettings = AppSettings(context: context)
-        stdAppSettings.fritzID = "7ncvvd2irftxy2fv"
-        stdAppSettings.userName = "domovoi"
-        stdAppSettings.passWord = "DomoSafe2018!"
+        stdAppSettings.fritzID = "rtzrtz"
+        stdAppSettings.userName = "rtzrtz"
+        stdAppSettings.passWord = "rtztzr"
         
         do{ // persist data
             try context.save()
@@ -44,20 +42,19 @@ class ManageDB: UIViewController {
     @IBAction func printBtn(_ sender: UIButton) {
         let fetchRequest: NSFetchRequest<AppSettings> = AppSettings.fetchRequest()
         let result = try? context.fetch(fetchRequest)
-        //print(result?.count)
-        if((result?.count)! > 0){
-            //print(result![0].objectID)
-            result![0].userName! = "domovoi"
-            
-        }
-        
-        
+
+        print(result![0].fritzID)
+        print(result![0].userName)
+        print(result![0].passWord)
+
+        /*
         do{ // persist data
             try context.save()
             
         } catch {
             print(error)
         }
+ */
         
         
     }
@@ -82,47 +79,12 @@ class ManageDB: UIViewController {
         
         context.reset()
     }
-    
-    @objc func observerSelector(_ notification: Notification) {
 
-        
-        let fetchRequest: NSFetchRequest<Thermostat> = Thermostat.fetchRequest()
-        let result = try? context.fetch(fetchRequest)
-        
-        if let updatedObjects = notification.userInfo?[NSUpdatedObjectsKey] as? Set<NSManagedObject>, !updatedObjects.isEmpty {
-            print("inupdated")
-            for bl in updatedObjects{
-                
-                /*let cc = bl as? Thermostat
-                print("object: \(cc)")
-                print("object title: \(cc?.tile)")
-                print("change in Object\(bl)")*/
-            }
-        
-        
-            
-        }
 
-    }
-/*
-    @objc func contextObjectsDidChange(_ notification: Notification) {
-        //print(notification)
-    }
-    func contextWillSave(_ notification: Notification) {
-        print(notification)
-    }
-    func contextDidSave(_ notification: Notification) {
-        print(notification)
-    } */
-
-    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-
-
-
 }
+

@@ -36,6 +36,8 @@
     <entity name="SwitchDevice" representedClassName=".SwitchDevice" syncable="YES" codeGenerationType="class">
         <attribute name="alive" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="lasteChangeByAllDevRec" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="lastUpdate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="state" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="partOfGroups" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="SwitchGroup" inverseName="switches" inverseEntity="SwitchGroup" syncable="YES"/>
@@ -65,8 +67,9 @@
     </entity>
     <entity name="Thermostat" representedClassName=".Thermostat" syncable="YES" codeGenerationType="class">
         <attribute name="actual_temp" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="alive" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="lasteChangeByAllDevRec" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="lastUpdate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="target_temp" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="partOfGroups" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ThermostatGroup" inverseName="thermostats" inverseEntity="ThermostatGroup" syncable="YES"/>
@@ -99,11 +102,11 @@
         <element name="DashboardTile" positionX="-10017" positionY="-973" width="128" height="75"/>
         <element name="Scene" positionX="-10017" positionY="-673" width="128" height="105"/>
         <element name="SceneTile" positionX="-10017" positionY="-837" width="128" height="58"/>
-        <element name="SwitchDevice" positionX="-9837" positionY="-540" width="153" height="150"/>
+        <element name="SwitchDevice" positionX="-9837" positionY="-540" width="153" height="178"/>
         <element name="SwitchGroup" positionX="-9641" positionY="-667" width="128" height="88"/>
         <element name="SwitchGroupTile" positionX="-9641" positionY="-837" width="128" height="58"/>
         <element name="SwitchTile" positionX="-9821" positionY="-835" width="128" height="58"/>
-        <element name="Thermostat" positionX="-10217" positionY="-538" width="128" height="163"/>
+        <element name="Thermostat" positionX="-10217" positionY="-538" width="128" height="178"/>
         <element name="ThermostatGroup" positionX="-10388" positionY="-666" width="128" height="88"/>
         <element name="ThermostatGroupTile" positionX="-10386" positionY="-835" width="128" height="58"/>
         <element name="ThermostatTile" positionX="-10217" positionY="-835" width="128" height="58"/>

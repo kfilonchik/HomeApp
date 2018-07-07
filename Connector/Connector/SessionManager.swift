@@ -60,6 +60,7 @@ class SessionManager:NSObject {
             let urlString = ("\(baseURL!)getSessionID.php?fritz_id=\(fritzID!)&user=\(userName!)&md5calc=\(checksum)")
             sessionUrl = URL(string: urlString)
         }
+        else{print("error in session getter")}
         
         let task = URLSession.shared.dataTask(with: sessionUrl!) { (data, response, error) in
             
