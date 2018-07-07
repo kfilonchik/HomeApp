@@ -50,7 +50,7 @@ class ModelExecutor {
                         delegate!.taskFromModelExecutorThermostat(id: aThermostat!.id!, temperature: aThermostat!.target_temp)
                         print("aThermostatOperation aus Model Executor ausgelöst")
                     }
-                    //
+                    
                 }
             }
         }

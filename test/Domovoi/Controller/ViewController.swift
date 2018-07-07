@@ -121,7 +121,7 @@ extension ViewController: CollectionCellViewControllerDelegate{
     func button(addNewTile cell: CollectionCellViewController) {
         print("Hello World!")
         
-        self.performSegue(withIdentifier: "dataSegue", sender: self)
+        self.performSegue(withIdentifier: "newTile", sender: self)
         //do what you want with the cell and data
     }
 }
