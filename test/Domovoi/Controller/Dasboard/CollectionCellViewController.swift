@@ -9,7 +9,13 @@
 import UIKit
 
 class CollectionCellViewController: UICollectionViewCell {
+    weak var delegate: CollectionCellViewControllerDelegate?
   
+
+    
+    @IBAction func makeNewTile(_ sender: Any) {
+          delegate?.button(addNewTile: self)
+    }
     
     @IBOutlet weak var titel1: UILabel!
     
@@ -17,4 +23,11 @@ class CollectionCellViewController: UICollectionViewCell {
     @IBOutlet weak var inf2: UILabel!
     @IBOutlet weak var titel2: UILabel!
     
+    
 }
+
+protocol CollectionCellViewControllerDelegate: class {
+    func button(addNewTile cell: CollectionCellViewController)
+}
+
+

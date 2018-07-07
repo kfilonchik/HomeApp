@@ -58,6 +58,7 @@ class SignUpController: UIViewController {
     //UserDefaults.standard.synchronize()
     self.dismiss(animated: true, completion: nil)
     }
+    
     func displayAllertMessage(userMessage: String) {
         let allert = UIAlertController(title: "Alert", message: userMessage, preferredStyle: .alert);
         let okAction = UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: nil);
@@ -67,6 +68,7 @@ class SignUpController: UIViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        
 
 
 
@@ -87,7 +89,6 @@ class SignUpController: UIViewController {
         self.performSegue(withIdentifier: "mainPage", sender: self)
         
     }
-  */
-    
   
+  */
 }

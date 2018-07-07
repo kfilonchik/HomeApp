@@ -12,32 +12,44 @@ import CoreData
 
 class ViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
     
-    let reuseIdentifier = "cell1"
+    @IBOutlet weak var UICollectionView: UICollectionView!
+    
+    let reuseIdentifier = "newTile"
     let reuseIdentifier1 = "cell2"
     let items = ["Etwas","Termostat", "Schalter"]
     let aConnector = Connector()
     var toggle = false
     
-    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.items.count
+        //return self.items.count
+        return 1
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "newTile", for: indexPath) as! CollectionCellViewController
+        
+        cell.delegate = self
+        
+    
+        return cell
+        
+        /*
         if(indexPath.item > 0){
              let cell1 = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath as IndexPath) as! CollectionCellViewController
             /*do setup here*/
-            cell1.titel1.text = self.items[indexPath.item]
+            //cell1.titel1.text = self.items[indexPath.item]
             return cell1
         }else{
-             let cell2 = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier1, for: indexPath as IndexPath) as! CollectionCellViewController
+             let newTile = collectionView.dequeueReusableCell(withReuseIdentifier: "newTile", for: indexPath as IndexPath) as! CollectionCellViewController
             /*do setup here*/
             
-            return cell2
+            return newTile
+ */
         }
+    
         // Use the outlet in our custom class to get a reference to the UILabel in the cell
-    }
+    
     /*
     func collectionView(_: UICollectionView, canPerformAction: Selector, cellForItemAt indexPath: IndexPath, withSender: Any?)  {
         
@@ -48,7 +60,22 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
 */
     override func viewDidLoad() {
         super.viewDidLoad()
-        aConnector.startUpConnector()
+        
+        //UICollectionView.delegate = self
+        //UICollectionView.dataSource = self
+        
+        let context = AppDelegate.viewContext
+              let fetchRequest: NSFetchRequest<AppSettings> = AppSettings.fetchRequest()
+              let result = try? context.fetch(fetchRequest)
+    
+              if((result?.count)! == 0){
+                       self.performSegue(withIdentifier: "mainPage", sender: self)
+                   }
+             else if ((result?.count)! == 1){
+                       aConnector.startUpConnector()
+                 }
+        
+        //aConnector.startUpConnector()
 
     }    
     
@@ -85,6 +112,17 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
             }
         }
         
+    }
+}
+
+//--//---//
+
+extension ViewController: CollectionCellViewControllerDelegate{
+    func button(addNewTile cell: CollectionCellViewController) {
+        print("Hello World!")
+        
+        self.performSegue(withIdentifier: "dataSegue", sender: self)
+        //do what you want with the cell and data
     }
 }
 
