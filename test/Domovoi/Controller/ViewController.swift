@@ -12,41 +12,94 @@ import CoreData
 
 class ViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
     
-    @IBOutlet weak var UICollectionView: UICollectionView!
-    
-    let reuseIdentifier = "newTile"
-    let reuseIdentifier1 = "cell2"
-    let items = ["Etwas","Termostat", "Schalter"]
-    let aConnector = Connector()
-    var toggle = false
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        //return self.items.count
-        return 1
+    //Button newTile
+    @IBAction func NewTile(_ sender: UIBarButtonItem) {
+        self.performSegue(withIdentifier: "newTile", sender: self)
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    
+    @IBOutlet weak var UICollectionView: UICollectionView!
+    
+   // let reuseIdentifier = "newTile"
+    let reuseIdentifier1 = "cell2"
+    let items = ["Etwas","Termostat", "Schalter"]
+    let items2 = ["Etwas","Termostat", "Schalter"]
+    let aConnector = Connector()
+    var toggle = false
+    let reuseIdentifier: String = ""
+    
+
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        //return self.items.count
+        /*
+        let context = AppDelegate.viewContext
+        let fetchRequest: NSFetchRequest<DashboardTile> = DashboardTile.fetchRequest()
+        let result = try? context.fetch(fetchRequest)
         
+       if ((result?.count)! == 1){
+            let indexPath = IndexPath(item: 3, section: 0);
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell3", for: indexPath) as! CollectionCellViewController
+            return result!.count
+       } else {
+        return 0
+        }
+ */
+    
+        
+      return 6
+        
+    }
+
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        /*
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "newTile", for: indexPath) as! CollectionCellViewController
         
         cell.delegate = self
         
     
-        return cell
+        return cell */
+ /*
+            let indexPath = IndexPath(item: 3, section: 0);
         
-        /*
-        if(indexPath.item > 0){
-             let cell1 = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath as IndexPath) as! CollectionCellViewController
+        
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell3", for: indexPath) as! CollectionCellViewController
+            return cell
+
+        
+        */
+        
+        
+        if(indexPath.row == 1){
+             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell1", for: indexPath as IndexPath) as! CollectionCellViewController
             /*do setup here*/
             //cell1.titel1.text = self.items[indexPath.item]
-            return cell1
-        }else{
-             let newTile = collectionView.dequeueReusableCell(withReuseIdentifier: "newTile", for: indexPath as IndexPath) as! CollectionCellViewController
-            /*do setup here*/
-            
-            return newTile
- */
+            return cell
         }
+        else if (indexPath.row == 2){
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell2", for: indexPath as IndexPath) as! CollectionCellViewController
+            /*do setup here*/
+            //cell1.titel1.text = self.items[indexPath.item]
+            return cell
+        }
+        else if (indexPath.row == 3){
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell3", for: indexPath as IndexPath) as! CollectionCellViewController
+            /*do setup here*/
+            //cell1.titel1.text = self.items[indexPath.item]
+            return cell
+        }
+        else if (indexPath.row == 4){
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell4", for: indexPath as IndexPath) as! CollectionCellViewController
+            /*do setup here*/
+            //cell1.titel1.text = self.items[indexPath.item]
+            return cell
+        }
+        else {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell5", for: indexPath as IndexPath) as! CollectionCellViewController
+            return cell
+            
+        }
+    }
     
         // Use the outlet in our custom class to get a reference to the UILabel in the cell
     
@@ -125,4 +178,5 @@ extension ViewController: CollectionCellViewControllerDelegate{
         //do what you want with the cell and data
     }
 }
+
 

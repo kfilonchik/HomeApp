@@ -10,6 +10,14 @@ import UIKit
 
 class DetailsViewController: UIViewController {
     
+    
+    @IBOutlet weak var UICollectionView1: UICollectionView!
+    @IBOutlet weak var UICollectionView2: UICollectionView!
+    
+    @IBOutlet weak var UICollectionView3: UICollectionView!
+    
+    
+    
     var data: String?
     @IBOutlet weak var dataLabel: UILabel!
     

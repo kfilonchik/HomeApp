@@ -14,6 +14,8 @@
 		04332CD220B816D300274E48 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04332CD020B816D300274E48 /* LaunchScreen.storyboard */; };
 		046BBC4420F0ED8C00F8F1A5 /* NewTileTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046BBC4320F0ED8C00F8F1A5 /* NewTileTableController.swift */; };
 		046BBC4720F0F0B400F8F1A5 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 046BBC4520F0F0B300F8F1A5 /* Model.xcdatamodeld */; };
+		046BBC4920F2729900F8F1A5 /* AboutPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046BBC4820F2729900F8F1A5 /* AboutPage.swift */; };
+		046BBC4B20F272C600F8F1A5 /* ConnectionFritzViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046BBC4A20F272C600F8F1A5 /* ConnectionFritzViewController.swift */; };
 		04928F7320BFE4E1008A7978 /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04928F7220BFE4E1008A7978 /* DetailsViewController.swift */; };
 		04928F7D20C02EE2008A7978 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04928F7C20C02EE2008A7978 /* SettingsTableViewController.swift */; };
 		04991ECA20D42A8700667C1A /* SignUpController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04991EC920D42A8700667C1A /* SignUpController.swift */; };
@@ -40,6 +42,8 @@
 		04332CD320B816D300274E48 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		046BBC4320F0ED8C00F8F1A5 /* NewTileTableController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTileTableController.swift; sourceTree = "<group>"; };
 		046BBC4620F0F0B300F8F1A5 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		046BBC4820F2729900F8F1A5 /* AboutPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutPage.swift; sourceTree = "<group>"; };
+		046BBC4A20F272C600F8F1A5 /* ConnectionFritzViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionFritzViewController.swift; sourceTree = "<group>"; };
 		04928F7220BFE4E1008A7978 /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
 		04928F7C20C02EE2008A7978 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		04991EC920D42A8700667C1A /* SignUpController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpController.swift; sourceTree = "<group>"; };
@@ -141,6 +145,8 @@
 			isa = PBXGroup;
 			children = (
 				04928F7C20C02EE2008A7978 /* SettingsTableViewController.swift */,
+				046BBC4820F2729900F8F1A5 /* AboutPage.swift */,
+				046BBC4A20F272C600F8F1A5 /* ConnectionFritzViewController.swift */,
 			);
 			path = SettingsPage;
 			sourceTree = "<group>";
@@ -266,9 +272,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				046BBC4920F2729900F8F1A5 /* AboutPage.swift in Sources */,
 				04332CC720B816D000274E48 /* ViewController.swift in Sources */,
 				04991ECA20D42A8700667C1A /* SignUpController.swift in Sources */,
 				04CE5E1920DD50AB0095A863 /* LabelDelegate.swift in Sources */,
+				046BBC4B20F272C600F8F1A5 /* ConnectionFritzViewController.swift in Sources */,
 				04332CC520B816D000274E48 /* AppDelegate.swift in Sources */,
 				891E967320ED573D00212CF1 /* ModelExecutor.swift in Sources */,
 				04928F7D20C02EE2008A7978 /* SettingsTableViewController.swift in Sources */,

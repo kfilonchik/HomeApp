@@ -7,12 +7,14 @@
 //
 
 import UIKit
+import CoreData
 
 
 class SettingsTableViewController: UITableViewController {
-    
+      let context = AppDelegate.viewContext
     var cellName = ["test"]
 
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -43,6 +45,14 @@ class SettingsTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier:"settingsCell", for: indexPath)
+        
+        
+        //Get list with devices
+        let fetchRequest: NSFetchRequest<AppSettings> = AppSettings.fetchRequest()
+        let result = try? context.fetch(fetchRequest)
+        
+        let signUpData = [result![0].fritzID, result![0].userName, result![0].passWord]
+        
         
         let name = cellName[indexPath.row]
         cell.textLabel?.text = name
@@ -87,14 +97,21 @@ class SettingsTableViewController: UITableViewController {
     }
     */
 
-    /*
+
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        if segue.identifier == "connection"{
+            let vc = segue.destination as! ConnectionFritzViewController
+            
+        }
+        else if segue.identifier == "aboutPage" {
+            let vc = segue.destination as! AboutPage
+        }
     }
-    */
+
 
 }

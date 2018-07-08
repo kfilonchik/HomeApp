@@ -1,18 +1,15 @@
 //
-//  NewTileTableControllerTableViewController.swift
+//  AboutPage.swift
 //  Domovoi
 //
-//  Created by Khristina Filonchik on 07.07.18.
+//  Created by Khristina Filonchik on 08.07.18.
 //  Copyright © 2018 Khristina Filonchik. All rights reserved.
 //
 
 import UIKit
-import Foundation
-import CoreData
 
-class NewTileTableController: UITableViewController {
-    let context = AppDelegate.viewContext
-   
+class AboutPage: UITableViewController {
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -32,51 +29,23 @@ class NewTileTableController: UITableViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 1
+        return 0
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let fetchRequest1: NSFetchRequest<SwitchDevice> = SwitchDevice.fetchRequest()
-        let result1 = try? context.fetch(fetchRequest1)
-        
-        let fetchRequest2: NSFetchRequest<Thermostat> = Thermostat.fetchRequest()
-        let result2 = try? context.fetch(fetchRequest2)
-        
-        var devices = [result1![0].title, result2![0].title]
-        print(result2)
-        
-        
         // #warning Incomplete implementation, return the number of rows
-        return devices.count
+        return 0
     }
 
-
+    /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "deviceListCell", for: indexPath)
-        let fetchRequest1: NSFetchRequest<SwitchDevice> = SwitchDevice.fetchRequest()
-        let result1 = try? context.fetch(fetchRequest1)
-        
-        let fetchRequest2: NSFetchRequest<Thermostat> = Thermostat.fetchRequest()
-        let result2 = try? context.fetch(fetchRequest2)
-        
-        var devices = [result1![0].title, result2![0].title]
-        
-        cell.textLabel?.text = devices[indexPath.row]
+        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
 
         // Configure the cell...
 
         return cell
     }
-    
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath){
-        if tableView.cellForRow(at: indexPath)?.accessoryType == UITableViewCellAccessoryType.checkmark {
-            tableView.cellForRow(at: indexPath)?.accessoryType = UITableViewCellAccessoryType.none
-          
-        } else {
-            tableView.cellForRow(at: indexPath)?.accessoryType = UITableViewCellAccessoryType.checkmark
-        }
-    }
-  
+    */
 
     /*
     // Override to support conditional editing of the table view.
@@ -124,4 +93,3 @@ class NewTileTableController: UITableViewController {
     */
 
 }
-
