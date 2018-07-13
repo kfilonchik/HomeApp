@@ -11,13 +11,7 @@
         </uniquenessConstraints>
     </entity>
     <entity name="DashboardTile" representedClassName=".DashboardTile" isAbstract="YES" syncable="YES" codeGenerationType="class">
-        <attribute name="id" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
-        <uniquenessConstraints>
-            <uniquenessConstraint>
-                <constraint value="id"/>
-            </uniquenessConstraint>
-        </uniquenessConstraints>
+        <attribute name="order" optional="YES" attributeType="Integer 16" usesScalarValueType="YES" syncable="YES"/>
     </entity>
     <entity name="Scene" representedClassName=".Scene" syncable="YES" codeGenerationType="class">
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
@@ -64,6 +58,11 @@
     </entity>
     <entity name="SwitchTile" representedClassName=".SwitchTile" parentEntity="DashboardTile" syncable="YES" codeGenerationType="class">
         <relationship name="switchDevice" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SwitchDevice" inverseName="tile" inverseEntity="SwitchDevice" syncable="YES"/>
+        <uniquenessConstraints>
+            <uniquenessConstraint>
+                <constraint value="switchDevice"/>
+            </uniquenessConstraint>
+        </uniquenessConstraints>
     </entity>
     <entity name="Thermostat" representedClassName=".Thermostat" syncable="YES" codeGenerationType="class">
         <attribute name="actual_temp" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
@@ -96,10 +95,17 @@
     </entity>
     <entity name="ThermostatTile" representedClassName=".ThermostatTile" parentEntity="DashboardTile" syncable="YES" codeGenerationType="class">
         <relationship name="thermostat" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Thermostat" inverseName="tile" inverseEntity="Thermostat" syncable="YES"/>
+        <uniquenessConstraints>
+            <uniquenessConstraint>
+                <constraint value="comma"/>
+                <constraint value="separated"/>
+                <constraint value="properties"/>
+            </uniquenessConstraint>
+        </uniquenessConstraints>
     </entity>
     <elements>
         <element name="AppSettings" positionX="-9450" positionY="-837" width="128" height="88"/>
-        <element name="DashboardTile" positionX="-10017" positionY="-973" width="128" height="75"/>
+        <element name="DashboardTile" positionX="-10017" positionY="-973" width="128" height="58"/>
         <element name="Scene" positionX="-10017" positionY="-673" width="128" height="105"/>
         <element name="SceneTile" positionX="-10017" positionY="-837" width="128" height="58"/>
         <element name="SwitchDevice" positionX="-9837" positionY="-540" width="153" height="178"/>
@@ -109,6 +115,6 @@
         <element name="Thermostat" positionX="-10217" positionY="-538" width="128" height="178"/>
         <element name="ThermostatGroup" positionX="-10388" positionY="-666" width="128" height="88"/>
         <element name="ThermostatGroupTile" positionX="-10386" positionY="-835" width="128" height="58"/>
-        <element name="ThermostatTile" positionX="-10217" positionY="-835" width="128" height="58"/>
+        <element name="ThermostatTile" positionX="-10217" positionY="-835" width="128" height="28"/>
     </elements>
 </model>
