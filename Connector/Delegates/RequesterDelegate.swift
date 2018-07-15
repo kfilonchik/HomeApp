@@ -11,5 +11,8 @@ import Foundation
 protocol RequesterDelegate {
     func transferSID(_ sessionID: String)
     func replyMainOperatorThermostat(_ reply: String)
-    func replyDeviceList(_ deviceList:[[String: String]])
+    func connectionError(_ message: String)
+    func taskFromModelExecutorSwitch(id: String, state: Bool)
+    func taskFromModelExecutorThermostat(id: String, temperature: Float)
+    
 }
