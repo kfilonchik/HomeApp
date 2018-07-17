@@ -500,6 +500,7 @@
                                         </view>
                                         <color key="backgroundColor" red="1" green="0.76050109320000003" blue="0.4072716267" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <color key="tintColor" red="0.1215686275" green="0.12941176469999999" blue="0.14117647059999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <viewLayoutGuide key="safeArea" id="zcz-rV-hfN"/>
                                         <size key="customSize" width="173" height="173"/>
                                         <connections>
                                             <outlet property="inf1" destination="yLf-k3-dVF" id="RVB-bh-Jj5"/>
@@ -681,22 +682,6 @@
                                         <color key="backgroundColor" red="1" green="0.76050109320000003" blue="0.4072716267" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <size key="customSize" width="173" height="173"/>
                                     </collectionViewCell>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="A9E-QN-dyX">
-                                        <rect key="frame" x="202" y="366" width="173" height="173"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
-                                            <rect key="frame" x="0.0" y="0.0" width="173" height="173"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VZX-it-Ey1">
-                                                    <rect key="frame" x="48" y="63" width="76" height="64"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <state key="normal" image="plus-simple-7"/>
-                                                </button>
-                                            </subviews>
-                                        </view>
-                                    </collectionViewCell>
                                 </cells>
                                 <connections>
                                     <outlet property="dataSource" destination="BYZ-38-t0r" id="okw-Dn-Oap"/>
@@ -722,7 +707,11 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <navigationItem key="navigationItem" id="Gh0-9B-Td7"/>
+                    <navigationItem key="navigationItem" id="Gh0-9B-Td7">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="22Z-hh-qgP">
+                            <color key="tintColor" red="0.1215686275" green="0.12941176469999999" blue="0.14117647059999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <segue destination="clW-tx-tib" kind="presentation" identifier="mainPage" id="UZ7-hp-8yw"/>
                     </connections>
@@ -769,7 +758,6 @@
         <image name="circle-tick-7" width="30" height="30"/>
         <image name="circle-x-7" width="30" height="30"/>
         <image name="home-7" width="30" height="30"/>
-        <image name="plus-simple-7" width="30" height="30"/>
         <image name="share-connect-7" width="30" height="30"/>
         <image name="spanner-7" width="30" height="30"/>
         <image name="video-player-7" width="30" height="30"/>
