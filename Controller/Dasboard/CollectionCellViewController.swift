@@ -15,6 +15,7 @@ class CollectionCellViewController: UICollectionViewCell {
     
     @IBOutlet weak var inf1: UILabel!
     @IBOutlet weak var inf2: UILabel!
-    @IBOutlet weak var titel2: UILabel!
+
     
+    @IBOutlet weak var titleThermostatTile: UILabel!
 }

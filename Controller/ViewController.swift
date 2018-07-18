@@ -14,9 +14,6 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     
     
     let context = AppDelegate.viewContext
-    let reuseIdentifier = "cell1"
-    let reuseIdentifier1 = "cell2"
-    //let items = ["Etwas","Termostat", "Schalter"]
     let aConnector = Connector()
     var toggle = false
     
@@ -40,17 +37,19 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         let aThermoTile = thermoTiles?[indexPath.item] as? ThermostatTile
         if (aThermoTile != nil)
         {
-            let cell1 = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath as IndexPath) as! CollectionCellViewController
+            let aCell = collectionView.dequeueReusableCell(withReuseIdentifier: "uiSwitch", for: indexPath as IndexPath) as! CollectionCellViewController
             
-            cell1.titel1.text = aThermoTile?.thermostat?.title
+            aCell.titel1.text = aThermoTile?.thermostat?.title
+            let floatTem = aThermoTile?.thermostat?.actual_temp
+            aCell.inf1.text = String(floatTem!)//aThermoTile?.thermostat?.actual_temp)
             print("titel des Thermostats auf Kachel: \(aThermoTile?.thermostat?.title)")
-            return cell1
+            return aCell
         }
         else {
             print("Aufruf else")
-            let cell1 = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier1, for: indexPath as IndexPath) as! CollectionCellViewController
-            cell1.titel2.text = "keineThermostatTile"
-            return cell1
+            let aCell = collectionView.dequeueReusableCell(withReuseIdentifier: "uiScene", for: indexPath as IndexPath) as! CollectionCellViewController
+            aCell.titleThermostatTile.text = "keineThermostatTile"
+            return aCell
         }
     }
       
