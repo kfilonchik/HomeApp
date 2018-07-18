@@ -284,6 +284,13 @@ class ManageDB: UIViewController {
                 let scenes = try? context.fetch(sceneRequest)
                 aSwitch.addToPartOfGroups(switchGroups![0])
                 aSwitch.addToPartOfScenes(scenes![0])
+                
+                //let aSetting = SceneSwitchSetting(context: context)
+                //aSetting.scene = scenes![0]
+                //aSetting.state = false
+                //aSetting.switchDevice = aSwitch
+                //aSetting.connectedScene = scenes![0]
+                //aSetting.connectedSwitch = aSwitch
             }
         }
         
