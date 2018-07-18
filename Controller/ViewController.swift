@@ -17,6 +17,10 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     let aConnector = Connector()
     var toggle = false
     
+    //item Button "addNewCell"
+    @IBAction func addNewTile(_ sender: UIBarButtonItem) {
+        self.performSegue(withIdentifier: "createNewTile", sender: self)
+    }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         let dashboardTilesRequest: NSFetchRequest<DashboardTile> = DashboardTile.fetchRequest()
@@ -25,7 +29,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         print("Value of \"section\": \(section)")
         
         return dashboardTiles!.count
-
+      
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -35,6 +39,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         print("aufruf collectionView\(indexPath.item)")
         
         let aThermoTile = thermoTiles?[indexPath.item] as? ThermostatTile
+        let aSwitchTile =  thermoTiles?[indexPath.item] as? SwitchTile
         if (aThermoTile != nil)
         {
             let aCell = collectionView.dequeueReusableCell(withReuseIdentifier: "uiSwitch", for: indexPath as IndexPath) as! CollectionCellViewController
@@ -45,13 +50,21 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
             print("titel des Thermostats auf Kachel: \(aThermoTile?.thermostat?.title)")
             return aCell
         }
-        else {
+        else if (aSwitchTile != nil){
             print("Aufruf else")
             let aCell = collectionView.dequeueReusableCell(withReuseIdentifier: "uiScene", for: indexPath as IndexPath) as! CollectionCellViewController
             aCell.titleThermostatTile.text = "keineThermostatTile"
             return aCell
         }
+    //Conditions of "add newTile" cell...?
+        else {
+             let aCell = collectionView.dequeueReusableCell(withReuseIdentifier: "uiNewTile", for: indexPath as IndexPath) as! CollectionCellViewController
+            aCell.delegate = self
+            return aCell
     }
+ }
+
+    
       
         /*
         var titles = [String]()
@@ -145,4 +158,10 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         
     }
 }
+//---//
 
+extension ViewController: CollectionCellViewControllerDelegate{
+    func button(addNewTile cell: CollectionCellViewController) {
+        self.performSegue(withIdentifier: "createNewTile", sender: self)
+    }
+}
