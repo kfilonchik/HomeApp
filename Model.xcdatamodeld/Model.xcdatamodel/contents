@@ -18,6 +18,14 @@
             </uniquenessConstraint>
         </uniquenessConstraints>
     </entity>
+    <entity name="Device" representedClassName=".Device" isAbstract="YES" syncable="YES" codeGenerationType="class">
+        <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
+        <uniquenessConstraints>
+            <uniquenessConstraint>
+                <constraint value="id"/>
+            </uniquenessConstraint>
+        </uniquenessConstraints>
+    </entity>
     <entity name="Scene" representedClassName=".Scene" syncable="YES" codeGenerationType="class">
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="switchDevices" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="SwitchDevice" inverseName="partOfScenes" inverseEntity="SwitchDevice" syncable="YES"/>
@@ -33,9 +41,8 @@
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="scene" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Scene" inverseName="tile" inverseEntity="Scene" syncable="YES"/>
     </entity>
-    <entity name="SwitchDevice" representedClassName=".SwitchDevice" syncable="YES" codeGenerationType="class">
+    <entity name="SwitchDevice" representedClassName=".SwitchDevice" parentEntity="Device" syncable="YES" codeGenerationType="class">
         <attribute name="alive" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="lasteChangeByAllDevRec" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="lastUpdate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="state" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
@@ -43,11 +50,6 @@
         <relationship name="partOfGroups" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="SwitchGroup" inverseName="switches" inverseEntity="SwitchGroup" syncable="YES"/>
         <relationship name="partOfScenes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Scene" inverseName="switchDevices" inverseEntity="Scene" syncable="YES"/>
         <relationship name="tile" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SwitchTile" inverseName="switchDevice" inverseEntity="SwitchTile" syncable="YES"/>
-        <uniquenessConstraints>
-            <uniquenessConstraint>
-                <constraint value="id"/>
-            </uniquenessConstraint>
-        </uniquenessConstraints>
     </entity>
     <entity name="SwitchGroup" representedClassName=".SwitchGroup" syncable="YES" codeGenerationType="class">
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
@@ -66,9 +68,8 @@
     <entity name="SwitchTile" representedClassName=".SwitchTile" parentEntity="DashboardTile" syncable="YES" codeGenerationType="class">
         <relationship name="switchDevice" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SwitchDevice" inverseName="tile" inverseEntity="SwitchDevice" syncable="YES"/>
     </entity>
-    <entity name="Thermostat" representedClassName=".Thermostat" syncable="YES" codeGenerationType="class">
+    <entity name="Thermostat" representedClassName=".Thermostat" parentEntity="Device" syncable="YES" codeGenerationType="class">
         <attribute name="actual_temp" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="lasteChangeByAllDevRec" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="lastUpdate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="target_temp" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
@@ -76,11 +77,6 @@
         <relationship name="partOfGroups" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ThermostatGroup" inverseName="thermostats" inverseEntity="ThermostatGroup" syncable="YES"/>
         <relationship name="partOfScenes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Scene" inverseName="thermostats" inverseEntity="Scene" syncable="YES"/>
         <relationship name="tile" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ThermostatTile" inverseName="thermostat" inverseEntity="ThermostatTile" syncable="YES"/>
-        <uniquenessConstraints>
-            <uniquenessConstraint>
-                <constraint value="id"/>
-            </uniquenessConstraint>
-        </uniquenessConstraints>
     </entity>
     <entity name="ThermostatGroup" representedClassName=".ThermostatGroup" syncable="YES" codeGenerationType="class">
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
@@ -104,13 +100,14 @@
         <element name="DashboardTile" positionX="-10017" positionY="-973" width="128" height="58"/>
         <element name="Scene" positionX="-10017" positionY="-673" width="128" height="103"/>
         <element name="SceneTile" positionX="-10017" positionY="-837" width="128" height="73"/>
-        <element name="SwitchDevice" positionX="-9846" positionY="-556" width="153" height="178"/>
+        <element name="SwitchDevice" positionX="-9846" positionY="-556" width="153" height="163"/>
         <element name="SwitchGroup" positionX="-9641" positionY="-667" width="128" height="88"/>
         <element name="SwitchGroupTile" positionX="-9641" positionY="-837" width="128" height="73"/>
         <element name="SwitchTile" positionX="-9837" positionY="-837" width="128" height="58"/>
-        <element name="Thermostat" positionX="-10217" positionY="-549" width="128" height="178"/>
+        <element name="Thermostat" positionX="-10217" positionY="-549" width="128" height="163"/>
         <element name="ThermostatGroup" positionX="-10388" positionY="-666" width="128" height="88"/>
         <element name="ThermostatGroupTile" positionX="-10386" positionY="-835" width="128" height="73"/>
         <element name="ThermostatTile" positionX="-10197" positionY="-837" width="128" height="58"/>
+        <element name="Device" positionX="-10028" positionY="-288" width="128" height="58"/>
     </elements>
 </model>

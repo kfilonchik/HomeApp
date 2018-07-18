@@ -16,7 +16,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     let context = AppDelegate.viewContext
     let reuseIdentifier = "cell1"
     let reuseIdentifier1 = "cell2"
-    let items = ["Etwas","Termostat", "Schalter"]
+    //let items = ["Etwas","Termostat", "Schalter"]
     let aConnector = Connector()
     var toggle = false
     
@@ -24,31 +24,32 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         let dashboardTilesRequest: NSFetchRequest<DashboardTile> = DashboardTile.fetchRequest()
         let dashboardTiles = try? context.fetch(dashboardTilesRequest)
-        print(dashboardTiles!.count)
-        //return dashboardTiles!.count
-        return 5
+        print("Count of tiles for collection view: \(dashboardTiles!.count)")
+        print("Value of \"section\": \(section)")
+        
+        return dashboardTiles!.count
+
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let thermoTilesRequest: NSFetchRequest<ThermostatTile> = ThermostatTile.fetchRequest()
-        let thermoTiles = try? context.fetch(thermoTilesRequest)
+        let dbTilesRequest: NSFetchRequest<DashboardTile> = DashboardTile.fetchRequest()
+        let thermoTiles = try? context.fetch(dbTilesRequest)
         
-        if (thermoTiles != nil)
+        print("aufruf collectionView\(indexPath.item)")
+        
+        let aThermoTile = thermoTiles?[indexPath.item] as? ThermostatTile
+        if (aThermoTile != nil)
         {
-            var names: [String] = []
-            
-            for bla in thermoTiles!{
-                 print("Eine Kachel mit Thermostat:  \(bla.thermostat?.title)")
-                
-                names.append((bla.thermostat?.title)!)
-            }
- 
             let cell1 = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath as IndexPath) as! CollectionCellViewController
-            cell1.titel1.text = names[indexPath.item]
+            
+            cell1.titel1.text = aThermoTile?.thermostat?.title
+            print("titel des Thermostats auf Kachel: \(aThermoTile?.thermostat?.title)")
             return cell1
         }
         else {
+            print("Aufruf else")
             let cell1 = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier1, for: indexPath as IndexPath) as! CollectionCellViewController
+            cell1.titel2.text = "keineThermostatTile"
             return cell1
         }
     }

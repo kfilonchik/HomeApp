@@ -100,34 +100,72 @@ extension AllDevicesReceiver:XMLParserDelegate {
     func writeToCoreData(_ devicesArray: [[String: String]]){
         context.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy // upsorting rule
         for device in devicesArray{
-            if device["state"] == nil{ //device is a thermostat
-                let thermostat = Thermostat(context: context)
-                thermostat.id = device["id"]
-                thermostat.title = device["name"]
-                thermostat.actual_temp = Float(device["tist"]!)!/2
-                thermostat.lasteChangeByAllDevRec = true
-                thermostat.lastUpdate = Date()
-                let tsoll = Float(device["tsoll"]!)
-                if tsoll! < 57.0{
-                    thermostat.target_temp = tsoll!/2
-                }
-                else{
-                    thermostat.target_temp = tsoll!
-                }
-            }
-            if device["state"] != nil{ // device is a switch
-                let aSwitch = SwitchDevice(context: context)
-                aSwitch.id = device["id"]
-                aSwitch.lastUpdate = Date()
-                aSwitch.lasteChangeByAllDevRec = true
-                aSwitch.title = device["name"]
-                if device["state"] == "0"{
-                    aSwitch.state = false
-                }
-                else if device["state"] == "1"{
-                    aSwitch.state = true
-                }
+            
+            
+            let devicesReq : NSFetchRequest<Device> = Device.fetchRequest()
+            devicesReq.predicate = NSPredicate(format: "id == %@", device["id"]!)
+            let devicesResults = try? context.fetch(devicesReq)
+            
+            if((devicesResults?.count)! > 0){                 //Case Device in Model
 
+                
+                if device["state"] == nil{ //device is a thermostat
+                    let aThermo = devicesResults![0] as? Thermostat
+                    aThermo?.title = device["name"]
+                    aThermo?.actual_temp = Float(device["tist"]!)!/2
+                    aThermo?.lasteChangeByAllDevRec = true
+                    aThermo?.lastUpdate = Date()
+                    let tsoll = Float(device["tsoll"]!)
+                    if tsoll! < 57.0{
+                        aThermo?.target_temp = tsoll!/2
+                    }
+                    else{
+                        aThermo?.target_temp = tsoll!
+                    }
+                }
+                if device["state"] != nil{ // device is a switch
+                    let aSwitch = devicesResults![0] as? SwitchDevice
+                    aSwitch?.lastUpdate = Date()
+                    aSwitch?.lasteChangeByAllDevRec = true
+                    aSwitch?.title = device["name"]
+                    if device["state"] == "0"{
+                        aSwitch?.state = false
+                    }
+                    else if device["state"] == "1"{
+                        aSwitch?.state = true
+                    }
+                }
+                
+            }
+            else{      //Case Device not in Model
+                if device["state"] == nil{ //device is a thermostat
+                    let thermostat = Thermostat(context: context)
+                    thermostat.id = device["id"]
+                    thermostat.title = device["name"]
+                    thermostat.actual_temp = Float(device["tist"]!)!/2
+                    thermostat.lasteChangeByAllDevRec = true
+                    thermostat.lastUpdate = Date()
+                    let tsoll = Float(device["tsoll"]!)
+                    if tsoll! < 57.0{
+                        thermostat.target_temp = tsoll!/2
+                    }
+                    else{
+                        thermostat.target_temp = tsoll!
+                    }
+                }
+                if device["state"] != nil{ // device is a switch
+                    let aSwitch = SwitchDevice(context: context)
+                    aSwitch.id = device["id"]
+                    aSwitch.lastUpdate = Date()
+                    aSwitch.lasteChangeByAllDevRec = true
+                    aSwitch.title = device["name"]
+                    if device["state"] == "0"{
+                        aSwitch.state = false
+                    }
+                    else if device["state"] == "1"{
+                        aSwitch.state = true
+                    }
+                }
             }
         }
         
