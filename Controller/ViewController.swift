@@ -147,7 +147,6 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         
     }
 
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "dataSegue" {
             let secondViewController = segue.destination as? DetailsViewController
