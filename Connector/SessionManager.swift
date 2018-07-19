@@ -8,6 +8,7 @@
 
 import UIKit
 import Foundation
+import CoreData
 
 class SessionManager:NSObject {
     
@@ -49,6 +50,14 @@ class SessionManager:NSObject {
         else{
             print("error during connection, Check connection, Username or Password")
             blockTime = 0
+            let context = AppDelegate.viewContext
+            let fetchRequest: NSFetchRequest<AppSettings> = AppSettings.fetchRequest()
+            let result = try? context.fetch(fetchRequest)
+            if (result?[0] != nil){
+                context.delete((result![0]))
+                do{try context.save()} catch {print(error)}
+                print("deleted username and pw doe to connection error")
+            }
         }
 
     }
@@ -108,7 +117,6 @@ extension SessionManager:XMLParserDelegate {
     func parser(_ parser: XMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
         if elementName == "SessionInfo" {
             //print("Ended parsing...")
-            self.delegate?.addTextToLabel(value: self.sID)
         }
     }
     

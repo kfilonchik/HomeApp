@@ -9,7 +9,6 @@
 import Foundation
 
 protocol LabelDelegate {
-    func addTextToLabel(value:String)
     func addLongTex(value:String)
     func addTemp(value:String)
     func currentDeviceStateList(_ deviceList: [[String : String]])

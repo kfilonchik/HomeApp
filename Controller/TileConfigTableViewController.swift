@@ -20,24 +20,25 @@ class TileConfigTableViewController: UITableViewController {
     let thermoGroupReq: NSFetchRequest<ThermostatGroup> = ThermostatGroup.fetchRequest()
     let scenepReq: NSFetchRequest<Scene> = Scene.fetchRequest()
     
+    /*
     let switchTilesReq: NSFetchRequest<SwitchTile> = SwitchTile.fetchRequest()
     let thermoTilesReq: NSFetchRequest<ThermostatTile> = ThermostatTile.fetchRequest()
     let sceneTilesReq: NSFetchRequest<SceneTile> = SceneTile.fetchRequest()
     let switchGroupTilesReq : NSFetchRequest<SwitchGroupTile> = SwitchGroupTile.fetchRequest()
     let thermoGroupTilesReq : NSFetchRequest<ThermostatGroupTile> = ThermostatGroupTile.fetchRequest()
-    
+    */
     var switches: [SwitchDevice]?
     var thermos: [Thermostat]?
     var switchGroups: [SwitchGroup]?
     var thermoGroups: [ThermostatGroup]?
     var scenes: [Scene]?
-    
+    /*
     var switchTiles: [SwitchTile]?
     var termoTiles: [ThermostatTile]?
     var switchGroupTiles: [SwitchGroupTile]?
     var thermoGroupTiles: [ThermostatGroupTile]?
     var sceneTiles: [SceneTile]?
-    
+    */
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,13 +51,13 @@ class TileConfigTableViewController: UITableViewController {
         switchGroups = try? context.fetch(switchGroupReq)
         thermoGroups = try? context.fetch(thermoGroupReq)
         scenes = try? context.fetch(scenepReq)
-        
+        /*
         switchTiles = try? context.fetch(switchTilesReq)
         termoTiles = try? context.fetch(thermoTilesReq)
         switchGroupTiles = try? context.fetch(switchGroupTilesReq)
         thermoGroupTiles = try? context.fetch(thermoGroupTilesReq)
         sceneTiles = try? context.fetch(sceneTilesReq)
-        
+        */
     }
 
     override func didReceiveMemoryWarning() {
@@ -93,27 +94,27 @@ class TileConfigTableViewController: UITableViewController {
         switch indexPath.section{
         case 0:
             cellLabel = switches?[indexPath.row].title
-            if(switches?[indexPath.row].tile != nil){cell.accessoryType = UITableViewCellAccessoryType.checkmark}
+            if(switches?[indexPath.row].onDashboard == true){cell.accessoryType = UITableViewCellAccessoryType.checkmark}
             else{cell.accessoryType = UITableViewCellAccessoryType.none}
 
         case 1:
             cellLabel = thermos?[indexPath.row].title
-            if(thermos?[indexPath.row].tile != nil){cell.accessoryType = UITableViewCellAccessoryType.checkmark}
+            if(thermos?[indexPath.row].onDashboard == true){cell.accessoryType = UITableViewCellAccessoryType.checkmark}
             else{cell.accessoryType = UITableViewCellAccessoryType.none}
             
         case 2:
             cellLabel = switchGroups?[indexPath.row].title
-            if(switchGroups?[indexPath.row].tile != nil){cell.accessoryType = UITableViewCellAccessoryType.checkmark}
+            if(switchGroups?[indexPath.row].onDashboard == true){cell.accessoryType = UITableViewCellAccessoryType.checkmark}
             else{cell.accessoryType = UITableViewCellAccessoryType.none}
 
         case 3:
             cellLabel = thermoGroups?[indexPath.row].title
-            if(thermoGroups?[indexPath.row].tile != nil){cell.accessoryType = UITableViewCellAccessoryType.checkmark}
+            if(thermoGroups?[indexPath.row].onDashboard == true){cell.accessoryType = UITableViewCellAccessoryType.checkmark}
             else{cell.accessoryType = UITableViewCellAccessoryType.none}
 
         case 4:
             cellLabel = scenes?[indexPath.row].title
-            if(scenes?[indexPath.row].tile != nil){cell.accessoryType = UITableViewCellAccessoryType.checkmark}
+            if(scenes?[indexPath.row].onDashboard == true){cell.accessoryType = UITableViewCellAccessoryType.checkmark}
             else{cell.accessoryType = UITableViewCellAccessoryType.none}
 
         default:
@@ -129,59 +130,56 @@ class TileConfigTableViewController: UITableViewController {
         switch indexPath.section{
         case 0:
             if(tableView.cellForRow(at: indexPath)?.accessoryType == UITableViewCellAccessoryType.checkmark){ // delete a tile
-                context.delete((switches?[indexPath.row].tile)!)
+                switches?[indexPath.row].onDashboard = false
                 tableView.cellForRow(at: indexPath)?.accessoryType = UITableViewCellAccessoryType.none
-                do{try context.save()} catch {print(error)}
             }
             else{ // create a tile
-                let aNewTile = SwitchTile(context: context)
-                aNewTile.switchDevice = switches?[indexPath.row]
+                switches?[indexPath.row].onDashboard = true
                 tableView.cellForRow(at: indexPath)?.accessoryType = UITableViewCellAccessoryType.checkmark
             }
+            do{try context.save()} catch {print(error)}
         case 1:
             if(tableView.cellForRow(at: indexPath)?.accessoryType == UITableViewCellAccessoryType.checkmark){ // delete a tile
-                context.delete((thermos?[indexPath.row].tile)!)
+                thermos?[indexPath.row].onDashboard = false
                 tableView.cellForRow(at: indexPath)?.accessoryType = UITableViewCellAccessoryType.none
-                do{try context.save()} catch {print(error)}
+                
             }
             else{ // create a tile
-                let aNewTile = ThermostatTile(context: context)
-                aNewTile.thermostat = thermos?[indexPath.row]
+                thermos?[indexPath.row].onDashboard = true
                 tableView.cellForRow(at: indexPath)?.accessoryType = UITableViewCellAccessoryType.checkmark
             }
+            do{try context.save()} catch {print(error)}
         case 2:
             if(tableView.cellForRow(at: indexPath)?.accessoryType == UITableViewCellAccessoryType.checkmark){ // delete a tile
-                context.delete((switchGroups?[indexPath.row].tile)!)
+                switchGroups?[indexPath.row].onDashboard = false
                 tableView.cellForRow(at: indexPath)?.accessoryType = UITableViewCellAccessoryType.none
-                do{try context.save()} catch {print(error)}
             }
             else{ // create a tile
-                let aNewTile = SwitchGroupTile(context: context)
-                aNewTile.switchGroup = switchGroups?[indexPath.row]
+                switchGroups?[indexPath.row].onDashboard = true
                 tableView.cellForRow(at: indexPath)?.accessoryType = UITableViewCellAccessoryType.checkmark
             }
+            do{try context.save()} catch {print(error)}
         case 3:
             if(tableView.cellForRow(at: indexPath)?.accessoryType == UITableViewCellAccessoryType.checkmark){ // delete a tile
-                context.delete((thermoGroups?[indexPath.row].tile)!)
+                thermoGroups?[indexPath.row].onDashboard = false
                 tableView.cellForRow(at: indexPath)?.accessoryType = UITableViewCellAccessoryType.none
-                do{try context.save()} catch {print(error)}
+                
             }
             else{ // create a tile
-                let aNewTile = ThermostatGroupTile(context: context)
-                aNewTile.thermostatGroup = thermoGroups?[indexPath.row]
+                thermoGroups?[indexPath.row].onDashboard = true
                 tableView.cellForRow(at: indexPath)?.accessoryType = UITableViewCellAccessoryType.checkmark
             }
+            do{try context.save()} catch {print(error)}
         case 4:
             if(tableView.cellForRow(at: indexPath)?.accessoryType == UITableViewCellAccessoryType.checkmark){ // delete a tile
-                context.delete((scenes?[indexPath.row].tile)!)
+                scenes?[indexPath.row].onDashboard = false
                 tableView.cellForRow(at: indexPath)?.accessoryType = UITableViewCellAccessoryType.none
-                do{try context.save()} catch {print(error)}
             }
             else{ // create a tile
-                let aNewTile = SceneTile(context: context)
-                aNewTile.scene = scenes?[indexPath.row]
+                scenes?[indexPath.row].onDashboard = true
                 tableView.cellForRow(at: indexPath)?.accessoryType = UITableViewCellAccessoryType.checkmark
             }
+            do{try context.save()} catch {print(error)}
 
         default:
             print("default in override func tableView")

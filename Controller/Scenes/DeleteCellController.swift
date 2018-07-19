@@ -46,7 +46,7 @@ class DeleteCellController: UITableViewController {
         return scenes!.count
     }
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let sceneRequest: NSFetchRequest<SceneTile> = SceneTile.fetchRequest()
+        let sceneRequest: NSFetchRequest<Scene> = Scene.fetchRequest()
         let scenes = try? context.fetch(sceneRequest)
         
         
