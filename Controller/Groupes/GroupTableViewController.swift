@@ -47,12 +47,12 @@ class GroupTableViewController: UITableViewController {
         
         
         if section == 0 {
-            return 2 //groupsThermostat!.count
+            return groupsThermostat!.count
             
         }
    
         if section == 1 {
-            return 3 //groupsSwitch!.count
+            return groupsSwitch!.count
            
         }
 
@@ -71,17 +71,17 @@ class GroupTableViewController: UITableViewController {
         
         if indexPath.section == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "GroupThermostat") as! GroupTableViewCell
-        //cell.GroupTitleThermostat.text = groupsThermostat?[indexPath.item].title
+        cell.GroupTitleThermostat.text = groupsThermostat?[indexPath.item].title
             
-            cell.GroupTitleThermostat.text = "test"
+          //  cell.GroupTitleThermostat.text = "test"
             return cell
         }
        
        if indexPath.section == 1 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "GroupSwitch") as! GroupTableViewCell
-            //cell.GroupTitleSwitch.text = groupsSwitch?[indexPath.item].title
+            cell.GroupTitleSwitch.text = groupsSwitch?[indexPath.item].title
             
-            cell.GroupTitleSwitch.text = "test2"
+            //cell.GroupTitleSwitch.text = "test2"
             return cell
         }
 

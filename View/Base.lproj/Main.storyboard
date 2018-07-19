@@ -249,21 +249,82 @@
             </objects>
             <point key="canvasLocation" x="-3032" y="2141"/>
         </scene>
-        <!--View Controller-->
-        <scene sceneID="tuR-5r-1zz">
+        <!--Scene Table View Controller-->
+        <scene sceneID="hVT-tL-2uj">
             <objects>
-                <viewController id="lLo-92-EQW" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="dRd-UY-OGB">
+                <tableViewController id="40A-du-ZZL" customClass="SceneTableViewController" customModule="Domovoi" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="gru-yX-avL">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <viewLayoutGuide key="safeArea" id="Vhl-1M-UvK"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="" image="video-player-7" id="iQK-9c-ULk"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="vx6-uC-bhz" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                        <sections>
+                            <tableViewSection headerTitle="Scenes" id="a04-3J-ag6">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SceneCell" id="e3Q-wn-G3L">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="e3Q-wn-G3L" id="eo9-As-xQj">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                            <tableViewSection headerTitle="Functions" id="i3v-wA-L3D">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="mtB-Fb-qBx">
+                                        <rect key="frame" x="0.0" y="100" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="mtB-Fb-qBx" id="KY3-H6-VEx">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qpv-uY-rbI">
+                                                    <rect key="frame" x="16" y="6" width="122" height="30"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <state key="normal" title="New Scene" image="plus-simple-7">
+                                                        <color key="titleColor" red="0.1215686275" green="0.12941176469999999" blue="0.14117647059999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="newScene:" destination="40A-du-ZZL" eventType="touchUpInside" id="J5q-TJ-PLi"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="ZVL-yy-oEB">
+                                        <rect key="frame" x="0.0" y="144" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ZVL-yy-oEB" id="Up9-ET-AV6">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UXu-KW-dWn">
+                                                    <rect key="frame" x="16" y="6" width="135" height="30"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <state key="normal" title="Delete scene" image="bin-7">
+                                                        <color key="titleColor" red="0.1215686275" green="0.12941176469999999" blue="0.14117647059999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="deleteScene:" destination="40A-du-ZZL" eventType="touchUpInside" id="Pza-ag-YDx"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
+                        <connections>
+                            <outlet property="dataSource" destination="40A-du-ZZL" id="G3H-Dq-QM2"/>
+                            <outlet property="delegate" destination="40A-du-ZZL" id="KAu-7V-K2S"/>
+                        </connections>
+                    </tableView>
+                    <tabBarItem key="tabBarItem" title="" image="video-player-7" id="JlO-MQ-o7r"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qtA-pt-ASq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1513" y="833"/>
+            <point key="canvasLocation" x="-1642" y="995"/>
         </scene>
         <!--Group Table View Controller-->
         <scene sceneID="KAg-7V-b8j">
@@ -286,7 +347,7 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection headerTitle="Group of switches" id="mUV-tX-8QY">
+                            <tableViewSection headerTitle="Groups of switches" id="mUV-tX-8QY">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="GroupSwitch" id="uEi-Zq-4aa">
                                         <rect key="frame" x="0.0" y="100" width="375" height="44"/>
@@ -488,7 +549,7 @@
                     </tabBar>
                     <connections>
                         <segue destination="821-Gg-KQU" kind="relationship" relationship="viewControllers" id="iGh-AD-78e"/>
-                        <segue destination="lLo-92-EQW" kind="relationship" relationship="viewControllers" id="EpO-Zl-KCC"/>
+                        <segue destination="40A-du-ZZL" kind="relationship" relationship="viewControllers" id="xpr-AQ-jve"/>
                         <segue destination="GkX-qG-K5t" kind="relationship" relationship="viewControllers" id="jcL-JE-my5"/>
                         <segue destination="be6-1N-s0d" kind="relationship" relationship="viewControllers" id="mxe-c4-zCO"/>
                     </connections>
