@@ -26,6 +26,7 @@
 		8927E42B210002CA0050F775 /* Model.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 8927E42A210002CA0050F775 /* Model.xcdatamodel */; };
 		894275A720E66F0600CA3139 /* ManageDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 894275A620E66F0600CA3139 /* ManageDB.swift */; };
 		8948360120FA7EB6001BF3A0 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8948360020FA7EB6001BF3A0 /* Default-568h@2x.png */; };
+		8948E6C42100BA3A001D3F8D /* TileConfigTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8948E6C32100BA39001D3F8D /* TileConfigTableViewController.swift */; };
 		89F385A120FA788E00D84C43 /* LabelDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F385A020FA788E00D84C43 /* LabelDelegate.swift */; };
 /* End PBXBuildFile section */
 
@@ -52,6 +53,7 @@
 		8927E42A210002CA0050F775 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		894275A620E66F0600CA3139 /* ManageDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageDB.swift; sourceTree = "<group>"; };
 		8948360020FA7EB6001BF3A0 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		8948E6C32100BA39001D3F8D /* TileConfigTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TileConfigTableViewController.swift; sourceTree = "<group>"; };
 		89F385A020FA788E00D84C43 /* LabelDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LabelDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -103,6 +105,7 @@
 			isa = PBXGroup;
 			children = (
 				04332CC620B816D000274E48 /* ViewController.swift */,
+				8948E6C32100BA39001D3F8D /* TileConfigTableViewController.swift */,
 				04991ECB20D42A8D00667C1A /* SignUp */,
 				04928F7B20C02DBF008A7978 /* Dasboard */,
 				04928F7A20C02D92008A7978 /* SettingsPage */,
@@ -246,6 +249,7 @@
 				891E967320ED573D00212CF1 /* ModelExecutor.swift in Sources */,
 				04928F7D20C02EE2008A7978 /* SettingsTableViewController.swift in Sources */,
 				04CE5E1020DD4F4F0095A863 /* Operation.swift in Sources */,
+				8948E6C42100BA3A001D3F8D /* TileConfigTableViewController.swift in Sources */,
 				89F385A120FA788E00D84C43 /* LabelDelegate.swift in Sources */,
 				8927E42B210002CA0050F775 /* Model.xcdatamodel in Sources */,
 				04CE5E1A20DD50AB0095A863 /* RequesterDelegate.swift in Sources */,
