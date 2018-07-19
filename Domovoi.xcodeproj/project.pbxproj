@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		04121A4C2100D07D0043623A /* GroupTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04121A4A2100D07D0043623A /* GroupTableViewController.swift */; };
+		04121A4F2100D3910043623A /* GroupThermostat.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04121A4E2100D3910043623A /* GroupThermostat.xib */; };
+		04121A512100DACA0043623A /* GroupTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04121A502100DACA0043623A /* GroupTableViewCell.swift */; };
+		04121A532100F5B40043623A /* GroupSwitch.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04121A522100F5B40043623A /* GroupSwitch.xib */; };
+		04121A552100FB250043623A /* SceneCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04121A542100FB250043623A /* SceneCell.swift */; };
+		04121A572100FB3E0043623A /* SceneTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04121A562100FB3E0043623A /* SceneTableViewController.swift */; };
+		04121A592100FB5A0043623A /* SceneCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04121A582100FB5A0043623A /* SceneCell.xib */; };
 		04332CC520B816D000274E48 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04332CC420B816D000274E48 /* AppDelegate.swift */; };
 		04332CC720B816D000274E48 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04332CC620B816D000274E48 /* ViewController.swift */; };
 		04332CCA20B816D000274E48 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04332CC820B816D000274E48 /* Main.storyboard */; };
@@ -31,6 +38,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		04121A4A2100D07D0043623A /* GroupTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupTableViewController.swift; sourceTree = "<group>"; };
+		04121A4E2100D3910043623A /* GroupThermostat.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GroupThermostat.xib; sourceTree = "<group>"; };
+		04121A502100DACA0043623A /* GroupTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupTableViewCell.swift; sourceTree = "<group>"; };
+		04121A522100F5B40043623A /* GroupSwitch.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GroupSwitch.xib; sourceTree = "<group>"; };
+		04121A542100FB250043623A /* SceneCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneCell.swift; sourceTree = "<group>"; };
+		04121A562100FB3E0043623A /* SceneTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneTableViewController.swift; sourceTree = "<group>"; };
+		04121A582100FB5A0043623A /* SceneCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SceneCell.xib; sourceTree = "<group>"; };
 		04332CC120B816D000274E48 /* Domovoi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Domovoi.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		04332CC420B816D000274E48 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		04332CC620B816D000274E48 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -68,6 +82,27 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		04121A482100CF940043623A /* Groupes */ = {
+			isa = PBXGroup;
+			children = (
+				04121A4A2100D07D0043623A /* GroupTableViewController.swift */,
+				04121A4E2100D3910043623A /* GroupThermostat.xib */,
+				04121A502100DACA0043623A /* GroupTableViewCell.swift */,
+				04121A522100F5B40043623A /* GroupSwitch.xib */,
+			);
+			path = Groupes;
+			sourceTree = "<group>";
+		};
+		04121A492100CFA00043623A /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				04121A542100FB250043623A /* SceneCell.swift */,
+				04121A562100FB3E0043623A /* SceneTableViewController.swift */,
+				04121A582100FB5A0043623A /* SceneCell.xib */,
+			);
+			path = Scenes;
+			sourceTree = "<group>";
+		};
 		04332CB820B816D000274E48 = {
 			isa = PBXGroup;
 			children = (
@@ -104,6 +139,8 @@
 		04928F7920C02D35008A7978 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				04121A492100CFA00043623A /* Scenes */,
+				04121A482100CF940043623A /* Groupes */,
 				04332CC620B816D000274E48 /* ViewController.swift */,
 				8948E6C32100BA39001D3F8D /* TileConfigTableViewController.swift */,
 				04991ECB20D42A8D00667C1A /* SignUp */,
@@ -232,7 +269,10 @@
 				04332CD220B816D300274E48 /* LaunchScreen.storyboard in Resources */,
 				8948360120FA7EB6001BF3A0 /* Default-568h@2x.png in Resources */,
 				04332CCF20B816D300274E48 /* Assets.xcassets in Resources */,
+				04121A4F2100D3910043623A /* GroupThermostat.xib in Resources */,
+				04121A592100FB5A0043623A /* SceneCell.xib in Resources */,
 				04332CCA20B816D000274E48 /* Main.storyboard in Resources */,
+				04121A532100F5B40043623A /* GroupSwitch.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -247,6 +287,7 @@
 				04991ECA20D42A8700667C1A /* SignUpController.swift in Sources */,
 				04332CC520B816D000274E48 /* AppDelegate.swift in Sources */,
 				891E967320ED573D00212CF1 /* ModelExecutor.swift in Sources */,
+				04121A552100FB250043623A /* SceneCell.swift in Sources */,
 				04928F7D20C02EE2008A7978 /* SettingsTableViewController.swift in Sources */,
 				04CE5E1020DD4F4F0095A863 /* Operation.swift in Sources */,
 				8948E6C42100BA3A001D3F8D /* TileConfigTableViewController.swift in Sources */,
@@ -257,9 +298,12 @@
 				04CE5E0B20DD4F060095A863 /* Connector.swift in Sources */,
 				04928F7320BFE4E1008A7978 /* DetailsViewController.swift in Sources */,
 				04CE5E1520DD4F730095A863 /* AllDevicesReceiver.swift in Sources */,
+				04121A572100FB3E0043623A /* SceneTableViewController.swift in Sources */,
 				04CE5E1120DD4F4F0095A863 /* SessionManager.swift in Sources */,
 				04CE5E1320DD4F4F0095A863 /* Md5Maker.swift in Sources */,
 				04BF020120D3F1290094866E /* CollectionCellViewController.swift in Sources */,
+				04121A512100DACA0043623A /* GroupTableViewCell.swift in Sources */,
+				04121A4C2100D07D0043623A /* GroupTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
