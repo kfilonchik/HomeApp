@@ -14,6 +14,8 @@
 		04121A552100FB250043623A /* SceneCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04121A542100FB250043623A /* SceneCell.swift */; };
 		04121A572100FB3E0043623A /* SceneTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04121A562100FB3E0043623A /* SceneTableViewController.swift */; };
 		04121A592100FB5A0043623A /* SceneCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04121A582100FB5A0043623A /* SceneCell.xib */; };
+		04121A5B210103640043623A /* DeleteCellController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04121A5A210103640043623A /* DeleteCellController.swift */; };
+		04121A5D2101037E0043623A /* DeleteSceneCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04121A5C2101037E0043623A /* DeleteSceneCell.swift */; };
 		04332CC520B816D000274E48 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04332CC420B816D000274E48 /* AppDelegate.swift */; };
 		04332CC720B816D000274E48 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04332CC620B816D000274E48 /* ViewController.swift */; };
 		04332CCA20B816D000274E48 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04332CC820B816D000274E48 /* Main.storyboard */; };
@@ -45,6 +47,8 @@
 		04121A542100FB250043623A /* SceneCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneCell.swift; sourceTree = "<group>"; };
 		04121A562100FB3E0043623A /* SceneTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneTableViewController.swift; sourceTree = "<group>"; };
 		04121A582100FB5A0043623A /* SceneCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SceneCell.xib; sourceTree = "<group>"; };
+		04121A5A210103640043623A /* DeleteCellController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteCellController.swift; sourceTree = "<group>"; };
+		04121A5C2101037E0043623A /* DeleteSceneCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteSceneCell.swift; sourceTree = "<group>"; };
 		04332CC120B816D000274E48 /* Domovoi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Domovoi.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		04332CC420B816D000274E48 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		04332CC620B816D000274E48 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -99,6 +103,8 @@
 				04121A542100FB250043623A /* SceneCell.swift */,
 				04121A562100FB3E0043623A /* SceneTableViewController.swift */,
 				04121A582100FB5A0043623A /* SceneCell.xib */,
+				04121A5A210103640043623A /* DeleteCellController.swift */,
+				04121A5C2101037E0043623A /* DeleteSceneCell.swift */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -293,11 +299,13 @@
 				8948E6C42100BA3A001D3F8D /* TileConfigTableViewController.swift in Sources */,
 				89F385A120FA788E00D84C43 /* LabelDelegate.swift in Sources */,
 				8927E42B210002CA0050F775 /* Model.xcdatamodel in Sources */,
+				04121A5B210103640043623A /* DeleteCellController.swift in Sources */,
 				04CE5E1A20DD50AB0095A863 /* RequesterDelegate.swift in Sources */,
 				894275A720E66F0600CA3139 /* ManageDB.swift in Sources */,
 				04CE5E0B20DD4F060095A863 /* Connector.swift in Sources */,
 				04928F7320BFE4E1008A7978 /* DetailsViewController.swift in Sources */,
 				04CE5E1520DD4F730095A863 /* AllDevicesReceiver.swift in Sources */,
+				04121A5D2101037E0043623A /* DeleteSceneCell.swift in Sources */,
 				04121A572100FB3E0043623A /* SceneTableViewController.swift in Sources */,
 				04CE5E1120DD4F4F0095A863 /* SessionManager.swift in Sources */,
 				04CE5E1320DD4F4F0095A863 /* Md5Maker.swift in Sources */,

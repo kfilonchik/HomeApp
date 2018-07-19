@@ -20,6 +20,8 @@ class SceneTableViewController: UITableViewController {
     
     
     @IBAction func deleteScene(_ sender: UIButton) {
+         self.performSegue(withIdentifier: "deleteScene", sender: self)
+        
     }
     
     override func viewDidLoad() {
