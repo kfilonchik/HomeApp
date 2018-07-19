@@ -46,7 +46,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
             
             aCell.titel1.text = aThermoTile?.thermostat?.title
             let floatTem = aThermoTile?.thermostat?.actual_temp
-            aCell.inf1.text = String(floatTem!)//aThermoTile?.thermostat?.actual_temp)
+            //aCell.inf1.text = String(floatTem!)//aThermoTile?.thermostat?.actual_temp)
             print("titel des Thermostats auf Kachel: \(aThermoTile?.thermostat?.title)")
             return aCell
         }

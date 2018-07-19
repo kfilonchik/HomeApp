@@ -120,7 +120,10 @@
     <elements>
         <element name="AppSettings" positionX="-9450" positionY="-837" width="128" height="88"/>
         <element name="DashboardTile" positionX="-10017" positionY="-973" width="128" height="58"/>
+        <element name="Device" positionX="-10019" positionY="-198" width="128" height="103"/>
         <element name="Scene" positionX="-10017" positionY="-673" width="128" height="103"/>
+        <element name="SceneSwitchSetting" positionX="-9756" positionY="-325" width="128" height="118"/>
+        <element name="SceneThermostatSetting" positionX="-10296" positionY="-324" width="128" height="118"/>
         <element name="SceneTile" positionX="-10017" positionY="-837" width="128" height="73"/>
         <element name="SwitchDevice" positionX="-9846" positionY="-556" width="153" height="103"/>
         <element name="SwitchGroup" positionX="-9641" positionY="-667" width="128" height="88"/>
@@ -130,8 +133,5 @@
         <element name="ThermostatGroup" positionX="-10388" positionY="-666" width="128" height="88"/>
         <element name="ThermostatGroupTile" positionX="-10386" positionY="-835" width="128" height="73"/>
         <element name="ThermostatTile" positionX="-10197" positionY="-837" width="128" height="58"/>
-        <element name="Device" positionX="-10017" positionY="-256" width="128" height="103"/>
-        <element name="SceneThermostatSetting" positionX="-10296" positionY="-324" width="128" height="118"/>
-        <element name="SceneSwitchSetting" positionX="-9756" positionY="-325" width="128" height="118"/>
     </elements>
 </model>

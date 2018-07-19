@@ -12,11 +12,14 @@ import CoreData
 class TileConfigTableViewController: UITableViewController {
     
     let context = AppDelegate.viewContext
+    let switchRequest: NSFetchRequest<SwitchDevice> = SwitchDevice.fetchRequest()
+    let thermoRequest: NSFetchRequest<Thermostat> = Thermostat.fetchRequest()
+    let switchGroupRequest: NSFetchRequest<SwitchGroup> = SwitchGroup.fetchRequest()
+    let thermoGroupRequest: NSFetchRequest<ThermostatGroup> = ThermostatGroup.fetchRequest()
+    let scenepRequest: NSFetchRequest<Scene> = Scene.fetchRequest()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("didLoad")
-        
     }
 
     override func didReceiveMemoryWarning() {
@@ -25,7 +28,26 @@ class TileConfigTableViewController: UITableViewController {
 
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        //Rows
+        print(section)
+        
+        switch section {
+        case 0:
+            let switches = try? context.fetch(switchRequest)
+            return (switches?.count)!
+        case 1:
+            let thermos = try? context.fetch(thermoRequest)
+            return (thermos?.count)!
+        case 2:
+            let switchGroups = try? context.fetch(switchGroupRequest)
+            return (switchGroups?.count)!
+        case 3:
+            return 4
+        case 4:
+            return 5
+        default:
+            return 6
+        }
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -62,9 +84,9 @@ class TileConfigTableViewController: UITableViewController {
         case 1:
             return "Thermostate"
         case 2:
-            return "Gruppen: Thermostate"
-        case 3:
             return "Gruppen: Schalter"
+        case 3:
+            return "Gruppen: Thermostate"
         case 4:
             return "Szenen"
         default:
