@@ -303,7 +303,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <sections>
-                            <tableViewSection headerTitle="Scenes" id="a04-3J-ag6">
+                            <tableViewSection headerTitle="Szenes" id="a04-3J-ag6">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SceneCell" id="e3Q-wn-G3L">
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
@@ -315,7 +315,7 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection headerTitle="Functions" id="i3v-wA-L3D">
+                            <tableViewSection headerTitle="Funktionalität" id="i3v-wA-L3D">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="mtB-Fb-qBx">
                                         <rect key="frame" x="0.0" y="100" width="375" height="44"/>
@@ -325,9 +325,9 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qpv-uY-rbI">
-                                                    <rect key="frame" x="16" y="6" width="122" height="30"/>
+                                                    <rect key="frame" x="18" y="6" width="118" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <state key="normal" title="New Scene" image="plus-simple-7">
+                                                    <state key="normal" title="Neu Szene" image="plus-simple-7">
                                                         <color key="titleColor" red="0.1215686275" green="0.12941176469999999" blue="0.14117647059999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     </state>
                                                     <connections>
@@ -345,9 +345,9 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UXu-KW-dWn">
-                                                    <rect key="frame" x="16" y="6" width="135" height="30"/>
+                                                    <rect key="frame" x="16" y="6" width="147" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <state key="normal" title="Delete scene" image="bin-7">
+                                                    <state key="normal" title="Szene löschen" image="bin-7">
                                                         <color key="titleColor" red="0.1215686275" green="0.12941176469999999" blue="0.14117647059999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     </state>
                                                     <connections>
@@ -425,7 +425,7 @@
             </objects>
             <point key="canvasLocation" x="-223" y="825"/>
         </scene>
-        <!--Groups-->
+        <!--Gruppen-->
         <scene sceneID="KAg-7V-b8j">
             <objects>
                 <tableViewController id="11O-O6-SX8" customClass="GroupTableViewController" customModule="Domovoi" customModuleProvider="target" sceneMemberID="viewController">
@@ -434,7 +434,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <sections>
-                            <tableViewSection headerTitle="Groups of thermostats" id="kuY-DF-gkq">
+                            <tableViewSection headerTitle="Gruppen Thermostate" id="kuY-DF-gkq">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="GroupThermostat" id="rSS-1f-NIi">
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
@@ -446,7 +446,7 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection headerTitle="Groups of switches" id="mUV-tX-8QY">
+                            <tableViewSection headerTitle="Gruppen Steckdosen" id="mUV-tX-8QY">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="GroupSwitch" id="uEi-Zq-4aa">
                                         <rect key="frame" x="0.0" y="100" width="375" height="44"/>
@@ -458,7 +458,7 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection headerTitle="Functions" id="eVT-tZ-U9c">
+                            <tableViewSection headerTitle="Funktionalität" id="eVT-tZ-U9c">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="BcM-xW-j8g">
                                         <rect key="frame" x="0.0" y="172" width="375" height="44"/>
@@ -468,9 +468,9 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cXg-0x-55V">
-                                                    <rect key="frame" x="16" y="5" width="136" height="33"/>
+                                                    <rect key="frame" x="16" y="5" width="186" height="33"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <state key="normal" title="New group" image="plus-simple-7">
+                                                    <state key="normal" title="Gerät hinzufügen" image="plus-simple-7">
                                                         <color key="titleColor" red="0.1215686275" green="0.12941176469999999" blue="0.14117647059999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     </state>
                                                     <connections>
@@ -488,9 +488,9 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yDN-fn-Mtn">
-                                                    <rect key="frame" x="16" y="6" width="146" height="30"/>
+                                                    <rect key="frame" x="16" y="6" width="173" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <state key="normal" title="Delete group" image="bin-7">
+                                                    <state key="normal" title="Gruppe löschen" image="bin-7">
                                                         <color key="titleColor" red="0.1215686275" green="0.12941176469999999" blue="0.14117647059999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     </state>
                                                     <connections>
@@ -508,11 +508,93 @@
                             <outlet property="delegate" destination="11O-O6-SX8" id="CGY-Hl-kXX"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Groups" id="Yds-vW-olT"/>
+                    <navigationItem key="navigationItem" title="Gruppen" id="Yds-vW-olT"/>
+                    <connections>
+                        <segue destination="315-Tj-tFO" kind="show" identifier="DeleteGroup" id="PqR-cH-Cy8"/>
+                        <segue destination="jgM-hp-12H" kind="show" identifier="NewGroup" id="Bac-Z4-nBg"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ace-BI-Y14" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1810.4000000000001" y="-1126.6866566716642"/>
+        </scene>
+        <!--New Group Controller-->
+        <scene sceneID="mMT-iI-UYB">
+            <objects>
+                <tableViewController id="jgM-hp-12H" customClass="NewGroupController" customModule="Domovoi" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="eUo-FH-hIT">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="5bf-ck-LIq">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="5bf-ck-LIq" id="Sib-yq-VfJ">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="jgM-hp-12H" id="h5U-px-Fif"/>
+                            <outlet property="delegate" destination="jgM-hp-12H" id="lpV-7k-YI9"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aid-mA-ulE" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-849" y="-745"/>
+        </scene>
+        <!--Delete Group Controller-->
+        <scene sceneID="JDv-T8-hPF">
+            <objects>
+                <tableViewController id="315-Tj-tFO" customClass="DeleteGroupController" customModule="Domovoi" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="rGh-es-6of">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="deleteCell" id="EQ8-MR-hY0" customClass="DeleteGroupCell" customModule="Domovoi" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="EQ8-MR-hY0" id="nt3-pf-7Xc">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jBD-Z7-Lnm">
+                                            <rect key="frame" x="16" y="6" width="29" height="30"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <state key="normal" image="bin-7">
+                                                <color key="titleColor" red="0.1215686275" green="0.12941176469999999" blue="0.14117647059999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="DeleteGroup:" destination="315-Tj-tFO" eventType="touchUpInside" id="l3q-Xg-n3L"/>
+                                            </connections>
+                                        </button>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gtq-Z7-Rhs">
+                                            <rect key="frame" x="53" y="11" width="247" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="DeleteGroupTitle" destination="gtq-Z7-Rhs" id="eXk-23-Vui"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="315-Tj-tFO" id="ygQ-W8-3S8"/>
+                            <outlet property="delegate" destination="315-Tj-tFO" id="k6g-TW-bPC"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="56C-3K-Whr" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-911.20000000000005" y="-1477.5112443778112"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="zq1-fb-hnL">

@@ -14,10 +14,11 @@ class GroupTableViewController: UITableViewController {
 
     
     @IBAction func NewGroup(_ sender: UIButton) {
+         self.performSegue(withIdentifier: "NewGroup", sender: self)
     }
 
     @IBAction func DeleteGroup(_ sender: UIButton) {
-        
+         self.performSegue(withIdentifier: "DeleteGroup", sender: self)
     }
     
     override func viewDidLoad() {
@@ -38,10 +39,10 @@ class GroupTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        let groupThermostatRequest: NSFetchRequest<ThermostatGroupTile> = ThermostatGroupTile.fetchRequest()
+        let groupThermostatRequest: NSFetchRequest<ThermostatGroup> = ThermostatGroup.fetchRequest()
         let groupsThermostat = try? context.fetch(groupThermostatRequest)
         
-        let groupSwitchRequest: NSFetchRequest<SwitchGroupTile> = SwitchGroupTile.fetchRequest()
+        let groupSwitchRequest: NSFetchRequest<SwitchGroup> = SwitchGroup.fetchRequest()
         let groupsSwitch = try? context.fetch(groupSwitchRequest)
         
         
@@ -62,10 +63,10 @@ class GroupTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let groupThermostatRequest: NSFetchRequest<ThermostatGroupTile> = ThermostatGroupTile.fetchRequest()
+        let groupThermostatRequest: NSFetchRequest<ThermostatGroup> = ThermostatGroup.fetchRequest()
         let groupsThermostat = try? context.fetch(groupThermostatRequest)
         
-        let groupSwitchRequest: NSFetchRequest<SwitchGroupTile> = SwitchGroupTile.fetchRequest()
+        let groupSwitchRequest: NSFetchRequest<SwitchGroup> = SwitchGroup.fetchRequest()
         let groupsSwitch = try? context.fetch(groupSwitchRequest)
         
         
