@@ -105,7 +105,7 @@ class ManageDB: UIViewController {
         let thermos = try? context.fetch(thermosRequest)
         
 
-        
+        /*
         if (switches != nil)
         {
             for aswitch in switches!{
@@ -129,11 +129,11 @@ class ManageDB: UIViewController {
             print(error)
         }
         print("Alle Devices zu Kacheln erstellt")
-        
+        */
     }
     
     @IBAction func printSTT(_ sender: UIButton) {
-        
+        /*
         let switchTilesRequest: NSFetchRequest<SwitchTile> = SwitchTile.fetchRequest()
         let switchTiles = try? context.fetch(switchTilesRequest)
         
@@ -152,7 +152,7 @@ class ManageDB: UIViewController {
         for bla in thermoTiles!{
             print("Eine Kachel mit Thermostat:  \(bla.thermostat?.title)")
         }
-        
+        */
         
         let switchesRequest: NSFetchRequest<SwitchDevice> = SwitchDevice.fetchRequest()
         let switches = try? context.fetch(switchesRequest)
@@ -184,7 +184,7 @@ class ManageDB: UIViewController {
         
         let sceneRequest: NSFetchRequest<Scene> = Scene.fetchRequest()
         let scenes = try? context.fetch(sceneRequest)
-        
+        /*
         let sceneTileReq: NSFetchRequest<SceneTile> = SceneTile.fetchRequest()
         let sceneTiles = try?context.fetch(sceneTileReq)
         
@@ -200,19 +200,19 @@ class ManageDB: UIViewController {
             let aSceneTile = SceneTile(context: context)
             aSceneTile.title = "test Scene tile"
         }
-        
+        */
         if (thermoGroups?.count == 0){
-            let thermoGroupTiles = try?context.fetch(thermoGroupTileReq)
+            //let thermoGroupTiles = try?context.fetch(thermoGroupTileReq)
             let aThermoGroup = ThermostatGroup(context: context)
-            aThermoGroup.title = "Test Group Thermo"
-            aThermoGroup.tile = thermoGroupTiles![0]
+            //aThermoGroup.title = "Test Group Thermo"
+            //aThermoGroup.tile = thermoGroupTiles![0]
         }
         
         if (scenes?.count == 0){
             let aScene = Scene(context: context)
             aScene.title = "Testscene"
-            let sceneTiles = try?context.fetch(sceneTileReq)
-            aScene.tile = sceneTiles![0]
+            //let sceneTiles = try?context.fetch(sceneTileReq)
+            //aScene.tile = sceneTiles![0]
             
         }
         
@@ -245,6 +245,7 @@ class ManageDB: UIViewController {
         let sceneRequest: NSFetchRequest<Scene> = Scene.fetchRequest()
         let scenes = try? context.fetch(sceneRequest)
         
+        /*
         let sceneTileReq: NSFetchRequest<SceneTile> = SceneTile.fetchRequest()
         let sceneTiles = try?context.fetch(sceneTileReq)
         
@@ -261,19 +262,19 @@ class ManageDB: UIViewController {
             let aSceneTile = SceneTile(context: context)
             aSceneTile.title = "test Scene tile"
         }
-        
+        */
         if (switchGroups?.count == 0){
-            let switchGroupTiles = try?context.fetch(switchGroupTileReq)
+            //let switchGroupTiles = try?context.fetch(switchGroupTileReq)
             let aSwitchGroup = SwitchGroup(context: context)
             aSwitchGroup.title = "Switchgroup test"
-            aSwitchGroup.tile = switchGroupTiles?[0]
+            //aSwitchGroup.tile = switchGroupTiles?[0]
         }
         
         if (scenes?.count == 0){
             let aScene = Scene(context: context)
             aScene.title = "Testscene"
-            let sceneTiles = try?context.fetch(sceneTileReq)
-            aScene.tile = sceneTiles![0]
+            //let sceneTiles = try?context.fetch(sceneTileReq)
+            //aScene.tile = sceneTiles![0]
             
         }
 
