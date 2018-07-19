@@ -58,8 +58,24 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         }
         
         else if (aThermo != nil){
+            let aCell = collectionView.dequeueReusableCell(withReuseIdentifier: "uiTermostat", for: indexPath as IndexPath) as! CollectionCellViewController
+            //aCell..text = aThermo?.title
+            return aCell
+        }
+        
+        else if (aSwitchGroup != nil){
+            let aCell = collectionView.dequeueReusableCell(withReuseIdentifier: "uiSwitchGroup", for: indexPath as IndexPath) as! CollectionCellViewController
+            //aCell.titleThermostatTile.text = aSwitchGroup?.title
+            return aCell
+        }
+        else if (aThermoGroup != nil){
+            let aCell = collectionView.dequeueReusableCell(withReuseIdentifier: "uiTermostatGroup", for: indexPath as IndexPath) as! CollectionCellViewController
+            //aCell.titleThermostatTile.text = aThermoGroup?.title
+            return aCell
+        }
+        else if (aScene != nil){
             let aCell = collectionView.dequeueReusableCell(withReuseIdentifier: "uiScene", for: indexPath as IndexPath) as! CollectionCellViewController
-            aCell.titleThermostatTile.text = aThermo?.title
+            //aCell.titleThermostatTile.text = aScene?.title
             return aCell
         }
     
