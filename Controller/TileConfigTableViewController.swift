@@ -49,6 +49,7 @@ class TileConfigTableViewController: UITableViewController {
         else{
             tableView.cellForRow(at: indexPath)?.accessoryType = UITableViewCellAccessoryType.checkmark
             print("set")
+            print(indexPath)
         }
         
     }
