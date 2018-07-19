@@ -14,10 +14,11 @@ class GroupTableViewController: UITableViewController {
 
     
     @IBAction func NewGroup(_ sender: UIButton) {
+         self.performSegue(withIdentifier: "NewGroup", sender: self)
     }
 
     @IBAction func DeleteGroup(_ sender: UIButton) {
-        
+         self.performSegue(withIdentifier: "DeleteGroup", sender: self)
     }
     
     override func viewDidLoad() {

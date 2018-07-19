@@ -17,6 +17,12 @@
 		04121A5B210103640043623A /* DeleteCellController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04121A5A210103640043623A /* DeleteCellController.swift */; };
 		04121A5D2101037E0043623A /* DeleteSceneCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04121A5C2101037E0043623A /* DeleteSceneCell.swift */; };
 		04121A5F2101112F0043623A /* NewSceneController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04121A5E2101112F0043623A /* NewSceneController.swift */; };
+		04121A61210141490043623A /* DeleteGroupController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04121A60210141490043623A /* DeleteGroupController.swift */; };
+		04121A63210141B30043623A /* NewGroupController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04121A62210141B30043623A /* NewGroupController.swift */; };
+		04121A65210142ED0043623A /* DeleteGroupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04121A64210142ED0043623A /* DeleteGroupCell.swift */; };
+		04121A6821014C0F0043623A /* FaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04121A6721014C0F0043623A /* FaderView.swift */; };
+		04121A6A21014C330043623A /* FaderManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04121A6921014C330043623A /* FaderManager.swift */; };
+		04121A6C21014C770043623A /* FaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04121A6B21014C770043623A /* FaderViewController.swift */; };
 		04332CC520B816D000274E48 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04332CC420B816D000274E48 /* AppDelegate.swift */; };
 		04332CC720B816D000274E48 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04332CC620B816D000274E48 /* ViewController.swift */; };
 		04332CCA20B816D000274E48 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04332CC820B816D000274E48 /* Main.storyboard */; };
@@ -51,6 +57,12 @@
 		04121A5A210103640043623A /* DeleteCellController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteCellController.swift; sourceTree = "<group>"; };
 		04121A5C2101037E0043623A /* DeleteSceneCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteSceneCell.swift; sourceTree = "<group>"; };
 		04121A5E2101112F0043623A /* NewSceneController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewSceneController.swift; sourceTree = "<group>"; };
+		04121A60210141490043623A /* DeleteGroupController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteGroupController.swift; sourceTree = "<group>"; };
+		04121A62210141B30043623A /* NewGroupController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewGroupController.swift; sourceTree = "<group>"; };
+		04121A64210142ED0043623A /* DeleteGroupCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteGroupCell.swift; sourceTree = "<group>"; };
+		04121A6721014C0F0043623A /* FaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaderView.swift; sourceTree = "<group>"; };
+		04121A6921014C330043623A /* FaderManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaderManager.swift; sourceTree = "<group>"; };
+		04121A6B21014C770043623A /* FaderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaderViewController.swift; sourceTree = "<group>"; };
 		04332CC120B816D000274E48 /* Domovoi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Domovoi.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		04332CC420B816D000274E48 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		04332CC620B816D000274E48 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -95,6 +107,9 @@
 				04121A4E2100D3910043623A /* GroupThermostat.xib */,
 				04121A502100DACA0043623A /* GroupTableViewCell.swift */,
 				04121A522100F5B40043623A /* GroupSwitch.xib */,
+				04121A60210141490043623A /* DeleteGroupController.swift */,
+				04121A62210141B30043623A /* NewGroupController.swift */,
+				04121A64210142ED0043623A /* DeleteGroupCell.swift */,
 			);
 			path = Groupes;
 			sourceTree = "<group>";
@@ -110,6 +125,16 @@
 				04121A5E2101112F0043623A /* NewSceneController.swift */,
 			);
 			path = Scenes;
+			sourceTree = "<group>";
+		};
+		04121A6621014BF40043623A /* Fader */ = {
+			isa = PBXGroup;
+			children = (
+				04121A6721014C0F0043623A /* FaderView.swift */,
+				04121A6921014C330043623A /* FaderManager.swift */,
+				04121A6B21014C770043623A /* FaderViewController.swift */,
+			);
+			path = Fader;
 			sourceTree = "<group>";
 		};
 		04332CB820B816D000274E48 = {
@@ -148,6 +173,7 @@
 		04928F7920C02D35008A7978 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				04121A6621014BF40043623A /* Fader */,
 				04121A492100CFA00043623A /* Scenes */,
 				04121A482100CF940043623A /* Groupes */,
 				04332CC620B816D000274E48 /* ViewController.swift */,
@@ -294,8 +320,13 @@
 			files = (
 				04332CC720B816D000274E48 /* ViewController.swift in Sources */,
 				04991ECA20D42A8700667C1A /* SignUpController.swift in Sources */,
+				04121A63210141B30043623A /* NewGroupController.swift in Sources */,
+				04121A6C21014C770043623A /* FaderViewController.swift in Sources */,
+				04121A6A21014C330043623A /* FaderManager.swift in Sources */,
 				04332CC520B816D000274E48 /* AppDelegate.swift in Sources */,
 				891E967320ED573D00212CF1 /* ModelExecutor.swift in Sources */,
+				04121A65210142ED0043623A /* DeleteGroupCell.swift in Sources */,
+				04121A61210141490043623A /* DeleteGroupController.swift in Sources */,
 				04121A552100FB250043623A /* SceneCell.swift in Sources */,
 				04928F7D20C02EE2008A7978 /* SettingsTableViewController.swift in Sources */,
 				04CE5E1020DD4F4F0095A863 /* Operation.swift in Sources */,
@@ -304,6 +335,7 @@
 				8927E42B210002CA0050F775 /* Model.xcdatamodel in Sources */,
 				04121A5B210103640043623A /* DeleteCellController.swift in Sources */,
 				04CE5E1A20DD50AB0095A863 /* RequesterDelegate.swift in Sources */,
+				04121A6821014C0F0043623A /* FaderView.swift in Sources */,
 				894275A720E66F0600CA3139 /* ManageDB.swift in Sources */,
 				04CE5E0B20DD4F060095A863 /* Connector.swift in Sources */,
 				04928F7320BFE4E1008A7978 /* DetailsViewController.swift in Sources */,
@@ -461,8 +493,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = M8LPT93NXN;
+				DEVELOPMENT_TEAM = QVP266Y9P4;
 				INFOPLIST_FILE = Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -473,7 +506,7 @@
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "Connector-header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -483,8 +516,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = M8LPT93NXN;
+				DEVELOPMENT_TEAM = QVP266Y9P4;
 				INFOPLIST_FILE = Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -494,7 +528,7 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "Connector-header.h";
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "Connector-header.h";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

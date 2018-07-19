@@ -99,7 +99,6 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         dashboardTiles = try? context.fetch(dashboardTilesRequest)
     }
 
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "dataSegue" {
             let secondViewController = segue.destination as? DetailsViewController
