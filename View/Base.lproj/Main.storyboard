@@ -249,7 +249,24 @@
             </objects>
             <point key="canvasLocation" x="-3032" y="2141"/>
         </scene>
-        <!--Scene Table View Controller-->
+        <!--Navigation Controller-->
+        <scene sceneID="z2E-yE-aOj">
+            <objects>
+                <navigationController id="qeg-2T-1hb" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="" image="video-player-7" id="Xqk-Mb-3vg"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="lIY-nm-0G8">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="40A-du-ZZL" kind="relationship" relationship="rootViewController" id="BJI-MJ-EJU"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uV8-Ay-CW7" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-3180" y="1054"/>
+        </scene>
+        <!--Scenes-->
         <scene sceneID="hVT-tL-2uj">
             <objects>
                 <tableViewController id="40A-du-ZZL" customClass="SceneTableViewController" customModule="Domovoi" customModuleProvider="target" sceneMemberID="viewController">
@@ -320,13 +337,13 @@
                             <outlet property="delegate" destination="40A-du-ZZL" id="KAu-7V-K2S"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="" image="video-player-7" id="JlO-MQ-o7r"/>
+                    <navigationItem key="navigationItem" title="Scenes" id="Avz-RO-bYG"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qtA-pt-ASq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1642" y="995"/>
         </scene>
-        <!--Group Table View Controller-->
+        <!--Groups-->
         <scene sceneID="KAg-7V-b8j">
             <objects>
                 <tableViewController id="11O-O6-SX8" customClass="GroupTableViewController" customModule="Domovoi" customModuleProvider="target" sceneMemberID="viewController">
@@ -409,7 +426,7 @@
                             <outlet property="delegate" destination="11O-O6-SX8" id="CGY-Hl-kXX"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="Yds-vW-olT"/>
+                    <navigationItem key="navigationItem" title="Groups" id="Yds-vW-olT"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ace-BI-Y14" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -549,7 +566,7 @@
                     </tabBar>
                     <connections>
                         <segue destination="821-Gg-KQU" kind="relationship" relationship="viewControllers" id="iGh-AD-78e"/>
-                        <segue destination="40A-du-ZZL" kind="relationship" relationship="viewControllers" id="xpr-AQ-jve"/>
+                        <segue destination="qeg-2T-1hb" kind="relationship" relationship="viewControllers" id="Ovb-Cc-Yxj"/>
                         <segue destination="GkX-qG-K5t" kind="relationship" relationship="viewControllers" id="jcL-JE-my5"/>
                         <segue destination="be6-1N-s0d" kind="relationship" relationship="viewControllers" id="mxe-c4-zCO"/>
                     </connections>
