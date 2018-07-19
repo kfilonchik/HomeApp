@@ -151,6 +151,34 @@
             </objects>
             <point key="canvasLocation" x="-1298" y="2140"/>
         </scene>
+        <!--New Scene Controller-->
+        <scene sceneID="2yB-Y8-Imp">
+            <objects>
+                <tableViewController id="pPe-HY-GRb" customClass="NewSceneController" customModule="Domovoi" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="5I7-Ir-dsu">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="addDevicesInScene" id="bId-pO-Rpv">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="bId-pO-Rpv" id="I9z-uz-pId">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="pPe-HY-GRb" id="YKE-PP-x9Y"/>
+                            <outlet property="delegate" destination="pPe-HY-GRb" id="HSS-ez-Sqa"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Yrp-LU-0vk" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-599.20000000000005" y="1637.6311844077961"/>
+        </scene>
         <!--DBStuff-->
         <scene sceneID="woa-so-TNk">
             <objects>
@@ -340,6 +368,7 @@
                     <navigationItem key="navigationItem" title="Scenes" id="Avz-RO-bYG"/>
                     <connections>
                         <segue destination="Yxo-0Q-1aq" kind="show" identifier="deleteScene" id="6FW-WG-EFz"/>
+                        <segue destination="pPe-HY-GRb" kind="show" identifier="newScene" id="BCv-kH-OaG"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qtA-pt-ASq" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -394,7 +423,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5wk-IC-wT0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-581.60000000000002" y="940.47976011994012"/>
+            <point key="canvasLocation" x="-223" y="825"/>
         </scene>
         <!--Groups-->
         <scene sceneID="KAg-7V-b8j">

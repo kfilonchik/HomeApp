@@ -15,7 +15,25 @@ class SceneTableViewController: UITableViewController {
 
     @IBAction func newScene(_ sender: UIButton) {
         
-        print("Hello")
+        let alert = UIAlertController(title: "Give a title for your scene", message: nil, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        
+        alert.addTextField(configurationHandler: { textField in
+            textField.placeholder = "Input your name here..."
+        })
+        
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
+            
+            if let name = alert.textFields?.first?.text {
+                print("Title: \(name)")
+                self.performSegue(withIdentifier: "newScene", sender: self)
+                
+                
+            }
+        }))
+        
+        self.present(alert, animated: true)
+  
     }
     
     
@@ -40,7 +58,7 @@ class SceneTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let sceneRequest: NSFetchRequest<SceneTile> = SceneTile.fetchRequest()
+        let sceneRequest: NSFetchRequest<Scene> = Scene.fetchRequest()
         let scenes = try? context.fetch(sceneRequest)
        
     
@@ -53,7 +71,7 @@ class SceneTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let sceneRequest: NSFetchRequest<SceneTile> = SceneTile.fetchRequest()
+        let sceneRequest: NSFetchRequest<Scene> = Scene.fetchRequest()
         let scenes = try? context.fetch(sceneRequest)
         
         if indexPath.section == 0 {
