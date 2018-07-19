@@ -104,6 +104,18 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         self.present(viewController, animated: false, completion: nil)
     }
 */
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        switch indexPath.row {
+        case 0:
+            print("1")
+            performSegue(withIdentifier: "showFader", sender: nil)
+        default:
+            break
+        }
+        
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         

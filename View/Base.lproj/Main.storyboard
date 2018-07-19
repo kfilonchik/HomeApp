@@ -596,6 +596,36 @@
             </objects>
             <point key="canvasLocation" x="-911.20000000000005" y="-1477.5112443778112"/>
         </scene>
+        <!--Fader View Controller-->
+        <scene sceneID="z3b-wY-9mk">
+            <objects>
+                <viewController id="jcv-L4-CKO" customClass="FaderViewController" customModule="Domovoi" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="voP-Vx-aaw">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kwT-3l-cbB" customClass="FaderView" customModule="Domovoi" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="64" width="375" height="554"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="kwT-3l-cbB" firstAttribute="trailing" secondItem="Fw7-cY-38p" secondAttribute="trailing" id="D81-Ea-R0F"/>
+                            <constraint firstItem="kwT-3l-cbB" firstAttribute="leading" secondItem="Fw7-cY-38p" secondAttribute="leading" id="Dna-Mu-t6U"/>
+                            <constraint firstItem="kwT-3l-cbB" firstAttribute="bottom" secondItem="Fw7-cY-38p" secondAttribute="bottom" id="dIG-Np-cst"/>
+                            <constraint firstItem="kwT-3l-cbB" firstAttribute="top" secondItem="Fw7-cY-38p" secondAttribute="top" id="oC8-Xc-YVv"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Fw7-cY-38p"/>
+                    </view>
+                    <connections>
+                        <outlet property="faderView" destination="kwT-3l-cbB" id="iV0-Pf-OUD"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="s4i-Se-LEy" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="39" y="-1048"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="zq1-fb-hnL">
             <objects>
@@ -1068,11 +1098,12 @@
                     <connections>
                         <segue destination="clW-tx-tib" kind="presentation" identifier="mainPage" id="UZ7-hp-8yw"/>
                         <segue destination="lsv-lH-7Zp" kind="show" identifier="createNewTile" id="taA-lj-nI1"/>
+                        <segue destination="jcv-L4-CKO" kind="show" identifier="showFader" id="Vkg-Qo-spM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="21.600000000000001" y="111.99400299850076"/>
+            <point key="canvasLocation" x="15" y="113"/>
         </scene>
         <!--Tile Config Table View Controller-->
         <scene sceneID="Imw-8M-KUQ">
@@ -1109,7 +1140,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="U0X-7E-iMg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="652" y="-722"/>
+            <point key="canvasLocation" x="974" y="-679"/>
         </scene>
         <!--Details View Controller-->
         <scene sceneID="hK7-SM-5pQ">
