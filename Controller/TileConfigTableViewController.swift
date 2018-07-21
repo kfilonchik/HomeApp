@@ -67,11 +67,11 @@ class TileConfigTableViewController: UITableViewController {
     
     override func numberOfSections(in tableView: UITableView) -> Int {
         return countOfTileTypes
+        //add code to not show sections if no items in it
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "tileSettingsCell", for: indexPath)
-        
         var cellLabel: String?
         switch indexPath.section{
         case 0:
