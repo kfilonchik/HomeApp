@@ -62,23 +62,37 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         
         else if (aThermo != nil){
             let aCell = collectionView.dequeueReusableCell(withReuseIdentifier: "uiTermostat", for: indexPath as IndexPath) as! CollectionCellViewController
-            //aCell..text = aThermo?.title
+            aCell.thermoTileTitle.text = aThermo?.title
+            if aThermo?.target_temp != nil{
+                aCell.targetTemp.text = String(aThermo!.target_temp)
+            }
+            if aThermo?.actual_temp != nil{
+                 aCell.currentTemp.text = String(aThermo!.actual_temp)
+            }
             return aCell
         }
         
         else if (aSwitchGroup != nil){
             let aCell = collectionView.dequeueReusableCell(withReuseIdentifier: "uiSwitchGroup", for: indexPath as IndexPath) as! CollectionCellViewController
-            //aCell.titleThermostatTile.text = aSwitchGroup?.title
+            aCell.titleSwitchGroup.text = aSwitchGroup?.title
+            aCell.labelTop.text = "-1"
+            aCell.labelBottom.text = "-1"
+            
             return aCell
         }
         else if (aThermoGroup != nil){
             let aCell = collectionView.dequeueReusableCell(withReuseIdentifier: "uiTermostatGroup", for: indexPath as IndexPath) as! CollectionCellViewController
-            //aCell.titleThermostatTile.text = aThermoGroup?.title
+            aCell.titleThermoGroup.text = aThermoGroup?.title
+            aCell.targetTempThermoGroup.text = "-1"
+            aCell.thermosOnTarget.text = "-1"
+            aCell.thermosNotOnTarget.text = "-1"
             return aCell
         }
         else if (aScene != nil){
             let aCell = collectionView.dequeueReusableCell(withReuseIdentifier: "uiScene", for: indexPath as IndexPath) as! CollectionCellViewController
-            //aCell.titleThermostatTile.text = aScene?.title
+            aCell.titleSceneTile.text = aScene?.title
+            aCell.labelLeft.text = "-1"
+            aCell.labelRight.text = "-1"
             return aCell
         }
     

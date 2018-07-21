@@ -866,7 +866,7 @@
                                         <connections>
                                             <outlet property="labelBottom" destination="msz-A6-qO4" id="gdr-lZ-eW3"/>
                                             <outlet property="labelTop" destination="yLf-k3-dVF" id="RVB-bh-Jj5"/>
-                                            <outlet property="titleSwitchTile" destination="RFW-JE-6QH" id="pV6-dG-wWo"/>
+                                            <outlet property="titleSwitchGroup" destination="RFW-JE-6QH" id="pV6-dG-wWo"/>
                                         </connections>
                                     </collectionViewCell>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="uiScene" id="ysR-Xb-0MV" customClass="CollectionCellViewController" customModule="Domovoi" customModuleProvider="target">
@@ -919,7 +919,6 @@
                                             <outlet property="labelLeft" destination="5ih-oz-6YQ" id="dA0-Qu-MHh"/>
                                             <outlet property="labelRight" destination="7xE-us-DPz" id="aE1-Uq-E1K"/>
                                             <outlet property="titleSceneTile" destination="YA8-zG-1N3" id="sNZ-zn-ETl"/>
-                                            <outlet property="titleThermostatTile" destination="YA8-zG-1N3" id="KgV-Ou-2qe"/>
                                         </connections>
                                     </collectionViewCell>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="uiSwitch" id="lXT-8j-2sO" userLabel="uiSwitch" customClass="CollectionCellViewController" customModule="Domovoi" customModuleProvider="target">

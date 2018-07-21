@@ -16,16 +16,16 @@ class CollectionCellViewController: UICollectionViewCell {
     }
     
     //SwitchGroup
-    @IBOutlet weak var titleSwitchTile: UILabel!
+    @IBOutlet weak var titleSwitchGroup: UILabel!
     @IBOutlet weak var labelTop: UILabel!
     @IBOutlet weak var labelBottom: UILabel!
     
-    //Scene Tile
+    //Scene
     @IBOutlet weak var titleSceneTile: UILabel!
     @IBOutlet weak var labelLeft: UILabel!
     @IBOutlet weak var labelRight: UILabel!
     
-    //SwitchTile Tile
+    //Switch
     @IBOutlet weak var titleSwitch: UILabel!
     
     
@@ -35,13 +35,11 @@ class CollectionCellViewController: UICollectionViewCell {
     @IBOutlet weak var thermosOnTarget: UILabel!
     @IBOutlet weak var thermosNotOnTarget: UILabel!
     
-    //Thermostat Tile
+    //Thermostat
     @IBOutlet weak var thermoTileTitle: UILabel!
     @IBOutlet weak var targetTemp: UILabel!
     @IBOutlet weak var currentTemp: UILabel!
 
-    
-    //@IBOutlet weak var titleThermostatTile: UILabel!
 }
 
 protocol CollectionCellViewControllerDelegate: class {
