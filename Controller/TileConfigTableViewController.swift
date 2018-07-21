@@ -20,25 +20,13 @@ class TileConfigTableViewController: UITableViewController {
     let thermoGroupReq: NSFetchRequest<ThermostatGroup> = ThermostatGroup.fetchRequest()
     let scenepReq: NSFetchRequest<Scene> = Scene.fetchRequest()
     
-    /*
-    let switchTilesReq: NSFetchRequest<SwitchTile> = SwitchTile.fetchRequest()
-    let thermoTilesReq: NSFetchRequest<ThermostatTile> = ThermostatTile.fetchRequest()
-    let sceneTilesReq: NSFetchRequest<SceneTile> = SceneTile.fetchRequest()
-    let switchGroupTilesReq : NSFetchRequest<SwitchGroupTile> = SwitchGroupTile.fetchRequest()
-    let thermoGroupTilesReq : NSFetchRequest<ThermostatGroupTile> = ThermostatGroupTile.fetchRequest()
-    */
+
     var switches: [SwitchDevice]?
     var thermos: [Thermostat]?
     var switchGroups: [SwitchGroup]?
     var thermoGroups: [ThermostatGroup]?
     var scenes: [Scene]?
-    /*
-    var switchTiles: [SwitchTile]?
-    var termoTiles: [ThermostatTile]?
-    var switchGroupTiles: [SwitchGroupTile]?
-    var thermoGroupTiles: [ThermostatGroupTile]?
-    var sceneTiles: [SceneTile]?
-    */
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,13 +39,7 @@ class TileConfigTableViewController: UITableViewController {
         switchGroups = try? context.fetch(switchGroupReq)
         thermoGroups = try? context.fetch(thermoGroupReq)
         scenes = try? context.fetch(scenepReq)
-        /*
-        switchTiles = try? context.fetch(switchTilesReq)
-        termoTiles = try? context.fetch(thermoTilesReq)
-        switchGroupTiles = try? context.fetch(switchGroupTilesReq)
-        thermoGroupTiles = try? context.fetch(thermoGroupTilesReq)
-        sceneTiles = try? context.fetch(sceneTilesReq)
-        */
+
     }
 
     override func didReceiveMemoryWarning() {
