@@ -814,7 +814,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="uiSwitch" id="AVv-58-bYW" customClass="CollectionCellViewController" customModule="Domovoi" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="uiSwitchGroup" id="AVv-58-bYW" userLabel="uiSwitchGroup" customClass="CollectionCellViewController" customModule="Domovoi" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="173" height="173"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
@@ -835,7 +835,7 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Titel" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RFW-JE-6QH">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="defTileSwGr" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RFW-JE-6QH" userLabel="titel1">
                                                     <rect key="frame" x="42" y="11" width="99" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -864,9 +864,9 @@
                                         <viewLayoutGuide key="safeArea" id="zcz-rV-hfN"/>
                                         <size key="customSize" width="173" height="173"/>
                                         <connections>
-                                            <outlet property="inf1" destination="yLf-k3-dVF" id="RVB-bh-Jj5"/>
-                                            <outlet property="inf2" destination="msz-A6-qO4" id="gdr-lZ-eW3"/>
-                                            <outlet property="titel1" destination="RFW-JE-6QH" id="pV6-dG-wWo"/>
+                                            <outlet property="labelBottom" destination="msz-A6-qO4" id="gdr-lZ-eW3"/>
+                                            <outlet property="labelTop" destination="yLf-k3-dVF" id="RVB-bh-Jj5"/>
+                                            <outlet property="titleSwitchTile" destination="RFW-JE-6QH" id="pV6-dG-wWo"/>
                                         </connections>
                                     </collectionViewCell>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="uiScene" id="ysR-Xb-0MV" customClass="CollectionCellViewController" customModule="Domovoi" customModuleProvider="target">
@@ -900,7 +900,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="3" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7xE-us-DPz">
-                                                    <rect key="frame" x="101" y="124" width="21" height="29"/>
+                                                    <rect key="frame" x="102" y="124" width="20" height="29"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -916,18 +916,21 @@
                                         <color key="tintColor" red="1" green="0.57637232540000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <size key="customSize" width="173" height="173"/>
                                         <connections>
+                                            <outlet property="labelLeft" destination="5ih-oz-6YQ" id="dA0-Qu-MHh"/>
+                                            <outlet property="labelRight" destination="7xE-us-DPz" id="aE1-Uq-E1K"/>
+                                            <outlet property="titleSceneTile" destination="YA8-zG-1N3" id="sNZ-zn-ETl"/>
                                             <outlet property="titleThermostatTile" destination="YA8-zG-1N3" id="KgV-Ou-2qe"/>
                                         </connections>
                                     </collectionViewCell>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="uiSwitchGroup" id="lXT-8j-2sO" customClass="CollectionCellViewController" customModule="Domovoi" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="uiSwitch" id="lXT-8j-2sO" userLabel="uiSwitch" customClass="CollectionCellViewController" customModule="Domovoi" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="183" width="173" height="173"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
                                             <rect key="frame" x="0.0" y="0.0" width="173" height="173"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Titel" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Awg-DK-ngy">
-                                                    <rect key="frame" x="42" y="11" width="99" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="defTileSwitch" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Awg-DK-ngy">
+                                                    <rect key="frame" x="42" y="11" width="104" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -949,8 +952,11 @@
                                         </view>
                                         <color key="backgroundColor" red="0.360957837" green="1" blue="0.84322198299999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <size key="customSize" width="173" height="173"/>
+                                        <connections>
+                                            <outlet property="titleSwitch" destination="Awg-DK-ngy" id="heU-f6-MHt"/>
+                                        </connections>
                                     </collectionViewCell>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="uiTermostat" id="lTB-UY-47b" customClass="CollectionCellViewController" customModule="Domovoi" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="uiTermostatGroup" id="lTB-UY-47b" customClass="CollectionCellViewController" customModule="Domovoi" customModuleProvider="target">
                                         <rect key="frame" x="202" y="183" width="173" height="173"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
@@ -964,8 +970,8 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Titel" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y5m-4j-hNs">
-                                                    <rect key="frame" x="42" y="11" width="99" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="defThermostatGr" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y5m-4j-hNs">
+                                                    <rect key="frame" x="42" y="11" width="133" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -997,8 +1003,14 @@
                                         </view>
                                         <color key="backgroundColor" red="1" green="0.76050109320000003" blue="0.4072716267" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <size key="customSize" width="173" height="173"/>
+                                        <connections>
+                                            <outlet property="targetTempThermoGroup" destination="GLo-VB-Dqg" id="hAQ-kX-pdp"/>
+                                            <outlet property="thermosNotOnTarget" destination="3is-Tc-WBL" id="4TM-f1-Ymg"/>
+                                            <outlet property="thermosOnTarget" destination="l4T-jd-IzP" id="6T1-wT-bPQ"/>
+                                            <outlet property="titleThermoGroup" destination="Y5m-4j-hNs" id="BBj-x7-avG"/>
+                                        </connections>
                                     </collectionViewCell>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="uiTermostatGroup" id="l46-nH-Q1k" customClass="CollectionCellViewController" customModule="Domovoi" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="uiTermostat" id="l46-nH-Q1k" customClass="CollectionCellViewController" customModule="Domovoi" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="366" width="173" height="173"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
@@ -1016,8 +1028,8 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Titel" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CvM-3K-0dR">
-                                                    <rect key="frame" x="42" y="11" width="99" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="defTileThermostat" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CvM-3K-0dR">
+                                                    <rect key="frame" x="42" y="11" width="140" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -1042,6 +1054,11 @@
                                         </view>
                                         <color key="backgroundColor" red="1" green="0.76050109316285253" blue="0.40727162673137973" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <size key="customSize" width="173" height="173"/>
+                                        <connections>
+                                            <outlet property="currentTemp" destination="Kfz-YV-6VC" id="i35-Mk-zST"/>
+                                            <outlet property="targetTemp" destination="Rfz-qf-1Os" id="yuq-l0-4Em"/>
+                                            <outlet property="thermoTileTitle" destination="CvM-3K-0dR" id="F2e-ma-M9Q"/>
+                                        </connections>
                                     </collectionViewCell>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="uiNewTile" id="Rqk-kp-yJd" customClass="CollectionCellViewController" customModule="Domovoi" customModuleProvider="target">
                                         <rect key="frame" x="202" y="366" width="173" height="173"/>
@@ -1102,7 +1119,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="15" y="113"/>
+            <point key="canvasLocation" x="13.6" y="112.89355322338831"/>
         </scene>
         <!--Tile Config Table View Controller-->
         <scene sceneID="Imw-8M-KUQ">

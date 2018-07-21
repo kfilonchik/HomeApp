@@ -55,8 +55,8 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         {
             let aCell = collectionView.dequeueReusableCell(withReuseIdentifier: "uiSwitch", for: indexPath as IndexPath) as! CollectionCellViewController
             
-            aCell.titel1.text = aSwitch?.title
-
+            aCell.titleSwitch.text = aSwitch?.title
+            
             return aCell
         }
         
@@ -135,7 +135,11 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
             }
         }
     }
+
 }
+
+
+
 //---//
 
 extension ViewController: CollectionCellViewControllerDelegate{

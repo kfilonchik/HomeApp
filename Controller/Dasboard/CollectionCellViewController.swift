@@ -15,13 +15,33 @@ class CollectionCellViewController: UICollectionViewCell {
         delegate?.button(addNewTile: self)
     }
     
-    @IBOutlet weak var titel1: UILabel!
+    //SwitchGroup
+    @IBOutlet weak var titleSwitchTile: UILabel!
+    @IBOutlet weak var labelTop: UILabel!
+    @IBOutlet weak var labelBottom: UILabel!
     
-    @IBOutlet weak var inf1: UILabel!
-    @IBOutlet weak var inf2: UILabel!
+    //Scene Tile
+    @IBOutlet weak var titleSceneTile: UILabel!
+    @IBOutlet weak var labelLeft: UILabel!
+    @IBOutlet weak var labelRight: UILabel!
+    
+    //SwitchTile Tile
+    @IBOutlet weak var titleSwitch: UILabel!
+    
+    
+    //Thermostat Group
+    @IBOutlet weak var titleThermoGroup: UILabel!
+    @IBOutlet weak var targetTempThermoGroup: UILabel!
+    @IBOutlet weak var thermosOnTarget: UILabel!
+    @IBOutlet weak var thermosNotOnTarget: UILabel!
+    
+    //Thermostat Tile
+    @IBOutlet weak var thermoTileTitle: UILabel!
+    @IBOutlet weak var targetTemp: UILabel!
+    @IBOutlet weak var currentTemp: UILabel!
 
     
-    @IBOutlet weak var titleThermostatTile: UILabel!
+    //@IBOutlet weak var titleThermostatTile: UILabel!
 }
 
 protocol CollectionCellViewControllerDelegate: class {
