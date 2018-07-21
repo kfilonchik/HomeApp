@@ -18,12 +18,14 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     let dashboardTilesRequest: NSFetchRequest<DashboardTile> = DashboardTile.fetchRequest()
     var dashboardTiles: [DashboardTile]?
     var noOfTiles: Int?
+    var theCollectionView: UICollectionView?
     
     @IBAction func addNewTile(_ sender: UIBarButtonItem) {
         self.performSegue(withIdentifier: "createNewTile", sender: self)
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        theCollectionView = collectionView
         dashboardTilesRequest.predicate = NSPredicate(format: "onDashboard == true")
         dashboardTiles = try? context.fetch(dashboardTilesRequest)
         noOfTiles = dashboardTiles!.count
@@ -33,6 +35,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
+        theCollectionView = collectionView
         var aSwitch: SwitchDevice?
         var aThermo: Thermostat?
         var aSwitchGroup: SwitchGroup?
@@ -114,12 +117,21 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     override func viewDidAppear(_ animated: Bool) {
         dashboardTiles = try? context.fetch(dashboardTilesRequest)
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        dashboardTiles = try? context.fetch(dashboardTilesRequest)
+        if theCollectionView != nil{
+            self.theCollectionView!.reloadData()
+        }
+    }
+    
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "dataSegue" {
             let secondViewController = segue.destination as? DetailsViewController
             if let svc = secondViewController {
                 svc.data = "Hello World"
+                
             }
         }
     }
