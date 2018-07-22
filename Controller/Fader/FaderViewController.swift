@@ -9,8 +9,13 @@
 import UIKit
 
 class FaderViewController: UIViewController {
-    var faderverObj = FaderManager(faderValue: 0.3, scale: 1.0) {
-        didSet{updateUI()}
+    
+    var faderValue: CGFloat? {didSet {updateUI()}}
+    var scale: CGFloat? {didSet {updateUI()}}
+    var controlledEntity: DashboardTile? {
+        didSet{
+            print("controlledEntity: \(controlledEntity)")
+        }
     }
     
     @IBOutlet weak var faderView: FaderView!{
@@ -28,7 +33,7 @@ class FaderViewController: UIViewController {
         case .changed, .ended:
             faderView?.scale *= pinchRecognizer.scale
             pinchRecognizer.scale = 1
-            faderverObj.scale = Double((faderView?.scale)!)
+            scale = faderView?.scale
         default:
             break
         }
@@ -39,7 +44,7 @@ class FaderViewController: UIViewController {
         case .changed, .ended:
             faderView?.faderValue += -(panRecognizer.translation(in: faderView).y)/500
             panRecognizer.setTranslation(CGPoint(x:0,y:0), in: faderView)
-            faderverObj.faderValue = Double((faderView?.faderValue)!)
+            faderValue = faderView?.faderValue
         default:
             break
         }
@@ -48,9 +53,13 @@ class FaderViewController: UIViewController {
     
     
     private func updateUI(){
-        
-        faderView?.faderValue = CGFloat(faderverObj.faderValue)
-        faderView?.scale = CGFloat(faderverObj.scale)
+        if(faderValue != nil){
+            faderView?.faderValue = faderValue!
+        }
+        if(scale != nil){
+            faderView?.scale = scale!
+        }
+        print("controlledEntity: \(controlledEntity)")
     }
     
 }

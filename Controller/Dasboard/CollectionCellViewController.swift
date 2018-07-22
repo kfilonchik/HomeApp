@@ -17,6 +17,14 @@ class CollectionCellViewController: UICollectionViewCell {
         delegate?.plusButton(addNewTile: self)
     }
     
+    @IBAction func toFaderButtonGroup(_ sender: Any) {
+        delegate?.goToFader(entityToFade: connectedEntity!)
+    }
+    
+    @IBAction func toFaderButtonThermo(_ sender: Any) {
+        delegate?.goToFader(entityToFade: connectedEntity!)
+    }
+    
     @IBAction func switchSwitch(_ sender: UISwitch) {
         delegate?.switchUsed(switchedEntity: connectedEntity!, state: sender.isOn)
     }
@@ -54,4 +62,5 @@ class CollectionCellViewController: UICollectionViewCell {
 protocol CollectionCellViewControllerDelegate: class {
     func plusButton(addNewTile cell: CollectionCellViewController)
     func switchUsed(switchedEntity: DashboardTile, state: Bool)
+    func goToFader(entityToFade: DashboardTile)
 }

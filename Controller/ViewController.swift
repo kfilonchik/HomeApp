@@ -19,6 +19,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     var dashboardTiles: [DashboardTile]?
     var noOfTiles: Int?
     var theCollectionView: UICollectionView?
+    var faderDestination: DashboardTile?
     
     //small "+" in upper right corner
     @IBAction func addNewTile(_ sender: UIBarButtonItem) {
@@ -125,7 +126,6 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         }
     }
 
-
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -139,9 +139,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         else if ((result?.count)! == 1){
             aConnector.startUpConnector()
         }
-
-    }    
-    
+    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -166,16 +164,30 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
             let secondViewController = segue.destination as? DetailsViewController
             if let svc = secondViewController {
                 svc.data = "Hello World"
-                
             }
         }
+        
+        if (segue.identifier == "showFader") {
+            let secondViewController = segue.destination as? FaderViewController
+            if let svc = secondViewController {
+                svc.controlledEntity = faderDestination
+            }
+            print("in prepare")
+            //let destViewController = segue.destination as? FaderViewController
+            }
     }
-
 }
 
 //---//
 
 extension ViewController: CollectionCellViewControllerDelegate{
+    
+    func goToFader(entityToFade: DashboardTile) {
+        print("goToFaderGroup: \(entityToFade)")
+        faderDestination = entityToFade
+        self.performSegue(withIdentifier: "showFader", sender: self)
+    }
+
     
     func switchUsed(switchedEntity: DashboardTile, state: Bool) {
         if(switchedEntity as? SwitchDevice != nil){
@@ -193,7 +205,6 @@ extension ViewController: CollectionCellViewControllerDelegate{
                 switchCast.lasteChangeByAllDevRec = false
             }
         }
-        
     }
     func plusButton(addNewTile cell: CollectionCellViewController) {
         self.performSegue(withIdentifier: "createNewTile", sender: self)
