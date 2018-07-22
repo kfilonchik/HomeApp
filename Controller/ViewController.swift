@@ -115,7 +115,14 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     
     //Navigation function, we need to write conditions
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let cellObject = theCollectionView?.cellForItem(at: indexPath) as! CollectionCellViewController
+        let connectedEntity = cellObject.connectedEntity
+        let aThermo = connectedEntity as? Thermostat
+        let aThermoGroup = connectedEntity as? ThermostatGroup
+        
+        if(aThermo != nil || aThermoGroup != nil){
             self.performSegue(withIdentifier: "showFader", sender: self)
+        }
     }
 
 

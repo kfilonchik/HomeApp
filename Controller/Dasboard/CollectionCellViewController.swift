@@ -10,7 +10,7 @@ import UIKit
 
 class CollectionCellViewController: UICollectionViewCell {
     weak var delegate: CollectionCellViewControllerDelegate?
-    weak var connectedEntity: DashboardTile?
+    var connectedEntity: DashboardTile?
 
     
     @IBAction func makeNewTile(_ sender: Any) {
