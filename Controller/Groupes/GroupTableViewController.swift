@@ -12,14 +12,28 @@ import CoreData
 class GroupTableViewController: UITableViewController {
     let context = AppDelegate.viewContext
 
+   
+    @IBAction func newGroup(_ sender: UIBarButtonItem) {
+        let alert = UIAlertController(title: "Give a title for your group", message: nil, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        
+        alert.addTextField(configurationHandler: { textField in
+            textField.placeholder = "Input your name here..."
+        })
+        
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
+            
+            if let name = alert.textFields?.first?.text {
+                print("Title: \(name)")
+                self.performSegue(withIdentifier: "NewGroup", sender: self)
+                
+                
+            }
+        }))
+        
+        self.present(alert, animated: true)
+    }
     
-    @IBAction func NewGroup(_ sender: UIButton) {
-         self.performSegue(withIdentifier: "NewGroup", sender: self)
-    }
-
-    @IBAction func DeleteGroup(_ sender: UIButton) {
-         self.performSegue(withIdentifier: "DeleteGroup", sender: self)
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,7 +48,7 @@ class GroupTableViewController: UITableViewController {
     }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 3
+        return 2
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -72,7 +86,7 @@ class GroupTableViewController: UITableViewController {
         
         if indexPath.section == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "GroupThermostat") as! GroupTableViewCell
-        cell.GroupTitleThermostat.text = groupsThermostat?[indexPath.item].title
+         cell.GroupTitleThermostat.text = groupsThermostat?[indexPath.item].title
             
           //  cell.GroupTitleThermostat.text = "test"
             return cell

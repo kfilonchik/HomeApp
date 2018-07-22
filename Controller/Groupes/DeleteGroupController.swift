@@ -12,8 +12,6 @@ import CoreData
 class DeleteGroupController: UITableViewController {
     let context = AppDelegate.viewContext
 
-    @IBAction func DeleteGroup(_ sender: UIButton) {
-    }
     override func viewDidLoad() {
         super.viewDidLoad()
     }

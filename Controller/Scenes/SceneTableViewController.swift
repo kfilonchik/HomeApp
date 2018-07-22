@@ -12,9 +12,8 @@ import CoreData
 class SceneTableViewController: UITableViewController {
     
      let context = AppDelegate.viewContext
-
-    @IBAction func newScene(_ sender: UIButton) {
-        
+   
+    @IBAction func newScene(_ sender: UIBarButtonItem) {
         let alert = UIAlertController(title: "Give a title for your scene", message: nil, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         
@@ -26,26 +25,23 @@ class SceneTableViewController: UITableViewController {
             
             if let name = alert.textFields?.first?.text {
                 print("Title: \(name)")
-                self.performSegue(withIdentifier: "newScene", sender: self)
+                //self.performSegue(withIdentifier: "newScene", sender: self)
                 
-                
+                let NewSceneViewController = self.performSegue(withIdentifier: "newScene", sender: self) as? NewSceneController
+                NewSceneViewController?.data = name
+         
             }
         }))
         
         self.present(alert, animated: true)
-  
     }
     
-    
-    @IBAction func deleteScene(_ sender: UIButton) {
-         self.performSegue(withIdentifier: "deleteScene", sender: self)
-        
-    }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
          tableView.register(UINib(nibName: "SceneCell", bundle: nil), forCellReuseIdentifier: "SceneCell")
+        //self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
 
     override func didReceiveMemoryWarning() {
@@ -54,7 +50,7 @@ class SceneTableViewController: UITableViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
 
-        return 2
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

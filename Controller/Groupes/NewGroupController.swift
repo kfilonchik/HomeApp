@@ -7,11 +7,27 @@
 //
 
 import UIKit
+import CoreData
 
 class NewGroupController: UITableViewController {
+    
+    let context = AppDelegate.viewContext
+    let switchReq: NSFetchRequest<SwitchDevice> = SwitchDevice.fetchRequest()
+    let thermoReq: NSFetchRequest<Thermostat> = Thermostat.fetchRequest()
+    
+    
+    var switches: [SwitchDevice]?
+    var thermos: [Thermostat]?
+    
+    func refreshData(){
+        switches = try? context.fetch(switchReq)
+        thermos = try? context.fetch(thermoReq)
+        
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
+           refreshData()
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -22,39 +38,115 @@ class NewGroupController: UITableViewController {
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 
-    // MARK: - Table view data source
-
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 3
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
+        switch section {
+        case 0:
+            return 1
+        case 1:
+            return (thermos?.count)!
+        case 2:
+            return (switches?.count)!
+        default:
+            return 0
+        }
     }
 
-    /*
+
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
-
+        let cell = tableView.dequeueReusableCell(withIdentifier: "groupPrototypeCell", for: indexPath)
+        var cellLabel: String?
+        switch indexPath.section{
+        case 0:
+            cell.textLabel?.text = "test"
+            cell.selectionStyle = UITableViewCellSelectionStyle.none
+            
+        case 1:
+            cellLabel = thermos?[indexPath.row].title
+            if(thermos?[indexPath.row].onDashboard == true){cell.accessoryType = UITableViewCellAccessoryType.checkmark}
+            else{cell.accessoryType = UITableViewCellAccessoryType.none}
+            
+        case 2:
+            cellLabel = switches?[indexPath.row].title
+            if(switches?[indexPath.row].onDashboard == true){cell.accessoryType = UITableViewCellAccessoryType.checkmark}
+            else{cell.accessoryType = UITableViewCellAccessoryType.none}
+            
+        default:
+            print("default in override func tableView")
+        }
+        cell.textLabel?.text = cellLabel
         return cell
+        
     }
-    */
 
-    /*
-    // Override to support conditional editing of the table view.
+
+
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
+        if indexPath.section == 0 {
+             return true
+        }
+        return false
     }
-    */
-
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        switch indexPath.section{
+        case 0:
+            //Edit title function..do not know..
+            
+            let cell = tableView.dequeueReusableCell(withIdentifier: "groupPrototypeCell", for: indexPath)
+            cell.setEditing(true, animated: true)
+            
+            cell.textLabel?.text = "test1"
+            
+            do{try context.save()} catch {print(error)}
+            
+        case 1:
+            if(tableView.cellForRow(at: indexPath)?.accessoryType == UITableViewCellAccessoryType.checkmark){ // delete a tile
+                thermos?[indexPath.row].onDashboard = false
+                tableView.cellForRow(at: indexPath)?.accessoryType = UITableViewCellAccessoryType.none
+                
+            }
+            else{ // create a tile
+                thermos?[indexPath.row].onDashboard = true
+                tableView.cellForRow(at: indexPath)?.accessoryType = UITableViewCellAccessoryType.checkmark
+            }
+            do{try context.save()} catch {print(error)}
+        case 2:
+            if(tableView.cellForRow(at: indexPath)?.accessoryType == UITableViewCellAccessoryType.checkmark){ // delete a tile
+                switches?[indexPath.row].onDashboard = false
+                tableView.cellForRow(at: indexPath)?.accessoryType = UITableViewCellAccessoryType.none
+            }
+            else{ // create a tile
+                switches?[indexPath.row].onDashboard = true
+                tableView.cellForRow(at: indexPath)?.accessoryType = UITableViewCellAccessoryType.checkmark
+            }
+            do{try context.save()} catch {print(error)}
+            
+        default:
+            print("default in override func tableView")
+        }
+        
+    }
+    
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        switch section {
+        case 0:
+            return "Title"
+        case 1:
+            return "Thermostats"
+        case 2:
+            return "Switches"
+        default:
+            return "Some problems!"
+        }
+        
+    }
     /*
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {

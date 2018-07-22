@@ -172,12 +172,6 @@ extension ViewController: CollectionCellViewControllerDelegate{
         }
         
     }
-    
-
-    
-    
-
-    
     func plusButton(addNewTile cell: CollectionCellViewController) {
         self.performSegue(withIdentifier: "createNewTile", sender: self)
     }
