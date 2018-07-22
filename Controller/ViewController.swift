@@ -20,6 +20,8 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     var noOfTiles: Int?
     var theCollectionView: UICollectionView?
     
+  
+    
     @IBAction func addNewTile(_ sender: UIBarButtonItem) {
         self.performSegue(withIdentifier: "createNewTile", sender: self)
     }
@@ -103,7 +105,12 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
             return aCell
         }
     }
- 
+    
+    //Navigation function, we need to write conditions
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+            self.performSegue(withIdentifier: "showFader", sender: self)
+    }
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
