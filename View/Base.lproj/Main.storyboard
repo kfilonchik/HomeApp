@@ -364,7 +364,9 @@
                             <outlet property="delegate" destination="40A-du-ZZL" id="KAu-7V-K2S"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Scenes" id="Avz-RO-bYG"/>
+                    <navigationItem key="navigationItem" title="Scenes" id="Avz-RO-bYG">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="wjh-th-0ye"/>
+                    </navigationItem>
                     <connections>
                         <segue destination="Yxo-0Q-1aq" kind="show" identifier="deleteScene" id="6FW-WG-EFz"/>
                         <segue destination="pPe-HY-GRb" kind="show" identifier="newScene" id="BCv-kH-OaG"/>
