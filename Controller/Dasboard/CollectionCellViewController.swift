@@ -9,12 +9,19 @@
 import UIKit
 
 class CollectionCellViewController: UICollectionViewCell {
-   weak var delegate: CollectionCellViewControllerDelegate?
+    weak var delegate: CollectionCellViewControllerDelegate?
+    weak var connectedEntity: DashboardTile?
+
     
     @IBAction func makeNewTile(_ sender: Any) {
-        delegate?.button(addNewTile: self)
+        delegate?.plusButton(addNewTile: self)
     }
     
+    @IBAction func switchSwitch(_ sender: UISwitch) {
+        delegate?.switchUsed(switchedEntity: connectedEntity!, state: sender.isOn)
+        
+        //
+    }
     //SwitchGroup
     @IBOutlet weak var titleSwitchGroup: UILabel!
     @IBOutlet weak var labelTop: UILabel!
@@ -43,5 +50,6 @@ class CollectionCellViewController: UICollectionViewCell {
 }
 
 protocol CollectionCellViewControllerDelegate: class {
-    func button(addNewTile cell: CollectionCellViewController)
+    func plusButton(addNewTile cell: CollectionCellViewController)
+    func switchUsed(switchedEntity: DashboardTile, state: Bool)
 }
