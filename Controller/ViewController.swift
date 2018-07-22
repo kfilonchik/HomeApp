@@ -72,6 +72,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
                  aCell.currentTemp.text = String(aThermo!.actual_temp)
             }
             aCell.delegate = self
+            aCell.connectedEntity = aThermo
             return aCell
         }
         
@@ -81,6 +82,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
             aCell.labelTop.text = "-1"
             aCell.labelBottom.text = "-1"
             aCell.delegate = self
+            aCell.connectedEntity = aSwitchGroup
             return aCell
         }
         else if (aThermoGroup != nil){
@@ -90,6 +92,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
             aCell.thermosOnTarget.text = "-1"
             aCell.thermosNotOnTarget.text = "-1"
             aCell.delegate = self
+            aCell.connectedEntity = aThermoGroup
             return aCell
         }
         else if (aScene != nil){
@@ -98,6 +101,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
             aCell.labelLeft.text = "-1"
             aCell.labelRight.text = "-1"
             aCell.delegate = self
+            aCell.connectedEntity = aScene
             return aCell
         }
     
@@ -170,11 +174,17 @@ extension ViewController: CollectionCellViewControllerDelegate{
         if(switchedEntity as? SwitchDevice != nil){
             let switchCast = switchedEntity as! SwitchDevice
             switchCast.state = state
+            switchCast.lasteChangeByAllDevRec = false
+            print("switch Action")
         }
         else if(switchedEntity as? SwitchGroup != nil){
             let aSwitchGroup = switchedEntity as? SwitchGroup
             let switches = aSwitchGroup?.switches
-            print(switches)
+            for aSwitch in switches!{
+                let switchCast = aSwitch as! SwitchDevice
+                switchCast.state = state
+                switchCast.lasteChangeByAllDevRec = false
+            }
 
             }
         

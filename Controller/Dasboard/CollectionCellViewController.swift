@@ -19,9 +19,11 @@ class CollectionCellViewController: UICollectionViewCell {
     
     @IBAction func switchSwitch(_ sender: UISwitch) {
         delegate?.switchUsed(switchedEntity: connectedEntity!, state: sender.isOn)
-        
-        //
     }
+    @IBAction func switchGroupSwitch(_ sender: UISwitch) {
+        delegate?.switchUsed(switchedEntity: connectedEntity!, state: sender.isOn)
+    }
+    
     //SwitchGroup
     @IBOutlet weak var titleSwitchGroup: UILabel!
     @IBOutlet weak var labelTop: UILabel!
