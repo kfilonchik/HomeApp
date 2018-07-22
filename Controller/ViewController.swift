@@ -165,18 +165,30 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
 //---//
 
 extension ViewController: CollectionCellViewControllerDelegate{
+    
     func switchUsed(switchedEntity: DashboardTile, state: Bool) {
         if(switchedEntity as? SwitchDevice != nil){
-            let aa = switchedEntity as! SwitchDevice
-            aa.state = state
+            let switchCast = switchedEntity as! SwitchDevice
+            switchCast.state = state
         }
+        else if(switchedEntity as? SwitchGroup != nil){
+            let aSwitchGroup = switchedEntity as? SwitchGroup
+            let switches = aSwitchGroup?.switches
+            print(switches)
+
+            }
         
+    
+        do{ // persist data
+            try context.save()
+            
+        } catch {
+            print(error)
+        }
     }
     
 
     
-    
-
     
     func plusButton(addNewTile cell: CollectionCellViewController) {
         self.performSegue(withIdentifier: "createNewTile", sender: self)
