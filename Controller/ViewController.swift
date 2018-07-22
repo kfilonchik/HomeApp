@@ -108,7 +108,12 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
             return aCell
         }
     }
- 
+    
+    //Navigation function, we need to write conditions
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+            self.performSegue(withIdentifier: "showFader", sender: self)
+    }
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
