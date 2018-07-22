@@ -105,54 +105,9 @@ class ManageDB: UIViewController {
         let thermos = try? context.fetch(thermosRequest)
         
 
-        /*
-        if (switches != nil)
-        {
-            for aswitch in switches!{
-                let aswitchTile = SwitchTile(context: context)
-                aswitchTile.switchDevice = aswitch
-            }
-        }
-        
-        if (thermos != nil)
-        {
-            for athermo in thermos!{
-                let aThermoTile = ThermostatTile(context: context)
-                aThermoTile.thermostat = athermo
-            }
-        }
-        
-        do{ // persist data
-            try context.save()
-            
-        } catch {
-            print(error)
-        }
-        print("Alle Devices zu Kacheln erstellt")
-        */
     }
     
     @IBAction func printSTT(_ sender: UIButton) {
-        /*
-        let switchTilesRequest: NSFetchRequest<SwitchTile> = SwitchTile.fetchRequest()
-        let switchTiles = try? context.fetch(switchTilesRequest)
-        
-        print("Anzahl Kacheln switches \(switchTiles!.count)")
-      
-        
-        for bla in switchTiles!{
-            print("Eine Kachel mit Switch: \(bla.switchDevice?.title)")
-        }
-        
-        let thermoTilesRequest: NSFetchRequest<ThermostatTile> = ThermostatTile.fetchRequest()
-        let thermoTiles = try? context.fetch(thermoTilesRequest)
-        
-        print("Anzahl Kacheln thermostate \(thermoTiles!.count)")
-        
-        for bla in thermoTiles!{
-            print("Eine Kachel mit Thermostat:  \(bla.thermostat?.title)")
-        }
-        */
         
         let switchesRequest: NSFetchRequest<SwitchDevice> = SwitchDevice.fetchRequest()
         let switches = try? context.fetch(switchesRequest)
@@ -184,47 +139,44 @@ class ManageDB: UIViewController {
         
         let sceneRequest: NSFetchRequest<Scene> = Scene.fetchRequest()
         let scenes = try? context.fetch(sceneRequest)
-        /*
-        let sceneTileReq: NSFetchRequest<SceneTile> = SceneTile.fetchRequest()
-        let sceneTiles = try?context.fetch(sceneTileReq)
         
-        let thermoGroupTileReq: NSFetchRequest<ThermostatGroupTile> = ThermostatGroupTile.fetchRequest()
-        let thermoGroupTiles = try?context.fetch(thermoGroupTileReq)
+        let sceSetThermos: NSFetchRequest<SceneThermostatSetting> = SceneThermostatSetting.fetchRequest()
         
-        if(thermoGroupTiles?.count == 0){
-            let athermoGroupTile = ThermostatGroupTile(context: context)
-            athermoGroupTile.title = "test tile thermo Group"
-        }
-        
-        if(sceneTiles?.count == 0){
-            let aSceneTile = SceneTile(context: context)
-            aSceneTile.title = "test Scene tile"
-        }
-        */
         if (thermoGroups?.count == 0){
-            //let thermoGroupTiles = try?context.fetch(thermoGroupTileReq)
+
             let aThermoGroup = ThermostatGroup(context: context)
-            //aThermoGroup.title = "Test Group Thermo"
-            //aThermoGroup.tile = thermoGroupTiles![0]
+            aThermoGroup.title = "testGruppe Thermostate"
+
         }
         
         if (scenes?.count == 0){
             let aScene = Scene(context: context)
             aScene.title = "Testscene"
-            //let sceneTiles = try?context.fetch(sceneTileReq)
-            //aScene.tile = sceneTiles![0]
             
         }
         
         if (thermoGroups != nil)
         {
+            let scenesSettings = try? context.fetch(sceSetThermos)
             for aThermo in thermos!{
                 let thermoGroups = try? context.fetch(thermoGroupRequest)
                 let scenes = try? context.fetch(sceneRequest)
                 aThermo.addToPartOfGroups(thermoGroups![0])
                 aThermo.addToPartOfScenes(scenes![0])
+                
+                if(scenesSettings?.count == 0){
+                    let ascenesSetting = SceneThermostatSetting(context: context)
+                    ascenesSetting.connectedThermostat = aThermo
+                    ascenesSetting.thermostat = aThermo
+                    ascenesSetting.scene = scenes![0]
+                    ascenesSetting.connectedScene = scenes![0]
+                    ascenesSetting.target_temp = 11.1
+                }
+
             }
         }
+        
+
         
         do{ // persist data
             try context.save()
@@ -245,57 +197,41 @@ class ManageDB: UIViewController {
         let sceneRequest: NSFetchRequest<Scene> = Scene.fetchRequest()
         let scenes = try? context.fetch(sceneRequest)
         
-        /*
-        let sceneTileReq: NSFetchRequest<SceneTile> = SceneTile.fetchRequest()
-        let sceneTiles = try?context.fetch(sceneTileReq)
+        let sceSetSwitches: NSFetchRequest<SceneSwitchSetting> = SceneSwitchSetting.fetchRequest()
         
-        let switchGroupTileReq: NSFetchRequest<SwitchGroupTile> = SwitchGroupTile.fetchRequest()
-        let switchGroupTiles = try?context.fetch(switchGroupTileReq)
-        
-        if(switchGroupTiles?.count == 0){
-            let aSwitchGroupTile = SwitchGroupTile(context: context)
-            aSwitchGroupTile.title = "test tile switch Group"
-        }
-        
-        
-        if(sceneTiles?.count == 0){
-            let aSceneTile = SceneTile(context: context)
-            aSceneTile.title = "test Scene tile"
-        }
-        */
+
         if (switchGroups?.count == 0){
-            //let switchGroupTiles = try?context.fetch(switchGroupTileReq)
             let aSwitchGroup = SwitchGroup(context: context)
             aSwitchGroup.title = "Switchgroup test"
-            //aSwitchGroup.tile = switchGroupTiles?[0]
         }
         
         if (scenes?.count == 0){
             let aScene = Scene(context: context)
             aScene.title = "Testscene"
-            //let sceneTiles = try?context.fetch(sceneTileReq)
-            //aScene.tile = sceneTiles![0]
+
             
         }
 
         if (switchGroups != nil)
         {
+            let scenesSettings = try? context.fetch(sceSetSwitches)
             for aSwitch in switches!{
                 let switchGroups = try? context.fetch(switchGroupRequest)
                 let scenes = try? context.fetch(sceneRequest)
                 aSwitch.addToPartOfGroups(switchGroups![0])
                 aSwitch.addToPartOfScenes(scenes![0])
                 
-                //let aSetting = SceneSwitchSetting(context: context)
-                //aSetting.scene = scenes![0]
-                //aSetting.state = false
-                //aSetting.switchDevice = aSwitch
-                //aSetting.connectedScene = scenes![0]
-                //aSetting.connectedSwitch = aSwitch
+                if(scenesSettings?.count == 0){
+                    let ascenesSetting = SceneSwitchSetting(context: context)
+                    ascenesSetting.connectedSwitch = aSwitch
+                    ascenesSetting.connectedScene = scenes![0]
+                    ascenesSetting.state = false
+                    ascenesSetting.switchDevice = aSwitch
+                    ascenesSetting.scene = scenes![0]
+                }
+                
             }
         }
-        
-        
         
         do{ // persist data
             try context.save()
