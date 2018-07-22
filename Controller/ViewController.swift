@@ -185,9 +185,7 @@ extension ViewController: CollectionCellViewControllerDelegate{
                 switchCast.state = state
                 switchCast.lasteChangeByAllDevRec = false
             }
-
-            }
-        
+        }
     
         do{ // persist data
             try context.save()
@@ -196,9 +194,6 @@ extension ViewController: CollectionCellViewControllerDelegate{
             print(error)
         }
     }
-    
-
-    
     
     func plusButton(addNewTile cell: CollectionCellViewController) {
         self.performSegue(withIdentifier: "createNewTile", sender: self)
