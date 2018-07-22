@@ -20,8 +20,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     var noOfTiles: Int?
     var theCollectionView: UICollectionView?
     
-  
-    
+    //small "+" in upper right corner
     @IBAction func addNewTile(_ sender: UIBarButtonItem) {
         self.performSegue(withIdentifier: "createNewTile", sender: self)
     }
@@ -58,7 +57,8 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
             let aCell = collectionView.dequeueReusableCell(withReuseIdentifier: "uiSwitch", for: indexPath as IndexPath) as! CollectionCellViewController
             
             aCell.titleSwitch.text = aSwitch?.title
-            
+            aCell.delegate = self
+            aCell.connectedEntity = aSwitch
             return aCell
         }
         
@@ -71,6 +71,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
             if aThermo?.actual_temp != nil{
                  aCell.currentTemp.text = String(aThermo!.actual_temp)
             }
+            aCell.delegate = self
             return aCell
         }
         
@@ -79,7 +80,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
             aCell.titleSwitchGroup.text = aSwitchGroup?.title
             aCell.labelTop.text = "-1"
             aCell.labelBottom.text = "-1"
-            
+            aCell.delegate = self
             return aCell
         }
         else if (aThermoGroup != nil){
@@ -88,6 +89,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
             aCell.targetTempThermoGroup.text = "-1"
             aCell.thermosOnTarget.text = "-1"
             aCell.thermosNotOnTarget.text = "-1"
+            aCell.delegate = self
             return aCell
         }
         else if (aScene != nil){
@@ -95,6 +97,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
             aCell.titleSceneTile.text = aScene?.title
             aCell.labelLeft.text = "-1"
             aCell.labelRight.text = "-1"
+            aCell.delegate = self
             return aCell
         }
     
@@ -159,12 +162,23 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
 
 }
 
-
-
 //---//
 
 extension ViewController: CollectionCellViewControllerDelegate{
-    func button(addNewTile cell: CollectionCellViewController) {
+    func switchUsed(switchedEntity: DashboardTile, state: Bool) {
+        if(switchedEntity as? SwitchDevice != nil){
+            let aa = switchedEntity as! SwitchDevice
+            aa.state = state
+        }
+        
+    }
+    
+
+    
+    
+
+    
+    func plusButton(addNewTile cell: CollectionCellViewController) {
         self.performSegue(withIdentifier: "createNewTile", sender: self)
     }
 }
