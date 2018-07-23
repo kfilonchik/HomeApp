@@ -36,7 +36,9 @@ class SceneTableViewController: UITableViewController {
         self.present(alert, animated: true)
     }
     
-
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        <#code#>
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         
