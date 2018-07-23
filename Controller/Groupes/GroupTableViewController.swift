@@ -11,7 +11,7 @@ import CoreData
 
 class GroupTableViewController: UITableViewController {
     let context = AppDelegate.viewContext
-
+    var titel: String?
    
     @IBAction func newGroup(_ sender: UIBarButtonItem) {
         let alert = UIAlertController(title: "Give a title for your group", message: nil, preferredStyle: .alert)
@@ -25,15 +25,21 @@ class GroupTableViewController: UITableViewController {
             
             if let name = alert.textFields?.first?.text {
                 print("Title: \(name)")
-                self.performSegue(withIdentifier: "NewGroup", sender: self)
-                
-                
+                 self.titel = name
             }
+            self.performSegue(withIdentifier: "NewGroup", sender: self)
         }))
-        
         self.present(alert, animated: true)
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "NewGroup" {
+            let newGroupViewController = segue.destination as? NewGroupController
+            if let svc = newGroupViewController {
+                svc.data = titel
+            }
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()

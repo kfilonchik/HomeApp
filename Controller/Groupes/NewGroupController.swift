@@ -19,6 +19,9 @@ class NewGroupController: UITableViewController {
     var switches: [SwitchDevice]?
     var thermos: [Thermostat]?
     
+    var data: String?
+    var titel:String?
+    
     func refreshData(){
         switches = try? context.fetch(switchReq)
         thermos = try? context.fetch(thermoReq)
@@ -28,6 +31,10 @@ class NewGroupController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
            refreshData()
+        
+        if let concreteData = data {
+            titel = concreteData
+        }
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -63,7 +70,8 @@ class NewGroupController: UITableViewController {
         var cellLabel: String?
         switch indexPath.section{
         case 0:
-            cell.textLabel?.text = "test"
+            cellLabel = titel
+            cell.textLabel?.text = cellLabel
             cell.selectionStyle = UITableViewCellSelectionStyle.none
             
         case 1:
@@ -102,7 +110,7 @@ class NewGroupController: UITableViewController {
             let cell = tableView.dequeueReusableCell(withIdentifier: "groupPrototypeCell", for: indexPath)
             cell.setEditing(true, animated: true)
             
-            cell.textLabel?.text = "test1"
+            cell.textLabel?.text = titel
             
             do{try context.save()} catch {print(error)}
             
