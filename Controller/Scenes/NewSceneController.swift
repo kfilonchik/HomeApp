@@ -32,6 +32,11 @@ class NewSceneController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         refreshData()
+        
+        //Get titel of Scene from Alert
+        if let concreteData = data {
+            titel = concreteData
+        }
         //self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
 
@@ -62,12 +67,14 @@ class NewSceneController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "newPrototypeCell", for: indexPath)
+        let titelCell = tableView.dequeueReusableCell(withIdentifier: "titelCell", for: indexPath) as! SceneCell
         var cellLabel: String?
+        cell.selectionStyle = UITableViewCellSelectionStyle.none
         switch indexPath.section{
         case 0:
-            cellLabel = data
-            cell.textLabel?.text = cellLabel
-            cell.selectionStyle = UITableViewCellSelectionStyle.none
+            cellLabel = titel
+            titelCell.titelTextField.text = cellLabel
+            titelCell.selectionStyle = UITableViewCellSelectionStyle.none
             
         case 1:
             cellLabel = thermos?[indexPath.row].title
@@ -106,10 +113,10 @@ class NewSceneController: UITableViewController {
         case 0:
             //Edit title function..do not know..
             
-             let cell = tableView.dequeueReusableCell(withIdentifier: "newPrototypeCell", for: indexPath)
+            let cell = tableView.dequeueReusableCell(withIdentifier: "titelCell", for: indexPath) as! SceneCell
             cell.setEditing(true, animated: true)
           
-             cell.textLabel?.text = "test1"
+             cell.titelTextField.text = titel
             
             do{try context.save()} catch {print(error)}
         
@@ -140,10 +147,7 @@ class NewSceneController: UITableViewController {
         }
         
     }
-    
-    
-    
-    
+
     func tableView(_ tableView: UITableView, canEditRowAtIndexPath indexPath: IndexPath) -> Bool {
         
         if indexPath.section == 0 {

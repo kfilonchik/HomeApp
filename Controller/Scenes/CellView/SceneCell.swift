@@ -10,6 +10,7 @@ import UIKit
 
 class SceneCell: UITableViewCell {
 
+    @IBOutlet weak var titelTextField: UITextField!
     @IBOutlet weak var SceneCellTitle: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()

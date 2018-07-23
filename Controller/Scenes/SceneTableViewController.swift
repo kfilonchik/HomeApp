@@ -10,35 +10,36 @@ import UIKit
 import CoreData
 
 class SceneTableViewController: UITableViewController {
+    var titel: String?
+    let context = AppDelegate.viewContext
     
-     let context = AppDelegate.viewContext
    
     @IBAction func newScene(_ sender: UIBarButtonItem) {
         let alert = UIAlertController(title: "Give a title for your scene", message: nil, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         
         alert.addTextField(configurationHandler: { textField in
-            textField.placeholder = "Input your name here..."
-        })
+            textField.placeholder = "Input your name here..."})
         
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
             
             if let name = alert.textFields?.first?.text {
                 print("Title: \(name)")
-                //self.performSegue(withIdentifier: "newScene", sender: self)
-                
-                let NewSceneViewController = self.performSegue(withIdentifier: "newScene", sender: self) as? NewSceneController
-                NewSceneViewController?.data = name
-         
+                self.titel = name
             }
+            self.performSegue(withIdentifier: "newScene", sender: self)
         }))
-        
         self.present(alert, animated: true)
     }
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        <#code#>
+        if segue.identifier == "newScene" {
+            let newSceneViewController = segue.destination as? NewSceneController
+            if let svc = newSceneViewController {
+                svc.data = titel
     }
+  }
+}
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
