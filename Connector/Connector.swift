@@ -99,8 +99,13 @@ extension Connector:RequesterDelegate{
     }
     
     func taskFromModelExecutorThermostat(id: String, temperature: Float) {
-        let temperatureCalculation = String(round(temperature * 2))
-        self.setTemperature(deviceID: id, temperature: temperatureCalculation)
+        if (temperature >= 8 && temperature <= 28){
+            let temperatureCalculation = String(round(temperature * 2))
+            self.setTemperature(deviceID: id, temperature: temperatureCalculation)
+        }
+        else if(temperature == 254 || temperature == 253){
+            self.setTemperature(deviceID: id, temperature: String(temperature))
+        }
     }
     
     func replyMainOperatorThermostat(_ reply: String) {

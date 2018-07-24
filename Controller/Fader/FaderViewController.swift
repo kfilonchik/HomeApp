@@ -11,16 +11,29 @@ import CoreData
 
 class FaderViewController: UIViewController {
     
+    
+    let context = AppDelegate.viewContext
     var faderValue: CGFloat? {didSet {updateUI()}}
     var scale: CGFloat? {didSet {updateUI()}}
     var aThermoGroup: ThermostatGroup?
     var aThermostat: Thermostat?
     var controlledEntity: DashboardTile? {
         didSet{
+            print("in didset")
             aThermostat = controlledEntity as? Thermostat
             aThermoGroup = controlledEntity as? ThermostatGroup
-            faderValue = 0.5 // Add logic here
-
+            
+            if(aThermostat != nil){
+                print("aThermo")
+                faderValue = calculateFaderValue((aThermostat?.target_temp)!)
+                print("wert: \(aThermostat!.target_temp)")
+            }
+            
+            if(aThermoGroup != nil){
+                print("aThermGroup")
+                faderValue = calculateFaderValue((aThermoGroup?.target_temp)!)
+            }
+            
         }
     }
     
@@ -55,7 +68,7 @@ class FaderViewController: UIViewController {
             faderView?.faderValue += -(panRecognizer.translation(in: faderView).y)/500
             panRecognizer.setTranslation(CGPoint(x:0,y:0), in: faderView)
             faderValue = faderView?.faderValue
-            performOperation(targetTemp: Float(faderValue!))
+            doChangeAfterFingerUp(targetTemp: Float(faderValue!))
         default:
             break
         }
@@ -70,24 +83,52 @@ class FaderViewController: UIViewController {
         }
     }
     
-    func performOperation(targetTemp: Float){
-        print(targetTemp)
+    func doChangeAfterFingerUp(targetTemp: Float){
+        //print(targetTemp)
         if(aThermoGroup != nil){
-            print("it is a group")
+            //print("it is a group")
             let thermostats = aThermoGroup?.thermostats
             for aThermo in thermostats!{
                 let thermo = aThermo as? Thermostat
-                thermo?.target_temp = 22.2 //add logic here
+                thermo?.target_temp = calculateTemperature(faderValue!)
+                print(calculateTemperature(faderValue!))
+                thermo?.lasteChangeByAllDevRec = false
             }
         }
         if(aThermostat != nil){
-            print("it is a thermostat")
-            aThermostat?.target_temp = 22.2 // add logic here
+            //print("it is a thermostat")
+            aThermostat?.target_temp = calculateTemperature(faderValue!)
+            print(calculateTemperature(faderValue!))
+            aThermostat?.lasteChangeByAllDevRec = false
             
         }
         
-        // add context Save here
+        do{ // persist data
+            try context.save()
+            
+        } catch {
+            print(error)
+        }
         
     }
+    //Scale Value from temperatures in Fritz format from 0 to 1
+    func calculateFaderValue(_ value: Float) -> CGFloat{ //Converts
+        var response: Float?
+        if(value == 254){response = 1}
+        else if (value == 253) {response = 0}
+        else {response = ((value - 8) / (20))}
+        return CGFloat(response!)
+    }
+    
+    //Scale Value from Fader (0 <-> 1) to 253,254 and 8 <-> 28
+    func calculateTemperature(_ value: CGFloat) -> Float{
+        var response: Float?
+        if(value == 1){response = 254}
+        else if (value == 0) {response = 253}
+        else {response =  (Float(value) * 20) + 8 }
+        return response!
+        print(response)
+    }
+
     
 }

@@ -75,6 +75,7 @@
         <relationship name="partOfScenes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Scene" inverseName="thermostats" inverseEntity="Scene" syncable="YES"/>
     </entity>
     <entity name="ThermostatGroup" representedClassName=".ThermostatGroup" parentEntity="DashboardTile" syncable="YES" codeGenerationType="class">
+        <attribute name="target_temp" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <relationship name="thermostats" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Thermostat" inverseName="partOfGroups" inverseEntity="Thermostat" syncable="YES"/>
     </entity>
     <elements>
@@ -87,6 +88,6 @@
         <element name="SwitchDevice" positionX="-9837" positionY="-594" width="153" height="88"/>
         <element name="SwitchGroup" positionX="-9630" positionY="-594" width="128" height="58"/>
         <element name="Thermostat" positionX="-10226" positionY="-595" width="128" height="103"/>
-        <element name="ThermostatGroup" positionX="-10395" positionY="-592" width="128" height="58"/>
+        <element name="ThermostatGroup" positionX="-10395" positionY="-592" width="128" height="75"/>
     </elements>
 </model>
