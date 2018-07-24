@@ -11,9 +11,17 @@ import CoreData
 
 class SceneTableViewController: UITableViewController {
     var titel: String?
+    
+    var deleteSceneIndexPath: IndexPath? = nil
+    
+    
     let context = AppDelegate.viewContext
     
-   
+    let sceneRequest: NSFetchRequest<Scene> = Scene.fetchRequest()
+    
+    var scenes: [Scene]?
+    
+
     @IBAction func newScene(_ sender: UIBarButtonItem) {
         let alert = UIAlertController(title: "Give a title for your scene", message: nil, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
@@ -39,10 +47,61 @@ class SceneTableViewController: UITableViewController {
     }
   }
 }
+    func refreshData(){
+        scenes = try? context.fetch(sceneRequest)
+
+        
+    }
+    //Delete Scene
+    /*
+    func confirmDelete(scene: String) {
+        let alert = UIAlertController(title: "Delete Scene", message: "Are you sure you want to permanently delete \(scene)?", preferredStyle: .actionSheet)
+        
+        let DeleteAction = UIAlertAction(title: "Delete", style: .destructive, handler: handleDeleteScene)
+        let CancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: cancelDeleteScene)
+        
+        alert.addAction(DeleteAction)
+        alert.addAction(CancelAction)
+        
+        // Support display in iPad
+        //alert.popoverPresentationController?.sourceView = self.view
+        //alert.popoverPresentationController?.sourceRect = CGRect(self.view.bounds.size.width / 2.0, self.view.bounds.size.height / 2.0, 1.0, 1.0)
+        
+        self.present(alert, animated: true, completion: nil)
+    }
     
+    func handleDeleteScene (alertAction: UIAlertAction!) -> Void {
+        if let indexPath = deleteSceneIndexPath {
+            tableView.beginUpdates()
+            
+            scenes!.remove(at: indexPath.row)
+            
+            // Note that indexPath is wrapped in an array:  [indexPath]
+            tableView.deleteRows(at: [indexPath as IndexPath], with: .automatic)
+            
+            deleteSceneIndexPath = nil
+            
+            tableView.endUpdates()
+        }
+    }
+    
+    func cancelDeleteScene(alertAction: UIAlertAction!) {
+        deleteSceneIndexPath = nil
+    }
+
+ 
+    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: IndexPath) {
+       
+        if editingStyle == .delete {
+            deleteSceneIndexPath = indexPath
+            let sceneToDelete = scenes![indexPath.row].title
+            confirmDelete(scene: sceneToDelete!)
+        }
+    }
+     */
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        refreshData()
          tableView.register(UINib(nibName: "SceneCell", bundle: nil), forCellReuseIdentifier: "SceneCell")
         //self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
@@ -57,12 +116,9 @@ class SceneTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let sceneRequest: NSFetchRequest<Scene> = Scene.fetchRequest()
-        let scenes = try? context.fetch(sceneRequest)
-       
-    
+  
         if section == 0 {
-            return scenes!.count
+            return (scenes?.count)!
             
         }
      
@@ -70,12 +126,12 @@ class SceneTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let sceneRequest: NSFetchRequest<Scene> = Scene.fetchRequest()
-        let scenes = try? context.fetch(sceneRequest)
+      // let sceneRequest: NSFetchRequest<Scene> = Scene.fetchRequest()
+      //  let scenes = try? context.fetch(sceneRequest)
         
         if indexPath.section == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "SceneCell") as! SceneCell
-            cell.SceneCellTitle.text = scenes?[indexPath.item].title
+            cell.SceneCellTitle.text = scenes?[indexPath.row].title
             
             //  cell.GroupTitleThermostat.text = "test"
             return cell
@@ -103,5 +159,13 @@ class SceneTableViewController: UITableViewController {
         return super.tableView(tableView, heightForRowAt: indexPath)
     }
     
+    //delete button, it works but we need to delete scene by the right way...
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            self.scenes!.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .fade)
+        }
+    }
 
 }
+

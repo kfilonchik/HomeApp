@@ -9,12 +9,14 @@
 import UIKit
 import CoreData
 
-class NewSceneController: UITableViewController {
+class NewSceneController: UITableViewController, UITextFieldDelegate {
+    
     let context = AppDelegate.viewContext
     let switchReq: NSFetchRequest<SwitchDevice> = SwitchDevice.fetchRequest()
     let thermoReq: NSFetchRequest<Thermostat> = Thermostat.fetchRequest()
     let scenepReq: NSFetchRequest<Scene> = Scene.fetchRequest()
     
+    var cellStyleForEditing: UITableViewCellEditingStyle = .none
     
     var switches: [SwitchDevice]?
     var thermos: [Thermostat]?
@@ -32,7 +34,7 @@ class NewSceneController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         refreshData()
-        
+  
         //Get titel of Scene from Alert
         if let concreteData = data {
             titel = concreteData
@@ -63,19 +65,34 @@ class NewSceneController: UITableViewController {
 
    
     }
+    func tableView(_ tableView: UITableView, canEditRowAtIndexPath indexPath: IndexPath) -> Bool {
+        if indexPath.section == 1{
+            return true
+        }
+        return false
+        /*
+         if indexPath.section == 0 {
+         return true
+         }
+         else {
+         return false
+         }
+         
+         */
+    }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "newPrototypeCell", for: indexPath)
-        let titelCell = tableView.dequeueReusableCell(withIdentifier: "titelCell", for: indexPath) as! SceneCell
+        
         var cellLabel: String?
-        cell.selectionStyle = UITableViewCellSelectionStyle.none
+        //titelCell.selectionStyle = UITableViewCellSelectionStyle.none
         switch indexPath.section{
         case 0:
             cellLabel = titel
-            titelCell.titelTextField.text = cellLabel
-            titelCell.selectionStyle = UITableViewCellSelectionStyle.none
-            
+            tableView.setEditing(cellStyleForEditing == .insert, animated: true)
+            cell.textLabel?.text = cellLabel
+
         case 1:
             cellLabel = thermos?[indexPath.row].title
             if(thermos?[indexPath.row].onDashboard == true){cell.accessoryType = UITableViewCellAccessoryType.checkmark}
@@ -111,15 +128,9 @@ class NewSceneController: UITableViewController {
         
         switch indexPath.section{
         case 0:
-            //Edit title function..do not know..
             
-            let cell = tableView.dequeueReusableCell(withIdentifier: "titelCell", for: indexPath) as! SceneCell
-            cell.setEditing(true, animated: true)
-          
-             cell.titelTextField.text = titel
-            
-            do{try context.save()} catch {print(error)}
-        
+            tableView.setEditing(cellStyleForEditing == .insert, animated: true)
+
         case 1:
             if(tableView.cellForRow(at: indexPath)?.accessoryType == UITableViewCellAccessoryType.checkmark){ // delete a tile
                 thermos?[indexPath.row].onDashboard = false
@@ -147,18 +158,7 @@ class NewSceneController: UITableViewController {
         }
         
     }
-
-    func tableView(_ tableView: UITableView, canEditRowAtIndexPath indexPath: IndexPath) -> Bool {
-        
-        if indexPath.section == 0 {
-            
-            return true
-        }
-        else {
-            return false
-        }
-    
-    }
-
     
 }
+
+
