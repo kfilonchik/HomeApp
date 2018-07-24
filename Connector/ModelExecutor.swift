@@ -27,10 +27,6 @@ class ModelExecutor {
     
     @objc func observerSelector(_ notification: Notification) {
         
-        
-        let fetchRequestThermostat: NSFetchRequest<Thermostat> = Thermostat.fetchRequest()
-        let fetchRequestSwitch: NSFetchRequest<SwitchDevice> = SwitchDevice.fetchRequest()
-        
         if let updatedObjects = notification.userInfo?[NSUpdatedObjectsKey] as? Set<NSManagedObject>, !updatedObjects.isEmpty {
             for aDevice in updatedObjects{
                 let aSwitch = aDevice as? SwitchDevice
@@ -40,7 +36,7 @@ class ModelExecutor {
                     
                     if(aSwitch?.lasteChangeByAllDevRec != true){
                         delegate!.taskFromModelExecutorSwitch(id: aSwitch!.id!, state: aSwitch!.state)
-                        print("SwitchOperation aus Model Executor ausgelöst")
+                        //print("SwitchOperation aus Model Executor ausgelöst")
                     }
                 }
                 
@@ -48,7 +44,7 @@ class ModelExecutor {
                     
                     if(aThermostat?.lasteChangeByAllDevRec != true){
                         delegate!.taskFromModelExecutorThermostat(id: aThermostat!.id!, temperature: aThermostat!.target_temp)
-                        print("aThermostatOperation aus Model Executor ausgelöst")
+                        //print("aThermostatOperation aus Model Executor ausgelöst")
                     }
                 }
             }
