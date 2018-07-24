@@ -56,6 +56,9 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="kvA-DC-4Yi" kind="show" identifier="deviceList" id="5GU-yJ-5dT"/>
+                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="E5d-61-x2z" style="IBUITableViewCellStyleDefault" id="RfD-Dd-lAn">
                                         <rect key="frame" x="0.0" y="88" width="375" height="44"/>
