@@ -34,7 +34,7 @@ class Operation: NSObject {
     func performOperation(ain: String, cmd: String, sID: String, parameter: String){
         let urlString = "\(baseURL!)operationsParam.php?fritz_id=\(fritzID!)&ain=\(cleanAin(ain))&cmd=\(cmd)&param=\(parameter)&sid=\(sID)"
         let perfUrl = URL(string: urlString)
-        print(urlString)
+        //print(urlString)
         let taskOperation = URLSession.shared.dataTask(with: perfUrl!) { (data, response, error) in
             
             if (data == nil)  {

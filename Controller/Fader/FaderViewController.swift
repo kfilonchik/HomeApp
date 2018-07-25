@@ -19,22 +19,29 @@ class FaderViewController: UIViewController {
     var aThermostat: Thermostat?
     var controlledEntity: DashboardTile? {
         didSet{
-            print("in didset")
             aThermostat = controlledEntity as? Thermostat
             aThermoGroup = controlledEntity as? ThermostatGroup
             
             if(aThermostat != nil){
-                print("aThermo")
+                //print("aThermo")
                 faderValue = calculateFaderValue((aThermostat?.target_temp)!)
-                print("wert: \(aThermostat!.target_temp)")
+
             }
             
             if(aThermoGroup != nil){
-                print("aThermGroup")
+                //print("aThermGroup")
                 faderValue = calculateFaderValue((aThermoGroup?.target_temp)!)
             }
             
         }
+    }
+    
+    @IBOutlet weak var currentTempLabel: UILabel!
+    @IBOutlet weak var entityTitle: UILabel!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        entityTitle.text = controlledEntity?.title
     }
     
     @IBOutlet weak var faderView: FaderView!{
@@ -63,7 +70,10 @@ class FaderViewController: UIViewController {
         case .changed:
             faderView?.faderValue += -(panRecognizer.translation(in: faderView).y)/500
             panRecognizer.setTranslation(CGPoint(x:0,y:0), in: faderView)
-            faderValue = faderView?.faderValue
+            
+            
+            
+            
         case .ended:
             faderView?.faderValue += -(panRecognizer.translation(in: faderView).y)/500
             panRecognizer.setTranslation(CGPoint(x:0,y:0), in: faderView)
@@ -81,6 +91,10 @@ class FaderViewController: UIViewController {
         if(scale != nil){
             faderView?.scale = scale!
         }
+        if(faderValue != nil && currentTempLabel != nil){
+             currentTempLabel.text = temperatureCalculationForGUI(faderValue!)
+        }
+       
     }
     
     func doChangeAfterFingerUp(targetTemp: Float){
@@ -91,14 +105,13 @@ class FaderViewController: UIViewController {
             for aThermo in thermostats!{
                 let thermo = aThermo as? Thermostat
                 thermo?.target_temp = calculateTemperature(faderValue!)
-                print(calculateTemperature(faderValue!))
                 thermo?.lasteChangeByAllDevRec = false
             }
+            aThermoGroup?.target_temp = calculateTemperature(faderValue!)
         }
         if(aThermostat != nil){
             //print("it is a thermostat")
             aThermostat?.target_temp = calculateTemperature(faderValue!)
-            print(calculateTemperature(faderValue!))
             aThermostat?.lasteChangeByAllDevRec = false
             
         }
@@ -127,7 +140,17 @@ class FaderViewController: UIViewController {
         else if (value == 0) {response = 253}
         else {response =  (Float(value) * 20) + 8 }
         return response!
-        print(response)
+    }
+    
+    func temperatureCalculationForGUI(_ theTemp: CGFloat) -> String{
+        var result = ""
+        let tempfrFad = calculateTemperature(theTemp)
+        switch calculateTemperature(theTemp){
+            case 254.0: result = "On"
+            case 253.0: result = "Off"
+            default: result = String(roundf(tempfrFad * 2)/2)
+        }
+        return result
     }
 
     

@@ -172,7 +172,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
             if let svc = secondViewController {
                 svc.controlledEntity = faderDestination
             }
-            print("in prepare")
+            //print("in prepare")
             //let destViewController = segue.destination as? FaderViewController
             }
     }
@@ -183,7 +183,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
 extension ViewController: CollectionCellViewControllerDelegate{
     
     func goToFader(entityToFade: DashboardTile) {
-        print("goToFaderGroup: \(entityToFade)")
+        //print("goToFaderGroup: \(entityToFade)")
         faderDestination = entityToFade
         self.performSegue(withIdentifier: "showFader", sender: self)
     }
@@ -194,7 +194,7 @@ extension ViewController: CollectionCellViewControllerDelegate{
             let switchCast = switchedEntity as! SwitchDevice
             switchCast.state = state
             switchCast.lasteChangeByAllDevRec = false
-            print("switch Action")
+            //print("switch Action")
         }
         else if(switchedEntity as? SwitchGroup != nil){
             let aSwitchGroup = switchedEntity as? SwitchGroup
