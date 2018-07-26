@@ -66,11 +66,10 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
             var aCell = collectionView.dequeueReusableCell(withReuseIdentifier: "uiSwitch", for: indexPath as IndexPath) as! CollectionCellViewController
             
             aCell.layer.cornerRadius = 25.0
-            aCell.layer.masksToBounds = true
             aCell.layer.shadowColor = UIColor.clear.cgColor
-            aCell.layer.shadowOffset = CGSize(width: 0, height: 2.0)
+            aCell.layer.shadowOffset = CGSize(width: 0, height: 5.0)
             aCell.layer.shadowRadius = 4.0
-            aCell.layer.shadowOpacity = 1.0
+            aCell.layer.shadowOpacity = 0.3
             aCell.layer.masksToBounds = false
             aCell.layer.shadowPath = UIBezierPath(roundedRect: aCell.bounds, cornerRadius: aCell.contentView.layer.cornerRadius).cgPath
        
@@ -85,12 +84,12 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         else if (aThermo != nil){
             let aCell = collectionView.dequeueReusableCell(withReuseIdentifier: "uiTermostat", for: indexPath as IndexPath) as! CollectionCellViewController
             
+            
             aCell.layer.cornerRadius = 25.0
-            aCell.layer.masksToBounds = true
             aCell.layer.shadowColor = UIColor.clear.cgColor
-            aCell.layer.shadowOffset = CGSize(width: 0, height: 2.0)
-            aCell.layer.shadowRadius = 10.0
-            aCell.layer.shadowOpacity = 1.0
+            aCell.layer.shadowOffset = CGSize(width: 0, height: 5.0)
+            aCell.layer.shadowRadius = 4.0
+            aCell.layer.shadowOpacity = 0.3
             aCell.layer.masksToBounds = false
             aCell.layer.shadowPath = UIBezierPath(roundedRect: aCell.bounds, cornerRadius: aCell.contentView.layer.cornerRadius).cgPath
             
@@ -113,11 +112,10 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
             
             
             aCell.layer.cornerRadius = 25.0
-            aCell.layer.masksToBounds = true
             aCell.layer.shadowColor = UIColor.clear.cgColor
-            aCell.layer.shadowOffset = CGSize(width: 0, height: 2.0)
-            aCell.layer.shadowRadius = 10.0
-            aCell.layer.shadowOpacity = 1.0
+            aCell.layer.shadowOffset = CGSize(width: 0, height: 5.0)
+            aCell.layer.shadowRadius = 4.0
+            aCell.layer.shadowOpacity = 0.3
             aCell.layer.masksToBounds = false
             aCell.layer.shadowPath = UIBezierPath(roundedRect: aCell.bounds, cornerRadius: aCell.contentView.layer.cornerRadius).cgPath
             
@@ -134,11 +132,10 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
             
             
             aCell.layer.cornerRadius = 25.0
-            aCell.layer.masksToBounds = true
             aCell.layer.shadowColor = UIColor.clear.cgColor
-            aCell.layer.shadowOffset = CGSize(width: 0, height: 2.0)
-            aCell.layer.shadowRadius = 10.0
-            aCell.layer.shadowOpacity = 1.0
+            aCell.layer.shadowOffset = CGSize(width: 0, height: 5.0)
+            aCell.layer.shadowRadius = 4.0
+            aCell.layer.shadowOpacity = 0.3
             aCell.layer.masksToBounds = false
             aCell.layer.shadowPath = UIBezierPath(roundedRect: aCell.bounds, cornerRadius: aCell.contentView.layer.cornerRadius).cgPath
             
@@ -154,12 +151,12 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         else if (aScene != nil){
             let aCell = collectionView.dequeueReusableCell(withReuseIdentifier: "uiScene", for: indexPath as IndexPath) as! CollectionCellViewController
             
+            
             aCell.layer.cornerRadius = 25.0
-            aCell.layer.masksToBounds = true
             aCell.layer.shadowColor = UIColor.clear.cgColor
-            aCell.layer.shadowOffset = CGSize(width: 0, height: 2.0)
-            aCell.layer.shadowRadius = 10.0
-            aCell.layer.shadowOpacity = 1.0
+            aCell.layer.shadowOffset = CGSize(width: 0, height: 5.0)
+            aCell.layer.shadowRadius = 4.0
+            aCell.layer.shadowOpacity = 0.3
             aCell.layer.masksToBounds = false
             aCell.layer.shadowPath = UIBezierPath(roundedRect: aCell.bounds, cornerRadius: aCell.contentView.layer.cornerRadius).cgPath
             
@@ -176,12 +173,12 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         else{
              let aCell = collectionView.dequeueReusableCell(withReuseIdentifier: "uiNewTile", for: indexPath as IndexPath) as! CollectionCellViewController
             
+            
             aCell.layer.cornerRadius = 25.0
-            aCell.layer.masksToBounds = true
             aCell.layer.shadowColor = UIColor.clear.cgColor
-            aCell.layer.shadowOffset = CGSize(width: 0, height: 2.0)
-            aCell.layer.shadowRadius = 10.0
-            aCell.layer.shadowOpacity = 1.0
+            aCell.layer.shadowOffset = CGSize(width: 0, height: 5.0)
+            aCell.layer.shadowRadius = 4.0
+            aCell.layer.shadowOpacity = 0.3
             aCell.layer.masksToBounds = false
             aCell.layer.shadowPath = UIBezierPath(roundedRect: aCell.bounds, cornerRadius: aCell.contentView.layer.cornerRadius).cgPath
             
@@ -226,12 +223,13 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         else if ((result?.count)! == 1){
             aConnector.startUpConnector()
             
-            let width = (view.frame.width-20)/3
+            //Tiles Layout
             let layout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
             layout.minimumLineSpacing = 10
             layout.itemSize = CGSize(width: 170, height: 170)
             collectionView.contentInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right:10)
             
+            //For Drag and Drop
             longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(self.handleLongGesture(gesture:)))
             collectionView.addGestureRecognizer(longPressGesture)
 
@@ -249,6 +247,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
             collectionView.updateInteractiveMovementTargetPosition(gesture.location(in: gesture.view!))
         case .ended:
             collectionView.endInteractiveMovement()
+            self.collectionView.reloadData()
         default:
             collectionView.cancelInteractiveMovement()
         }
