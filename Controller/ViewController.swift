@@ -12,6 +12,9 @@ import CoreData
 
 class ViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
     
+    fileprivate var longPressGesture: UILongPressGestureRecognizer!
+
+    
     @IBOutlet weak var collectionView: UICollectionView!
     
     let context = AppDelegate.viewContext
@@ -187,6 +190,15 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         }
     }
     
+    func collectionView(_ collectionView: UICollectionView, canMoveItemAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, moveItemAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        print("Starting Index: \(sourceIndexPath.item)")
+        print("Ending Index: \(destinationIndexPath.item)")
+    }
+    
     //Navigation function, we need to write conditions
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let cellObject = theCollectionView?.cellForItem(at: indexPath) as! CollectionCellViewController
@@ -198,6 +210,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
             self.performSegue(withIdentifier: "showFader", sender: self)
         }
     }
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -212,15 +225,35 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         }
         else if ((result?.count)! == 1){
             aConnector.startUpConnector()
+            
             let width = (view.frame.width-20)/3
             let layout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
             layout.minimumLineSpacing = 10
             layout.itemSize = CGSize(width: 170, height: 170)
             collectionView.contentInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right:10)
+            
+            longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(self.handleLongGesture(gesture:)))
+            collectionView.addGestureRecognizer(longPressGesture)
 
         }
     }
-    
+    @objc func handleLongGesture(gesture: UILongPressGestureRecognizer) {
+        switch(gesture.state) {
+            
+        case .began:
+            guard let selectedIndexPath = collectionView.indexPathForItem(at: gesture.location(in: collectionView)) else {
+                break
+            }
+            collectionView.beginInteractiveMovementForItem(at: selectedIndexPath)
+        case .changed:
+            collectionView.updateInteractiveMovementTargetPosition(gesture.location(in: gesture.view!))
+        case .ended:
+            collectionView.endInteractiveMovement()
+        default:
+            collectionView.cancelInteractiveMovement()
+        }
+    }
+   
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
