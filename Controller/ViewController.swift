@@ -48,7 +48,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         var aThermoGroup: ThermostatGroup?
         var aScene: Scene?
         
-        if (indexPath.item < noOfTiles!){
+        if (indexPath.item < noOfTiles!){ //last tile is the "+"
             aSwitch         = dashboardTiles?[indexPath.item] as? SwitchDevice
             aThermo         = dashboardTiles?[indexPath.item] as? Thermostat
             aSwitchGroup    = dashboardTiles?[indexPath.item] as? SwitchGroup
@@ -61,14 +61,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         {
             var aCell = collectionView.dequeueReusableCell(withReuseIdentifier: "uiSwitch", for: indexPath as IndexPath) as! CollectionCellViewController
             
-            aCell.layer.cornerRadius = 25.0
-            aCell.layer.shadowColor = UIColor.clear.cgColor
-            aCell.layer.shadowOffset = CGSize(width: 0, height: 5.0)
-            aCell.layer.shadowRadius = 4.0
-            aCell.layer.shadowOpacity = 0.3
-            aCell.layer.masksToBounds = false
-            aCell.layer.shadowPath = UIBezierPath(roundedRect: aCell.bounds, cornerRadius: aCell.contentView.layer.cornerRadius).cgPath
-       
+            aCell = cellDesigner(aCell)
       
             aCell.titleSwitch.text = aSwitch?.title
             aCell.delegate = self
@@ -78,18 +71,10 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         }
         
         else if (aThermo != nil){
-            let aCell = collectionView.dequeueReusableCell(withReuseIdentifier: "uiTermostat", for: indexPath as IndexPath) as! CollectionCellViewController
+            var aCell = collectionView.dequeueReusableCell(withReuseIdentifier: "uiTermostat", for: indexPath as IndexPath) as! CollectionCellViewController
             
-            
-            aCell.layer.cornerRadius = 25.0
-            aCell.layer.shadowColor = UIColor.clear.cgColor
-            aCell.layer.shadowOffset = CGSize(width: 0, height: 5.0)
-            aCell.layer.shadowRadius = 4.0
-            aCell.layer.shadowOpacity = 0.3
-            aCell.layer.masksToBounds = false
-            aCell.layer.shadowPath = UIBezierPath(roundedRect: aCell.bounds, cornerRadius: aCell.contentView.layer.cornerRadius).cgPath
-            
-            
+            aCell = cellDesigner(aCell)
+
             aCell.thermoTileTitle.text = aThermo?.title
             if aThermo?.target_temp != nil{
                 aCell.targetTemp.text = String(aThermo!.target_temp)
@@ -104,17 +89,9 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         
         else if (aSwitchGroup != nil){
             
-            let aCell = collectionView.dequeueReusableCell(withReuseIdentifier: "uiSwitchGroup", for: indexPath as IndexPath) as! CollectionCellViewController
+            var aCell = collectionView.dequeueReusableCell(withReuseIdentifier: "uiSwitchGroup", for: indexPath as IndexPath) as! CollectionCellViewController
             
-            
-            aCell.layer.cornerRadius = 25.0
-            aCell.layer.shadowColor = UIColor.clear.cgColor
-            aCell.layer.shadowOffset = CGSize(width: 0, height: 5.0)
-            aCell.layer.shadowRadius = 4.0
-            aCell.layer.shadowOpacity = 0.3
-            aCell.layer.masksToBounds = false
-            aCell.layer.shadowPath = UIBezierPath(roundedRect: aCell.bounds, cornerRadius: aCell.contentView.layer.cornerRadius).cgPath
-            
+            aCell = cellDesigner(aCell)
             
             aCell.titleSwitchGroup.text = aSwitchGroup?.title
             aCell.labelTop.text = "-1"
@@ -124,17 +101,9 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
             return aCell
         }
         else if (aThermoGroup != nil){
-            let aCell = collectionView.dequeueReusableCell(withReuseIdentifier: "uiTermostatGroup", for: indexPath as IndexPath) as! CollectionCellViewController
+            var aCell = collectionView.dequeueReusableCell(withReuseIdentifier: "uiTermostatGroup", for: indexPath as IndexPath) as! CollectionCellViewController
             
-            
-            aCell.layer.cornerRadius = 25.0
-            aCell.layer.shadowColor = UIColor.clear.cgColor
-            aCell.layer.shadowOffset = CGSize(width: 0, height: 5.0)
-            aCell.layer.shadowRadius = 4.0
-            aCell.layer.shadowOpacity = 0.3
-            aCell.layer.masksToBounds = false
-            aCell.layer.shadowPath = UIBezierPath(roundedRect: aCell.bounds, cornerRadius: aCell.contentView.layer.cornerRadius).cgPath
-            
+            aCell = cellDesigner(aCell)
             
             aCell.titleThermoGroup.text = aThermoGroup?.title
             aCell.targetTempThermoGroup.text = "-1"
@@ -145,16 +114,9 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
             return aCell
         }
         else if (aScene != nil){
-            let aCell = collectionView.dequeueReusableCell(withReuseIdentifier: "uiScene", for: indexPath as IndexPath) as! CollectionCellViewController
+            var aCell = collectionView.dequeueReusableCell(withReuseIdentifier: "uiScene", for: indexPath as IndexPath) as! CollectionCellViewController
             
-            
-            aCell.layer.cornerRadius = 25.0
-            aCell.layer.shadowColor = UIColor.clear.cgColor
-            aCell.layer.shadowOffset = CGSize(width: 0, height: 5.0)
-            aCell.layer.shadowRadius = 4.0
-            aCell.layer.shadowOpacity = 0.3
-            aCell.layer.masksToBounds = false
-            aCell.layer.shadowPath = UIBezierPath(roundedRect: aCell.bounds, cornerRadius: aCell.contentView.layer.cornerRadius).cgPath
+            aCell = cellDesigner(aCell)
             
             
             aCell.titleSceneTile.text = aScene?.title
@@ -167,16 +129,9 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     
         //Conditions of "add newTile" cell...?
         else{
-             let aCell = collectionView.dequeueReusableCell(withReuseIdentifier: "uiNewTile", for: indexPath as IndexPath) as! CollectionCellViewController
+             var aCell = collectionView.dequeueReusableCell(withReuseIdentifier: "uiNewTile", for: indexPath as IndexPath) as! CollectionCellViewController
             
-            
-            aCell.layer.cornerRadius = 25.0
-            aCell.layer.shadowColor = UIColor.clear.cgColor
-            aCell.layer.shadowOffset = CGSize(width: 0, height: 5.0)
-            aCell.layer.shadowRadius = 4.0
-            aCell.layer.shadowOpacity = 0.3
-            aCell.layer.masksToBounds = false
-            aCell.layer.shadowPath = UIBezierPath(roundedRect: aCell.bounds, cornerRadius: aCell.contentView.layer.cornerRadius).cgPath
+            aCell = cellDesigner(aCell)
             
             aCell.delegate = self
             return aCell
@@ -280,9 +235,19 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
             if let svc = secondViewController {
                 svc.controlledEntity = faderDestination
             }
-            //print("in prepare")
-            //let destViewController = segue.destination as? FaderViewController
-            }
+        }
+    }
+    
+    func cellDesigner(_ inputCell: CollectionCellViewController)-> CollectionCellViewController{
+        let aCell = inputCell
+        aCell.layer.cornerRadius = 25.0
+        aCell.layer.shadowColor = UIColor.clear.cgColor
+        aCell.layer.shadowOffset = CGSize(width: 0, height: 5.0)
+        aCell.layer.shadowRadius = 4.0
+        aCell.layer.shadowOpacity = 0.3
+        aCell.layer.masksToBounds = false
+        aCell.layer.shadowPath = UIBezierPath(roundedRect: aCell.bounds, cornerRadius: aCell.contentView.layer.cornerRadius).cgPath
+        return aCell
     }
 }
 
