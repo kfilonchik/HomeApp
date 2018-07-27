@@ -65,20 +65,10 @@ class NewSceneController: UITableViewController, UITextFieldDelegate {
 
    
     }
-    func tableView(_ tableView: UITableView, canEditRowAtIndexPath indexPath: IndexPath) -> Bool {
-        if indexPath.section == 1{
-            return true
-        }
-        return false
-        /*
-         if indexPath.section == 0 {
-         return true
-         }
-         else {
-         return false
-         }
-         
-         */
+    override func tableView(_ tableView: UITableView,
+                            editingStyleForRowAt indexPath: IndexPath)
+        -> UITableViewCellEditingStyle {
+            return .none
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -86,13 +76,14 @@ class NewSceneController: UITableViewController, UITextFieldDelegate {
         let cell = tableView.dequeueReusableCell(withIdentifier: "newPrototypeCell", for: indexPath)
         
         var cellLabel: String?
-        //titelCell.selectionStyle = UITableViewCellSelectionStyle.none
         switch indexPath.section{
         case 0:
+            let aCell = tableView.dequeueReusableCell(withIdentifier: "titlePrototypeCell", for: indexPath) as! SceneCell
             cellLabel = titel
-            tableView.setEditing(cellStyleForEditing == .insert, animated: true)
-            cell.textLabel?.text = cellLabel
-
+           aCell.selectionStyle = UITableViewCellSelectionStyle.none
+            aCell.titleTextField.text = self.titel
+             aCell.titleTextField.delegate = self
+            return aCell
         case 1:
             cellLabel = thermos?[indexPath.row].title
             if(thermos?[indexPath.row].onDashboard == true){cell.accessoryType = UITableViewCellAccessoryType.checkmark}
@@ -107,7 +98,28 @@ class NewSceneController: UITableViewController, UITextFieldDelegate {
             print("default in override func tableView")
         }
         cell.textLabel?.text = cellLabel
+
         return cell
+    
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.endEditing(true)
+        return false
+    }
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        // some cell's text field has finished editing; which cell?
+        var v : UIView = textField
+        repeat { v = v.superview! } while !(v is UITableViewCell)
+        let cell = v as! SceneCell
+        // what row is that?
+        let ip = self.tableView.indexPath(for:cell)!
+        // update data model to match
+        if ip.section == 0 {
+            self.title = cell.titleTextField.text!
+        } else if ip.section == 0 {
+            self.title = cell.titleTextField.text!
+        }
         
     }
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -123,6 +135,7 @@ class NewSceneController: UITableViewController, UITextFieldDelegate {
         }
         
     }
+   
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         

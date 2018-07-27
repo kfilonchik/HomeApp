@@ -25,13 +25,9 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     var theCollectionView: UICollectionView?
     var faderDestination: DashboardTile?
     
-    //small "+" in upper right corner
+    //small "+" in upper right corner ---can we delete it?
     @IBAction func addNewTile(_ sender: UIBarButtonItem) {
         self.performSegue(withIdentifier: "createNewTile", sender: self)
-    }
-    
-    private func configureCollectionViewLayout() {
-    
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -42,7 +38,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         return dashboardTiles!.count + 1
         
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         theCollectionView = collectionView
