@@ -58,6 +58,14 @@ class SignUpController: UIViewController {
     //UserDefaults.standard.synchronize()
     self.dismiss(animated: true, completion: nil)
     }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        
+        textField.resignFirstResponder()
+        //or
+        //self.view.endEditing(true)
+        return true
+    }
     func displayAllertMessage(userMessage: String) {
         let allert = UIAlertController(title: "Alert", message: userMessage, preferredStyle: .alert);
         let okAction = UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: nil);

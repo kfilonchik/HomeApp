@@ -435,6 +435,9 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="pPe-HY-GRb" kind="show" identifier="editCell" id="llG-03-lJc"/>
+                                        </connections>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
@@ -1191,4 +1194,7 @@
         <image name="spanner-7" width="30" height="30"/>
         <image name="video-player-7" width="30" height="30"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="llG-03-lJc"/>
+    </inferredMetricsTieBreakers>
 </document>
