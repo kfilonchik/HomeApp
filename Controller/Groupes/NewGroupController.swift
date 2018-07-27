@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-class NewGroupController: UITableViewController {
+class NewGroupController: UITableViewController,  UITextFieldDelegate  {
     
     let context = AppDelegate.viewContext
     let switchReq: NSFetchRequest<SwitchDevice> = SwitchDevice.fetchRequest()
@@ -63,16 +63,23 @@ class NewGroupController: UITableViewController {
             return 0
         }
     }
-
+    override func tableView(_ tableView: UITableView,
+                            editingStyleForRowAt indexPath: IndexPath)
+        -> UITableViewCellEditingStyle {
+            return .none
+    }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "groupPrototypeCell", for: indexPath)
         var cellLabel: String?
         switch indexPath.section{
         case 0:
+            let aCell = tableView.dequeueReusableCell(withIdentifier: "titlePrototypeCell", for: indexPath) as! GroupTableViewCell
             cellLabel = titel
-            cell.textLabel?.text = cellLabel
-            cell.selectionStyle = UITableViewCellSelectionStyle.none
+            aCell.selectionStyle = UITableViewCellSelectionStyle.none
+            aCell.titleTextField.text = self.titel
+            aCell.titleTextField.delegate = self
+            return aCell
             
         case 1:
             cellLabel = thermos?[indexPath.row].title
@@ -155,6 +162,34 @@ class NewGroupController: UITableViewController {
         }
         
     }
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.endEditing(true)
+        return false
+    }
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        // some cell's text field has finished editing; which cell?
+        var v : UIView = textField
+        repeat { v = v.superview! } while !(v is UITableViewCell)
+        let cell = v as! GroupTableViewCell
+        // what row is that?
+        let ip = self.tableView.indexPath(for:cell)!
+        // update data model to match
+        if ip.section == 0 {
+            self.title = cell.titleTextField.text!
+        } else if ip.section == 0 {
+            self.title = cell.titleTextField.text!
+        }
+        
+    }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        
+        textField.resignFirstResponder()
+        //or
+        //self.view.endEditing(true)
+        return true
+    }
+    
     /*
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {

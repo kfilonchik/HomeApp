@@ -123,7 +123,6 @@ class NewSceneController: UITableViewController, UITextFieldDelegate {
         
     }
     func textFieldShouldReturn(textField: UITextField) -> Bool {
-        
         textField.resignFirstResponder()
         //or
         //self.view.endEditing(true)

@@ -55,8 +55,18 @@ class GroupTableViewController: UITableViewController {
             if let svc = newGroupViewController {
                 svc.data = titel
             }
-        }
-    }
+        }  else if segue.identifier == "editFirstCell" {
+            let newGroupViewController = segue.destination as? NewGroupController
+                if let svc = newGroupViewController {
+                svc.data = titel
+            }
+        } else if segue.identifier == "editSecondCell" {
+            let newGroupViewController = segue.destination as? NewGroupController
+            if let svc = newGroupViewController {
+                svc.data = titel
+            }
+}
+}
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -111,7 +121,18 @@ class GroupTableViewController: UITableViewController {
 
         return super.tableView(tableView, cellForRowAt: indexPath)
     }
- 
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.section == 0 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "GroupThermostat") as! GroupTableViewCell
+            self.titel = groupsThermostat?[indexPath.row].title
+            self.performSegue(withIdentifier: "editFirstCell", sender: self)
+        } else if indexPath.section == 1 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "GroupSwitch") as! GroupTableViewCell
+            self.titel = groupsSwitch?[indexPath.row].title
+            self.performSegue(withIdentifier: "editSecondCell", sender: self)
+        }
+        
+    }
     
     override func tableView(_ tableView: UITableView, indentationLevelForRowAt indexPath:IndexPath) -> Int {
         if indexPath.section == 0 {

@@ -11,6 +11,7 @@ import UIKit
 class GroupTableViewCell: UITableViewCell {
     
     
+    @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var GroupTitleThermostat: UILabel!
     
     @IBOutlet weak var GroupTitleSwitch: UILabel!
