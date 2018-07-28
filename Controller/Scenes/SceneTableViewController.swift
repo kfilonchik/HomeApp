@@ -45,11 +45,15 @@ class SceneTableViewController: UITableViewController {
             if let svc = newSceneViewController {
                 svc.data = titel
     }
-  }
+        } else if segue.identifier == "editCell" {
+            let newSceneViewController = segue.destination as? NewSceneController
+            if let svc = newSceneViewController {
+                svc.data = titel
+        }
+        }
 }
     func refreshData(){
         scenes = try? context.fetch(sceneRequest)
-
         
     }
     //Delete Scene
@@ -116,7 +120,6 @@ class SceneTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-  
         if section == 0 {
             return (scenes?.count)!
             
@@ -149,6 +152,16 @@ class SceneTableViewController: UITableViewController {
         }
         
         return super.tableView(tableView, indentationLevelForRowAt: indexPath as IndexPath)
+    }
+     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.section == 0 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "SceneCell") as! SceneCell
+            cell.SceneCellTitle.text = scenes?[indexPath.row].title
+            self.titel = scenes?[indexPath.row].title
+            self.performSegue(withIdentifier: "editCell", sender: self)
+         
+        }
+        
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

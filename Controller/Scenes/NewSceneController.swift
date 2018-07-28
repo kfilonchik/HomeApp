@@ -122,6 +122,12 @@ class NewSceneController: UITableViewController, UITextFieldDelegate {
         }
         
     }
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        //or
+        //self.view.endEditing(true)
+        return true
+    }
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         switch section {
         case 0:

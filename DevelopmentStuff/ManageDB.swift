@@ -175,9 +175,7 @@ class ManageDB: UIViewController {
 
             }
         }
-        
 
-        
         do{ // persist data
             try context.save()
             
