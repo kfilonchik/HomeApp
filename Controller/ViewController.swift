@@ -24,6 +24,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     var noOfTiles: Int?
     var theCollectionView: UICollectionView?
     var faderDestination: DashboardTile?
+    var nextOrder: Int16 = 0
     
     //small "+" in upper right corner ---can we delete it?
     @IBAction func addNewTile(_ sender: UIBarButtonItem) {
@@ -33,8 +34,13 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         theCollectionView = collectionView
         dashboardTilesRequest.predicate = NSPredicate(format: "onDashboard == true")
+        let sort = NSSortDescriptor(key: #keyPath(DashboardTile.order), ascending: true)
+        dashboardTilesRequest.sortDescriptors = [sort]
         dashboardTiles = try? context.fetch(dashboardTilesRequest)
         noOfTiles = dashboardTiles!.count
+        for aTile in dashboardTiles!{
+            print("die Order\(aTile.order) und \(aTile.title)")
+        }
         return dashboardTiles!.count + 1
         
     }
@@ -48,12 +54,34 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         var aThermoGroup: ThermostatGroup?
         var aScene: Scene?
         
+        
         if (indexPath.item < noOfTiles!){ //last tile is the "+"
             aSwitch         = dashboardTiles?[indexPath.item] as? SwitchDevice
             aThermo         = dashboardTiles?[indexPath.item] as? Thermostat
             aSwitchGroup    = dashboardTiles?[indexPath.item] as? SwitchGroup
             aThermoGroup    = dashboardTiles?[indexPath.item] as? ThermostatGroup
             aScene          = dashboardTiles?[indexPath.item] as? Scene
+            
+            if(dashboardTiles?[indexPath.item].order == 32767){ // Because int16 has not nil state
+                
+                let findMaxReq: NSFetchRequest<DashboardTile> = DashboardTile.fetchRequest()
+                findMaxReq.predicate = NSPredicate(format: "onDashboard == true")
+                let tiles = try? context.fetch(findMaxReq)
+                print("object odered: \(tiles?.count)")
+                
+                if(tiles?.count != nil){
+                    let lasteTileOrder = Int16(tiles!.count) - 1
+                    print("neue Kachel ID: \(lasteTileOrder)")
+                    dashboardTiles?[indexPath.item].order = lasteTileOrder
+                    print("object odered: \((dashboardTiles![indexPath.item].order))")
+                }
+
+            }
+            else{
+                print("alreaddy ordered: \((dashboardTiles![indexPath.item].order))")
+            }
+            
+            
         }
         
         
@@ -190,16 +218,25 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         switch(gesture.state) {
             
         case .began:
+            print("began")
             guard let selectedIndexPath = collectionView.indexPathForItem(at: gesture.location(in: collectionView)) else {
                 break
             }
-            collectionView.beginInteractiveMovementForItem(at: selectedIndexPath)
+            if(selectedIndexPath.row != noOfTiles!){
+                print("indexPath \(selectedIndexPath.row)")
+                print("no of tiles \(noOfTiles)")
+                collectionView.beginInteractiveMovementForItem(at: selectedIndexPath)
+            }
+
         case .changed:
+            print("changed")
             collectionView.updateInteractiveMovementTargetPosition(gesture.location(in: gesture.view!))
         case .ended:
+            print("ended")
             collectionView.endInteractiveMovement()
             self.collectionView.reloadData()
         default:
+            print("default")
             collectionView.cancelInteractiveMovement()
         }
     }
