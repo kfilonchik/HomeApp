@@ -38,9 +38,6 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         dashboardTilesRequest.sortDescriptors = [sort]
         dashboardTiles = try? context.fetch(dashboardTilesRequest)
         noOfTiles = dashboardTiles!.count
-        for aTile in dashboardTiles!{
-            print("die Order\(aTile.order) und \(aTile.title)")
-        }
         return dashboardTiles!.count + 1
         
     }
@@ -70,7 +67,6 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
                 
                 if(tiles?.count != nil){
                     let lasteTileOrder = Int16(tiles!.count) - 1
-                    print("neue Kachel ID: \(lasteTileOrder)")
                     dashboardTiles?[indexPath.item].order = lasteTileOrder
                 }
 
