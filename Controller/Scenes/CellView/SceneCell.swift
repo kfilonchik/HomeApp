@@ -13,12 +13,12 @@ class SceneCell: UITableViewCell {
     @IBOutlet weak var titleTextField: UITextField!
     
     @IBOutlet weak var SceneCellTitle: UILabel!
-    
+    /*
     override func didTransition(to state: UITableViewCellStateMask) {
         self.titleTextField.isEnabled = state.contains(.showingEditControlMask)
         super.didTransition(to:state)
     }
-    
+    */
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
