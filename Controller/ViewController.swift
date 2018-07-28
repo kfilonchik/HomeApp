@@ -171,7 +171,6 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
             do{try context.save()} catch {print(error)}
             
         }
-        
     }
     
     //Navigation function, we need to write conditions
