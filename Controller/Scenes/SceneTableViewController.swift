@@ -11,25 +11,20 @@ import CoreData
 
 class SceneTableViewController: UITableViewController {
     var titel: String?
-    
     var deleteSceneIndexPath: IndexPath? = nil
-    
-    
     let context = AppDelegate.viewContext
-    
     let sceneRequest: NSFetchRequest<Scene> = Scene.fetchRequest()
-    
     var scenes: [Scene]?
     
 
     @IBAction func newScene(_ sender: UIBarButtonItem) {
-        let alert = UIAlertController(title: "Give a title for your scene", message: nil, preferredStyle: .alert)
+        let alert = UIAlertController(title: "Name of the scene:", message: nil, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         
         alert.addTextField(configurationHandler: { textField in
-            textField.placeholder = "Input your name here..."})
+            textField.placeholder = "enter your title here..."})
         
-        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
+        alert.addAction(UIAlertAction(title: "Save", style: .default, handler: { action in
             
             if let name = alert.textFields?.first?.text {
                 print("Title: \(name)")
