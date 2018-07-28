@@ -13,7 +13,7 @@ class TileConfigTableViewController: UITableViewController {
     
     let countOfTileTypes = 5
     let context = AppDelegate.viewContext
-    
+    let defaultOrder:Int16 = 32767
     let switchReq: NSFetchRequest<SwitchDevice> = SwitchDevice.fetchRequest()
     let thermoReq: NSFetchRequest<Thermostat> = Thermostat.fetchRequest()
     let switchGroupReq: NSFetchRequest<SwitchGroup> = SwitchGroup.fetchRequest()
@@ -113,52 +113,65 @@ class TileConfigTableViewController: UITableViewController {
         case 0:
             if(tableView.cellForRow(at: indexPath)?.accessoryType == UITableViewCellAccessoryType.checkmark){ // delete a tile
                 switches?[indexPath.row].onDashboard = false
+                switches?[indexPath.row].order = defaultOrder
                 tableView.cellForRow(at: indexPath)?.accessoryType = UITableViewCellAccessoryType.none
             }
             else{ // create a tile
                 switches?[indexPath.row].onDashboard = true
+                switches?[indexPath.row].order = getNextOrder()
                 tableView.cellForRow(at: indexPath)?.accessoryType = UITableViewCellAccessoryType.checkmark
             }
             do{try context.save()} catch {print(error)}
+        
         case 1:
             if(tableView.cellForRow(at: indexPath)?.accessoryType == UITableViewCellAccessoryType.checkmark){ // delete a tile
                 thermos?[indexPath.row].onDashboard = false
+                thermos?[indexPath.row].order = defaultOrder
                 tableView.cellForRow(at: indexPath)?.accessoryType = UITableViewCellAccessoryType.none
-                
             }
             else{ // create a tile
                 thermos?[indexPath.row].onDashboard = true
+                thermos?[indexPath.row].order = getNextOrder()
                 tableView.cellForRow(at: indexPath)?.accessoryType = UITableViewCellAccessoryType.checkmark
             }
             do{try context.save()} catch {print(error)}
+        
         case 2:
             if(tableView.cellForRow(at: indexPath)?.accessoryType == UITableViewCellAccessoryType.checkmark){ // delete a tile
                 switchGroups?[indexPath.row].onDashboard = false
+                switchGroups?[indexPath.row].order = defaultOrder
                 tableView.cellForRow(at: indexPath)?.accessoryType = UITableViewCellAccessoryType.none
             }
             else{ // create a tile
                 switchGroups?[indexPath.row].onDashboard = true
+                switchGroups?[indexPath.row].order = getNextOrder()
                 tableView.cellForRow(at: indexPath)?.accessoryType = UITableViewCellAccessoryType.checkmark
             }
             do{try context.save()} catch {print(error)}
+        
         case 3:
             if(tableView.cellForRow(at: indexPath)?.accessoryType == UITableViewCellAccessoryType.checkmark){ // delete a tile
                 thermoGroups?[indexPath.row].onDashboard = false
+                thermoGroups?[indexPath.row].order = defaultOrder
                 tableView.cellForRow(at: indexPath)?.accessoryType = UITableViewCellAccessoryType.none
                 
             }
             else{ // create a tile
                 thermoGroups?[indexPath.row].onDashboard = true
+                thermoGroups?[indexPath.row].order = getNextOrder()
                 tableView.cellForRow(at: indexPath)?.accessoryType = UITableViewCellAccessoryType.checkmark
             }
             do{try context.save()} catch {print(error)}
+        
         case 4:
             if(tableView.cellForRow(at: indexPath)?.accessoryType == UITableViewCellAccessoryType.checkmark){ // delete a tile
                 scenes?[indexPath.row].onDashboard = false
+                scenes?[indexPath.row].order = defaultOrder
                 tableView.cellForRow(at: indexPath)?.accessoryType = UITableViewCellAccessoryType.none
             }
             else{ // create a tile
                 scenes?[indexPath.row].onDashboard = true
+                scenes?[indexPath.row].order = getNextOrder()
                 tableView.cellForRow(at: indexPath)?.accessoryType = UITableViewCellAccessoryType.checkmark
             }
             do{try context.save()} catch {print(error)}
@@ -187,6 +200,29 @@ class TileConfigTableViewController: UITableViewController {
         }
 
     }
+    
+    func getNextOrder()->Int16{
 
+        let findMaxReq: NSFetchRequest<DashboardTile> = DashboardTile.fetchRequest()
+        findMaxReq.predicate = NSPredicate(format: "onDashboard == true")
+        let sort = NSSortDescriptor(key: #keyPath(DashboardTile.order), ascending: true)
+        findMaxReq.sortDescriptors = [sort]
+        let tiles = try? context.fetch(findMaxReq)
+        var order:Int16 = 0
+        
+        for aTile in tiles!{ // reorder to fill possible gaps
+            aTile.order = order
+            order += 1
+        }
+        
+        
 
+        var lastTileOrder:Int16 = 0
+            
+        if(tiles?.count != nil){
+            lastTileOrder = Int16(tiles!.count) - 1
+        }
+        return lastTileOrder
+    }
 }
+
