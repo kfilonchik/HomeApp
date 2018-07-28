@@ -67,23 +67,15 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
                 let findMaxReq: NSFetchRequest<DashboardTile> = DashboardTile.fetchRequest()
                 findMaxReq.predicate = NSPredicate(format: "onDashboard == true")
                 let tiles = try? context.fetch(findMaxReq)
-                print("object odered: \(tiles?.count)")
                 
                 if(tiles?.count != nil){
                     let lasteTileOrder = Int16(tiles!.count) - 1
                     print("neue Kachel ID: \(lasteTileOrder)")
                     dashboardTiles?[indexPath.item].order = lasteTileOrder
-                    print("object odered: \((dashboardTiles![indexPath.item].order))")
                 }
 
             }
-            else{
-                print("alreaddy ordered: \((dashboardTiles![indexPath.item].order))")
-            }
-            
-            
         }
-        
         
         if (aSwitch != nil)
         {
