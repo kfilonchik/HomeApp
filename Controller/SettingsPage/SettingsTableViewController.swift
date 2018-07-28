@@ -54,7 +54,7 @@ class SettingsTableViewController: UITableViewController {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
         if segue.identifier == "connectionWithFritzBox"{
-            let vc = segue.destination as! ConnectionWithFritzBox
+            let vc = segue.destination as! FritzBoxConnectionSettings
             
         }
         
