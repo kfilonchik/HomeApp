@@ -49,11 +49,9 @@ class NewGroupController: UITableViewController,  UITextFieldDelegate  {
     override func numberOfSections(in tableView: UITableView) -> Int {
         
         if(receivedSwitchGroup == nil && receivedThermoGroup == nil){
-            //print("3 Sections")
             return 3
         }
         else{
-            //print("2 Sections")
             return 2
         }
     }
@@ -217,10 +215,6 @@ class NewGroupController: UITableViewController,  UITextFieldDelegate  {
             print("did select case 2")
             
             if(tableView.cellForRow(at: indexPath)?.accessoryType == UITableViewCellAccessoryType.checkmark){ // Delete from Group
-
-                
-                
-                
                 tableView.cellForRow(at: indexPath)?.accessoryType = UITableViewCellAccessoryType.none
             }
             else{ // create a new Group and add sw
@@ -267,7 +261,7 @@ class NewGroupController: UITableViewController,  UITextFieldDelegate  {
         return false
     }
     func textFieldDidEndEditing(_ textField: UITextField) {
-        print("end editing")
+        //print("end editing")
         var v : UIView = textField
         repeat { v = v.superview! } while !(v is UITableViewCell)
         let cell = v as! GroupTableViewCell
@@ -281,49 +275,8 @@ class NewGroupController: UITableViewController,  UITextFieldDelegate  {
         do{try context.save()} catch {print(error)}
     }
     
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
-        
+    func textFieldShouldClear(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
-        //or
-        //self.view.endEditing(true)
         return true
     }
-    
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the newGrTitle source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
