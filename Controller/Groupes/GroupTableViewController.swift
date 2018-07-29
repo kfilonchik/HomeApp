@@ -26,7 +26,6 @@ class GroupTableViewController: UITableViewController {
     
     
     override func viewWillAppear(_ animated: Bool) {
-        print("refresh Will appear")
         refreshData()
         theTableView?.reloadData()
     }
