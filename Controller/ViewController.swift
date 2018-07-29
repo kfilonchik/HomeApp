@@ -206,11 +206,13 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         }
         else if ((result?.count)! == 1){
             aConnector.startUpConnector()
-            
+            let itemSize = UIScreen.main.bounds.width / 2 - 20
+            print(itemSize)
             //Tiles Layout
             let layout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
             layout.minimumLineSpacing = 10
-            layout.itemSize = CGSize(width: 170, height: 170)
+            layout.itemSize = CGSize(width: itemSize, height: itemSize)
+            layout.minimumInteritemSpacing = 10
             collectionView.contentInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right:10)
             
             //For Drag and Drop
