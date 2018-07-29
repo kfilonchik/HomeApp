@@ -212,7 +212,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
             let layout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
             layout.minimumLineSpacing = 10
             layout.itemSize = CGSize(width: itemSize, height: itemSize)
-            layout.minimumInteritemSpacing = 10
+            layout.minimumInteritemSpacing = 5
             collectionView.contentInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right:10)
             
             //For Drag and Drop
