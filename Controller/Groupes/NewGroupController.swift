@@ -19,20 +19,22 @@ class NewGroupController: UITableViewController,  UITextFieldDelegate  {
     var switches: [SwitchDevice]?
     var thermos: [Thermostat]?
     
-    var data: String?
+    var newGrTitle: String? // Remove
     var titel:String?
+    
+    var receivedThermoGroup: ThermostatGroup?
+    var receivedSwitchGroup: SwitchGroup?
     
     func refreshData(){
         switches = try? context.fetch(switchReq)
         thermos = try? context.fetch(thermoReq)
-        
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
            refreshData()
         
-        if let concreteData = data {
+        if let concreteData = newGrTitle {
             titel = concreteData
         }
 
@@ -48,24 +50,57 @@ class NewGroupController: UITableViewController,  UITextFieldDelegate  {
     }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 3
+        
+        if(receivedSwitchGroup == nil && receivedThermoGroup == nil){
+            print("3 Sections")
+            return 3
+        }
+        else{
+            print("1 Sections")
+            return 1
+        }
+
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
+        
         case 0:
-            return 1
+            if(receivedThermoGroup != nil){
+                print("in ghermogroup")
+                return (thermos?.count)!
+            }
+            else if(receivedSwitchGroup != nil){
+                print("in swgroup")
+                return (switches?.count)!
+            }
+            else{return 1}
         case 1:
-            return (thermos?.count)!
+            
+            if(receivedThermoGroup != nil){
+                print("in ghermogroup")
+                    return (thermos?.count)!
+            }
+            else if(receivedSwitchGroup != nil){
+                print("in swgroup")
+                    return (switches?.count)!
+                
+            }
+            else{
+                print("in else")
+                return (thermos?.count)!
+                
+            }
+            
+            
         case 2:
             return (switches?.count)!
         default:
             return 0
         }
     }
-    override func tableView(_ tableView: UITableView,
-                            editingStyleForRowAt indexPath: IndexPath)
-        -> UITableViewCellEditingStyle {
+    
+    override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
             return .none
     }
 
@@ -74,22 +109,59 @@ class NewGroupController: UITableViewController,  UITextFieldDelegate  {
         var cellLabel: String?
         switch indexPath.section{
         case 0:
-            let aCell = tableView.dequeueReusableCell(withIdentifier: "titlePrototypeCell", for: indexPath) as! GroupTableViewCell
-            cellLabel = titel
-            aCell.selectionStyle = UITableViewCellSelectionStyle.none
-            aCell.titleTextField.text = self.titel
-            aCell.titleTextField.delegate = self
-            return aCell
+            if(receivedThermoGroup == nil && receivedSwitchGroup == nil){ //create new group case
+                let aCell = tableView.dequeueReusableCell(withIdentifier: "titlePrototypeCell", for: indexPath) as! GroupTableViewCell
+                cellLabel = titel
+                aCell.selectionStyle = UITableViewCellSelectionStyle.none
+                aCell.titleTextField.text = self.titel
+                aCell.titleTextField.delegate = self
+                return aCell
+            }
+            
+            if(receivedThermoGroup != nil){ //Views Renders a ThermoGroup
+                cellLabel = thermos?[indexPath.row].title
+                if(thermos?[indexPath.row].partOfGroups != nil){ //Check if member of Group
+                    let allGroups = thermos?[indexPath.row].partOfGroups
+                    cell.accessoryType = UITableViewCellAccessoryType.none
+                    for aGroup in allGroups!{
+                        let acastedGroup = aGroup as? ThermostatGroup
+                        if (acastedGroup == receivedThermoGroup){
+                            cell.accessoryType = UITableViewCellAccessoryType.checkmark
+                        }
+                    }
+                }
+            }
+            
+            
+            if(receivedSwitchGroup != nil){ // View Renders a SwitchGroup
+                cellLabel = switches?[indexPath.row].title
+                if(switches?[indexPath.row].partOfGroups != nil){ //Check if member of Group
+                    let allGroups = switches?[indexPath.row].partOfGroups
+                    cell.accessoryType = UITableViewCellAccessoryType.none
+                    for aGroup in allGroups!{
+                        let acastedGroup = aGroup as? SwitchGroup
+                        if (acastedGroup == receivedSwitchGroup){
+                            cell.accessoryType = UITableViewCellAccessoryType.checkmark
+                        }
+                    }
+                }
+            }
+
+
             
         case 1:
             cellLabel = thermos?[indexPath.row].title
-            if(thermos?[indexPath.row].onDashboard == true){cell.accessoryType = UITableViewCellAccessoryType.checkmark}
-            else{cell.accessoryType = UITableViewCellAccessoryType.none}
+            cell.accessoryType = UITableViewCellAccessoryType.none
+
+            //if(thermos?[indexPath.row].onDashboard == true){cell.accessoryType = UITableViewCellAccessoryType.checkmark}
+            //else{cell.accessoryType = UITableViewCellAccessoryType.none}
             
         case 2:
+            cell.accessoryType = UITableViewCellAccessoryType.none
             cellLabel = switches?[indexPath.row].title
-            if(switches?[indexPath.row].onDashboard == true){cell.accessoryType = UITableViewCellAccessoryType.checkmark}
-            else{cell.accessoryType = UITableViewCellAccessoryType.none}
+            
+            //if(switches?[indexPath.row].onDashboard == true){cell.accessoryType = UITableViewCellAccessoryType.checkmark}
+            //else{cell.accessoryType = UITableViewCellAccessoryType.none}
             
         default:
             print("default in override func tableView")
@@ -112,7 +184,6 @@ class NewGroupController: UITableViewController,  UITextFieldDelegate  {
         
         switch indexPath.section{
         case 0:
-            //Edit title function..do not know..
             
             let cell = tableView.dequeueReusableCell(withIdentifier: "groupPrototypeCell", for: indexPath)
             cell.setEditing(true, animated: true)
@@ -123,22 +194,23 @@ class NewGroupController: UITableViewController,  UITextFieldDelegate  {
             
         case 1:
             if(tableView.cellForRow(at: indexPath)?.accessoryType == UITableViewCellAccessoryType.checkmark){ // delete a tile
-                thermos?[indexPath.row].onDashboard = false
+                //thermos?[indexPath.row].onDashboard = false
                 tableView.cellForRow(at: indexPath)?.accessoryType = UITableViewCellAccessoryType.none
                 
             }
             else{ // create a tile
-                thermos?[indexPath.row].onDashboard = true
+                //thermos?[indexPath.row].onDashboard = true
                 tableView.cellForRow(at: indexPath)?.accessoryType = UITableViewCellAccessoryType.checkmark
             }
             do{try context.save()} catch {print(error)}
+        
         case 2:
             if(tableView.cellForRow(at: indexPath)?.accessoryType == UITableViewCellAccessoryType.checkmark){ // delete a tile
-                switches?[indexPath.row].onDashboard = false
+                //switches?[indexPath.row].onDashboard = false
                 tableView.cellForRow(at: indexPath)?.accessoryType = UITableViewCellAccessoryType.none
             }
             else{ // create a tile
-                switches?[indexPath.row].onDashboard = true
+                //switches?[indexPath.row].onDashboard = true
                 tableView.cellForRow(at: indexPath)?.accessoryType = UITableViewCellAccessoryType.checkmark
             }
             do{try context.save()} catch {print(error)}
@@ -152,6 +224,7 @@ class NewGroupController: UITableViewController,  UITextFieldDelegate  {
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         switch section {
         case 0:
+            if(receivedSwitchGroup == nil && receivedThermoGroup == nil){}
             return "Title"
         case 1:
             return "Thermostats"
@@ -194,7 +267,7 @@ class NewGroupController: UITableViewController,  UITextFieldDelegate  {
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            // Delete the row from the data source
+            // Delete the row from the newGrTitle source
             tableView.deleteRows(at: [indexPath], with: .fade)
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view

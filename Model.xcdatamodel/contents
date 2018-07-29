@@ -75,7 +75,7 @@
     </entity>
     <elements>
         <element name="AppSettings" positionX="-9468" positionY="-837" width="128" height="88"/>
-        <element name="DashboardTile" positionX="-10053" positionY="-918" width="128" height="90"/>
+        <element name="DashboardTile" positionX="-10053" positionY="-918" width="128" height="88"/>
         <element name="Device" positionX="-10127" positionY="-736" width="128" height="88"/>
         <element name="Scene" positionX="-10026" positionY="-598" width="128" height="73"/>
         <element name="SceneSwitchSetting" positionX="-9765" positionY="-325" width="225" height="118"/>

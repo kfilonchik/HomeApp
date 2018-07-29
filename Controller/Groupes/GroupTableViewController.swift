@@ -13,15 +13,14 @@ class GroupTableViewController: UITableViewController {
     let context = AppDelegate.viewContext
     
     let groupThermostatRequest: NSFetchRequest<ThermostatGroup> = ThermostatGroup.fetchRequest()
-   let groupSwitchRequest: NSFetchRequest<SwitchGroup> = SwitchGroup.fetchRequest()
-    
+    let groupSwitchRequest: NSFetchRequest<SwitchGroup> = SwitchGroup.fetchRequest()
     
     var groupsSwitch: [SwitchGroup]?
     var groupsThermostat: [ThermostatGroup]?
     
-    
-    
-    var titel: String?
+    var titleOfNewGroup: String?
+    var switchGrToTransfer: SwitchGroup?
+    var thermoGrToTransfer: ThermostatGroup?
     
     func refreshData(){
         groupsSwitch = try? context.fetch(groupSwitchRequest)
@@ -35,47 +34,49 @@ class GroupTableViewController: UITableViewController {
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         
         alert.addTextField(configurationHandler: { textField in
-            textField.placeholder = "Input your name here..."
+            textField.placeholder = "new Group name"
         })
         
-        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
+        alert.addAction(UIAlertAction(title: "Save", style: .default, handler: { action in
             
             if let name = alert.textFields?.first?.text {
                 print("Title: \(name)")
-                 self.titel = name
+                self.titleOfNewGroup = name
             }
             self.performSegue(withIdentifier: "NewGroup", sender: self)
         }))
         self.present(alert, animated: true)
     }
-    
+    //last befpore seg
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "NewGroup" {
+            print("in seg NewGroup")
             let newGroupViewController = segue.destination as? NewGroupController
             if let svc = newGroupViewController {
-                svc.data = titel
+                svc.newGrTitle = titleOfNewGroup
             }
-        }  else if segue.identifier == "editFirstCell" {
+        }  else if segue.identifier == "editFirstCell" { // Thermostat
+            print("in seg Thermo")
             let newGroupViewController = segue.destination as? NewGroupController
                 if let svc = newGroupViewController {
-                svc.data = titel
+                    svc.newGrTitle = titleOfNewGroup
+                    svc.receivedThermoGroup = thermoGrToTransfer
             }
-        } else if segue.identifier == "editSecondCell" {
+        } else if segue.identifier == "editSecondCell" { // Switch
             let newGroupViewController = segue.destination as? NewGroupController
+            print("in seg Switch")
             if let svc = newGroupViewController {
-                svc.data = titel
+                svc.newGrTitle = titleOfNewGroup
+                svc.receivedSwitchGroup = switchGrToTransfer
             }
 }
 }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         refreshData()
-        
         tableView.register(UINib(nibName: "GroupThermostat", bundle: nil), forCellReuseIdentifier: "GroupThermostat")
         tableView.register(UINib(nibName: "GroupSwitch", bundle: nil), forCellReuseIdentifier: "GroupSwitch")
-    
     }
 
     override func didReceiveMemoryWarning() {
@@ -87,16 +88,12 @@ class GroupTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-      
-        
         if section == 0 {
             return (groupsThermostat?.count)!
-            
         }
    
         if section == 1 {
             return (groupsSwitch?.count)!
-           
         }
 
         return super.tableView(tableView, numberOfRowsInSection: section)
@@ -104,31 +101,36 @@ class GroupTableViewController: UITableViewController {
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
         if indexPath.section == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "GroupThermostat") as! GroupTableViewCell
          cell.GroupTitleThermostat.text = groupsThermostat?[indexPath.item].title
-
             return cell
         }
        
        if indexPath.section == 1 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "GroupSwitch") as! GroupTableViewCell
             cell.GroupTitleSwitch.text = groupsSwitch?[indexPath.item].title
-    
             return cell
         }
-
         return super.tableView(tableView, cellForRowAt: indexPath)
     }
+    
+    
+    
+    //wird zuerst aufgerufen
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.section == 0 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "GroupThermostat") as! GroupTableViewCell
-            self.titel = groupsThermostat?[indexPath.row].title
+        if indexPath.section == 0 { // Thermo Group
+            print("in prepare th")
+            //let cell = tableView.dequeueReusableCell(withIdentifier: "GroupThermostat") as! GroupTableViewCell
+            self.titleOfNewGroup = groupsThermostat?[indexPath.row].title
+            thermoGrToTransfer = groupsThermostat?[indexPath.row]
             self.performSegue(withIdentifier: "editFirstCell", sender: self)
-        } else if indexPath.section == 1 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "GroupSwitch") as! GroupTableViewCell
-            self.titel = groupsSwitch?[indexPath.row].title
+            
+        } else if indexPath.section == 1 { //SwitchGroup
+            print("in prepare Sw")
+            //let cell = tableView.dequeueReusableCell(withIdentifier: "GroupSwitch") as! GroupTableViewCell
+            self.titleOfNewGroup = groupsSwitch?[indexPath.row].title
+            switchGrToTransfer = groupsSwitch?[indexPath.row]
             self.performSegue(withIdentifier: "editSecondCell", sender: self)
         }
         
