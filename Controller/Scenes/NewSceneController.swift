@@ -10,6 +10,7 @@ import UIKit
 import CoreData
 
 class NewSceneController: UITableViewController, UITextFieldDelegate {
+
     
     let context = AppDelegate.viewContext
     let switchReq: NSFetchRequest<SwitchDevice> = SwitchDevice.fetchRequest()
@@ -28,7 +29,25 @@ class NewSceneController: UITableViewController, UITextFieldDelegate {
     func refreshData(){
         switches = try? context.fetch(switchReq)
         thermos = try? context.fetch(thermoReq)
-        
+    }
+    
+    @IBAction func doneBtn(_ sender: UIBarButtonItem) {
+             self.performSegue(withIdentifier: "getDevices", sender: self)
+    }
+    
+    @IBAction func cancelCreateNewScene(_ sender: UIBarButtonItem) {
+        self.dismiss(animated: true, completion: nil)
+
+    }
+    
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "getDevices" {
+            let editSceneViewController = segue.destination  as? EditSceneController
+            if let svc = editSceneViewController {
+                svc.data = titel
+            }
+        }
     }
 
     override func viewDidLoad() {
@@ -77,6 +96,7 @@ class NewSceneController: UITableViewController, UITextFieldDelegate {
         
         var cellLabel: String?
         switch indexPath.section{
+            
         case 0:
             let aCell = tableView.dequeueReusableCell(withIdentifier: "titlePrototypeCell", for: indexPath) as! SceneCell
             cellLabel = titel

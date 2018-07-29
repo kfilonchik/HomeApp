@@ -16,7 +16,7 @@ class SceneTableViewController: UITableViewController {
     let sceneRequest: NSFetchRequest<Scene> = Scene.fetchRequest()
     var scenes: [Scene]?
     
-
+//aler make new scene
     @IBAction func newScene(_ sender: UIBarButtonItem) {
         let alert = UIAlertController(title: "Name of the scene:", message: nil, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
@@ -34,70 +34,29 @@ class SceneTableViewController: UITableViewController {
         }))
         self.present(alert, animated: true)
     }
+    
+  //segue to give title to next controllers
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "newScene" {
-            let newSceneViewController = segue.destination as? NewSceneController
+        if let navController = segue.destination as? UINavigationController {
+            let newSceneViewController = navController.topViewController as? NewSceneController
             if let svc = newSceneViewController {
                 svc.data = titel
-    }
+                }
+            }
         } else if segue.identifier == "editCell" {
-            let newSceneViewController = segue.destination as? NewSceneController
-            if let svc = newSceneViewController {
-                svc.data = titel
-        }
-        }
+            if let navController = segue.destination as? UINavigationController {
+                let editSceneViewController = navController.topViewController as?  EditSceneController
+                if let svc = editSceneViewController {
+                    svc.data = titel
+                }
+            }
+    }
 }
     func refreshData(){
         scenes = try? context.fetch(sceneRequest)
         
     }
-    //Delete Scene
-    /*
-    func confirmDelete(scene: String) {
-        let alert = UIAlertController(title: "Delete Scene", message: "Are you sure you want to permanently delete \(scene)?", preferredStyle: .actionSheet)
-        
-        let DeleteAction = UIAlertAction(title: "Delete", style: .destructive, handler: handleDeleteScene)
-        let CancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: cancelDeleteScene)
-        
-        alert.addAction(DeleteAction)
-        alert.addAction(CancelAction)
-        
-        // Support display in iPad
-        //alert.popoverPresentationController?.sourceView = self.view
-        //alert.popoverPresentationController?.sourceRect = CGRect(self.view.bounds.size.width / 2.0, self.view.bounds.size.height / 2.0, 1.0, 1.0)
-        
-        self.present(alert, animated: true, completion: nil)
-    }
-    
-    func handleDeleteScene (alertAction: UIAlertAction!) -> Void {
-        if let indexPath = deleteSceneIndexPath {
-            tableView.beginUpdates()
-            
-            scenes!.remove(at: indexPath.row)
-            
-            // Note that indexPath is wrapped in an array:  [indexPath]
-            tableView.deleteRows(at: [indexPath as IndexPath], with: .automatic)
-            
-            deleteSceneIndexPath = nil
-            
-            tableView.endUpdates()
-        }
-    }
-    
-    func cancelDeleteScene(alertAction: UIAlertAction!) {
-        deleteSceneIndexPath = nil
-    }
-
- 
-    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: IndexPath) {
-       
-        if editingStyle == .delete {
-            deleteSceneIndexPath = indexPath
-            let sceneToDelete = scenes![indexPath.row].title
-            confirmDelete(scene: sceneToDelete!)
-        }
-    }
-     */
     override func viewDidLoad() {
         super.viewDidLoad()
         refreshData()
@@ -176,4 +135,5 @@ class SceneTableViewController: UITableViewController {
     }
 
 }
+
 

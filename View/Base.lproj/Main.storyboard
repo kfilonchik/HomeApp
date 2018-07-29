@@ -259,7 +259,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FEj-ZQ-UmI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-642.39999999999998" y="2941.9790104947529"/>
+            <point key="canvasLocation" x="-2081" y="3072"/>
         </scene>
         <!--Settings Table View Controller-->
         <scene sceneID="Ynu-EE-Fbu">
@@ -287,7 +287,142 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Hvs-FH-y14" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1298" y="2140"/>
+            <point key="canvasLocation" x="-1217" y="3016"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="4Dc-j0-eiT">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Fwd-Jt-lNx" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <navigationController id="mJk-GF-o6u" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="64e-Uy-o1l">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="pPe-HY-GRb" kind="relationship" relationship="rootViewController" id="DRi-Ws-C50"/>
+                    </connections>
+                </navigationController>
+            </objects>
+            <point key="canvasLocation" x="-1161" y="1796"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Hcw-n2-JSI">
+            <objects>
+                <navigationController id="1vl-n5-18l" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="FIq-G0-5tu">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="6Ru-tl-ThZ" kind="relationship" relationship="rootViewController" id="MKF-sC-d1Z"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="AfL-29-jkq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-561" y="1168"/>
+        </scene>
+        <!--Edit Scene Controller-->
+        <scene sceneID="the-EB-b3a">
+            <objects>
+                <tableViewController id="6Ru-tl-ThZ" customClass="EditSceneController" customModule="Domovoi" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="fUA-PJ-nEk">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="titleOfScene" id="ihp-ku-HpM" customClass="EditSceneCellController" customModule="Domovoi" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ihp-ku-HpM" id="yxi-dh-67D">
+                                    <rect key="frame" x="0.0" y="0.0" width="341" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sBS-kZ-lxz">
+                                            <rect key="frame" x="16" y="11" width="103" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="titleOfScene" destination="sBS-kZ-lxz" id="s7V-EZ-2ru"/>
+                                    <segue destination="c7q-tv-1cq" kind="presentation" identifier="editDevices" trigger="accessoryAction" id="4f8-IZ-VQJ"/>
+                                </connections>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="termostatScene" id="ZOA-cZ-vxf" customClass="EditSceneCellController" customModule="Domovoi" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="72" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ZOA-cZ-vxf" id="jy2-ik-VAz">
+                                    <rect key="frame" x="0.0" y="0.0" width="341" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wPS-hi-FzE">
+                                            <rect key="frame" x="16" y="11" width="124" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0f7-Wm-q7n">
+                                            <rect key="frame" x="166" y="10" width="90" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="actualTemp" destination="0f7-Wm-q7n" id="yS5-ay-OgT"/>
+                                    <outlet property="titleThermostat" destination="wPS-hi-FzE" id="4fb-lL-ntc"/>
+                                    <segue destination="jcv-L4-CKO" kind="show" identifier="editTemperature" id="vhc-GL-xdw"/>
+                                </connections>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="switchScene" id="gws-Ok-6Ck" customClass="EditSceneCellController" customModule="Domovoi" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="116" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="gws-Ok-6Ck" id="c6D-eb-hhO">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dHq-Rv-5ze">
+                                            <rect key="frame" x="16" y="11" width="143" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7Sc-Sg-H6u">
+                                            <rect key="frame" x="312" y="6" width="49" height="31"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        </switch>
+                                    </subviews>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="switchButton" destination="7Sc-Sg-H6u" id="CiL-px-s5x"/>
+                                    <outlet property="titleSwitch" destination="dHq-Rv-5ze" id="213-Rh-7lP"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="6Ru-tl-ThZ" id="FGw-26-uyk"/>
+                            <outlet property="delegate" destination="6Ru-tl-ThZ" id="bXC-ad-hXY"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="z9S-OI-1tI">
+                        <barButtonItem key="rightBarButtonItem" title="Scenes" id="2rD-Q6-isi">
+                            <connections>
+                                <action selector="goToMainPage:" destination="6Ru-tl-ThZ" id="slE-A5-jdj"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="VJc-Dz-ubs" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="534" y="1487"/>
         </scene>
         <!--New Scene Controller-->
         <scene sceneID="2yB-Y8-Imp">
@@ -333,10 +468,41 @@
                             <outlet property="delegate" destination="pPe-HY-GRb" id="HSS-ez-Sqa"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" id="uc0-qm-qOj">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="1Q2-Zz-Eaz">
+                            <connections>
+                                <action selector="cancelCreateNewScene:" destination="pPe-HY-GRb" id="Nwf-zf-QjH"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="Fwh-oN-mNf">
+                            <connections>
+                                <action selector="doneBtn:" destination="pPe-HY-GRb" id="ufk-1E-48b"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <segue destination="6Ru-tl-ThZ" kind="show" identifier="getDevices" id="BOC-3T-jTb"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Yrp-LU-0vk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-527.20000000000005" y="993.55322338830592"/>
+            <point key="canvasLocation" x="-241" y="2419"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Ibn-F0-rZm">
+            <objects>
+                <navigationController id="c7q-tv-1cq" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="dX6-DT-ALq">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="pPe-HY-GRb" kind="relationship" relationship="rootViewController" id="kgN-vU-5Xq"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XFH-ma-fSo" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1750" y="1989"/>
         </scene>
         <!--DBStuff-->
         <scene sceneID="woa-so-TNk">
@@ -417,7 +583,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AoO-DN-7sp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="975" y="1433"/>
+            <point key="canvasLocation" x="2665" y="1098"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="ON8-3s-6ju">
@@ -471,9 +637,6 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
-                                        <connections>
-                                            <segue destination="pPe-HY-GRb" kind="show" identifier="editCell" id="llG-03-lJc"/>
-                                        </connections>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
@@ -491,7 +654,8 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <segue destination="pPe-HY-GRb" kind="show" identifier="newScene" id="BCv-kH-OaG"/>
+                        <segue destination="mJk-GF-o6u" kind="presentation" identifier="newScene" id="1HD-UN-hTD"/>
+                        <segue destination="1vl-n5-18l" kind="show" identifier="editCell" id="F4m-RN-bhM"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qtA-pt-ASq" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -616,7 +780,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kwT-3l-cbB" customClass="FaderView" customModule="Domovoi" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="64" width="375" height="554"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C4i-y7-8l0">
                                         <rect key="frame" x="112" y="55" width="163" height="21"/>
@@ -653,7 +817,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="s4i-Se-LEy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="37.600000000000001" y="-1048.4257871064469"/>
+            <point key="canvasLocation" x="1826" y="958"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="zq1-fb-hnL">
@@ -1214,7 +1378,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="U0X-7E-iMg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="974" y="-679"/>
+            <point key="canvasLocation" x="1401" y="195"/>
         </scene>
         <!--Details View Controller-->
         <scene sceneID="hK7-SM-5pQ">
@@ -1245,7 +1409,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="44L-40-gbU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="820" y="112.89355322338831"/>
+            <point key="canvasLocation" x="2666" y="231"/>
         </scene>
     </scenes>
     <resources>
@@ -1260,7 +1424,9 @@
         <image name="video-player-7" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="vhc-GL-xdw"/>
         <segue reference="Bac-Z4-nBg"/>
-        <segue reference="llG-03-lJc"/>
+        <segue reference="kgN-vU-5Xq"/>
+        <segue reference="BOC-3T-jTb"/>
     </inferredMetricsTieBreakers>
 </document>
