@@ -81,7 +81,7 @@ class EditSceneController: UITableViewController {
         } else if segue.identifier == "editDevices" {
                 let EditDevicesSceneViewController = segue.destination as? NewSceneController
             if let svc = EditDevicesSceneViewController {
-                svc.data = titel
+                svc.screenTitle = titel
             }
     }
 }

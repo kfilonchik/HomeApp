@@ -30,30 +30,14 @@
         <relationship name="thermostats" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Thermostat" inverseName="partOfScenes" inverseEntity="Thermostat" syncable="YES"/>
     </entity>
     <entity name="SceneSwitchSetting" representedClassName=".SceneSwitchSetting" syncable="YES" codeGenerationType="class">
-        <attribute name="connectedScene" attributeType="Transformable" syncable="YES"/>
-        <attribute name="connectedSwitch" attributeType="Transformable" syncable="YES"/>
         <attribute name="state" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
         <relationship name="scene" maxCount="1" deletionRule="Cascade" destinationEntity="Scene" syncable="YES"/>
         <relationship name="switchDevice" maxCount="1" deletionRule="Cascade" destinationEntity="SwitchDevice" syncable="YES"/>
-        <uniquenessConstraints>
-            <uniquenessConstraint>
-                <constraint value="connectedScene"/>
-                <constraint value="connectedSwitch"/>
-            </uniquenessConstraint>
-        </uniquenessConstraints>
     </entity>
     <entity name="SceneThermostatSetting" representedClassName=".SceneThermostatSetting" syncable="YES" codeGenerationType="class">
-        <attribute name="connectedScene" attributeType="Transformable" syncable="YES"/>
-        <attribute name="connectedThermostat" attributeType="Transformable" syncable="YES"/>
         <attribute name="target_temp" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <relationship name="scene" maxCount="1" deletionRule="Cascade" destinationEntity="Scene" syncable="YES"/>
         <relationship name="thermostat" maxCount="1" deletionRule="Cascade" destinationEntity="Thermostat" syncable="YES"/>
-        <uniquenessConstraints>
-            <uniquenessConstraint>
-                <constraint value="connectedThermostat"/>
-                <constraint value="connectedScene"/>
-            </uniquenessConstraint>
-        </uniquenessConstraints>
     </entity>
     <entity name="SwitchDevice" representedClassName=".SwitchDevice" parentEntity="Device" syncable="YES" codeGenerationType="class">
         <attribute name="state" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
@@ -78,8 +62,8 @@
         <element name="DashboardTile" positionX="-10053" positionY="-918" width="128" height="88"/>
         <element name="Device" positionX="-10127" positionY="-736" width="128" height="88"/>
         <element name="Scene" positionX="-10026" positionY="-598" width="128" height="73"/>
-        <element name="SceneSwitchSetting" positionX="-9765" positionY="-325" width="225" height="118"/>
-        <element name="SceneThermostatSetting" positionX="-10395" positionY="-324" width="227" height="118"/>
+        <element name="SceneSwitchSetting" positionX="-9765" positionY="-325" width="225" height="88"/>
+        <element name="SceneThermostatSetting" positionX="-10395" positionY="-324" width="227" height="88"/>
         <element name="SwitchDevice" positionX="-9837" positionY="-594" width="153" height="88"/>
         <element name="SwitchGroup" positionX="-9630" positionY="-594" width="128" height="58"/>
         <element name="Thermostat" positionX="-10226" positionY="-595" width="128" height="103"/>

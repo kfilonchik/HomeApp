@@ -166,10 +166,10 @@ class ManageDB: UIViewController {
                 
                 if(scenesSettings?.count == 0){
                     let ascenesSetting = SceneThermostatSetting(context: context)
-                    ascenesSetting.connectedThermostat = aThermo
+                    //ascenesSetting.connectedThermostat = aThermo
                     ascenesSetting.thermostat = aThermo
                     ascenesSetting.scene = scenes![0]
-                    ascenesSetting.connectedScene = scenes![0]
+                    //ascenesSetting.connectedScene = scenes![0]
                     ascenesSetting.target_temp = 11.1
                 }
 
@@ -221,8 +221,8 @@ class ManageDB: UIViewController {
                 
                 if(scenesSettings?.count == 0){
                     let ascenesSetting = SceneSwitchSetting(context: context)
-                    ascenesSetting.connectedSwitch = aSwitch
-                    ascenesSetting.connectedScene = scenes![0]
+                    //ascenesSetting.connectedSwitch = aSwitch
+                    //ascenesSetting.connectedScene = scenes![0]
                     ascenesSetting.state = false
                     ascenesSetting.switchDevice = aSwitch
                     ascenesSetting.scene = scenes![0]
