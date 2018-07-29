@@ -12,6 +12,7 @@ class EditSceneController: UITableViewController {
     
     var data: String?
     var titel: String?
+    var reveivedScene: Scene?
 
     
     @IBAction func goToMainPage(_ sender: UIBarButtonItem) {
@@ -19,6 +20,8 @@ class EditSceneController: UITableViewController {
     }
     
     override func viewDidLoad() {
+        print("in EditSceneController")
+        self.title = reveivedScene?.title
         super.viewDidLoad()
         
         if let concreteData = data {
@@ -54,7 +57,7 @@ class EditSceneController: UITableViewController {
         case 0:
              let aCell = tableView.dequeueReusableCell(withIdentifier: "titleOfScene", for: indexPath) as! EditSceneCellController
              
-            aCell.titleOfScene.text = self.titel
+            aCell.titleOfScene.text = "Title and devices of this scene"//self.titel
              
             return aCell
         case 1:
@@ -65,23 +68,25 @@ class EditSceneController: UITableViewController {
             
         case 2:
             let aCell = tableView.dequeueReusableCell(withIdentifier: "switchScene", for: indexPath) as! EditSceneCellController
-      aCell.titleSwitch.text = "Switch1"
+            aCell.titleSwitch.text = "Switch1"
             aCell.switchButton.isOn = true
+        
         default:
             print("default in override func tableView")
         }
-        aCell.titleSwitch.text = "Switch1"
-        aCell.switchButton.isOn = true
+        
         return aCell
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "editTemperature" {
-            let editTemperatureViewController = segue.destination  as? FaderViewController
-        } else if segue.identifier == "editDevices" {
-                let EditDevicesSceneViewController = segue.destination as? NewSceneController
+            let editTemperatureViewController = segue.destination as? FaderViewController
+        }
+        else if segue.identifier == "editDevices" {
+            let EditDevicesSceneViewController = segue.destination as? NewSceneController
             if let svc = EditDevicesSceneViewController {
                 svc.screenTitle = titel
+                svc.aScene = reveivedScene
             }
     }
 }

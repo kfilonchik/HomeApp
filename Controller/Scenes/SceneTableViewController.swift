@@ -15,6 +15,20 @@ class SceneTableViewController: UITableViewController {
     let context = AppDelegate.viewContext
     let sceneRequest: NSFetchRequest<Scene> = Scene.fetchRequest()
     var scenes: [Scene]?
+    var aSceneForTransfer: Scene?
+    
+    
+    override func viewDidLoad() {
+        print("in SceneTableViewController")
+        super.viewDidLoad()
+        refreshData()
+        tableView.register(UINib(nibName: "SceneCell", bundle: nil), forCellReuseIdentifier: "SceneCell")
+        //self.navigationItem.rightBarButtonItem = self.editButtonItem
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+    }
     
 //aler make new scene
     @IBAction func newScene(_ sender: UIBarButtonItem) {
@@ -46,9 +60,10 @@ class SceneTableViewController: UITableViewController {
             }
         } else if segue.identifier == "editCell" {
             if let navController = segue.destination as? UINavigationController {
-                let editSceneViewController = navController.topViewController as?  EditSceneController
+                let editSceneViewController = navController.topViewController as? EditSceneController
                 if let svc = editSceneViewController {
                     svc.data = titel
+                    svc.reveivedScene = aSceneForTransfer
                 }
             }
     }
@@ -56,16 +71,6 @@ class SceneTableViewController: UITableViewController {
     func refreshData(){
         scenes = try? context.fetch(sceneRequest)
         
-    }
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        refreshData()
-         tableView.register(UINib(nibName: "SceneCell", bundle: nil), forCellReuseIdentifier: "SceneCell")
-        //self.navigationItem.rightBarButtonItem = self.editButtonItem
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
     }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -112,6 +117,7 @@ class SceneTableViewController: UITableViewController {
             let cell = tableView.dequeueReusableCell(withIdentifier: "SceneCell") as! SceneCell
             cell.SceneCellTitle.text = scenes?[indexPath.row].title
             self.titel = scenes?[indexPath.row].title
+            aSceneForTransfer = scenes?[indexPath.row]
             self.performSegue(withIdentifier: "editCell", sender: self)
          
         }

@@ -24,10 +24,20 @@ class NewSceneController: UITableViewController, UITextFieldDelegate {
     var scenes: [Scene]?
     
     var screenTitle: String?
+    var aScene: Scene?
     
     override func viewDidLoad() {
+        print("in NewSceneController")
         super.viewDidLoad()
         self.title = screenTitle
+        
+        if(aScene == nil){
+            aScene = Scene(context: context)
+            aScene?.title = screenTitle
+            print("created a new Scene")
+        }
+        
+        
         refreshData()
         
         //self.navigationItem.rightBarButtonItem = self.editButtonItem
@@ -93,21 +103,24 @@ class NewSceneController: UITableViewController, UITextFieldDelegate {
         var cellLabel: String?
         switch indexPath.section{
             
-        case 0:
+        case 0: //Renders Title ofthe cell
             let aCell = tableView.dequeueReusableCell(withIdentifier: "titlePrototypeCell", for: indexPath) as! SceneCell
             cellLabel = screenTitle
-           aCell.selectionStyle = UITableViewCellSelectionStyle.none
+            aCell.selectionStyle = UITableViewCellSelectionStyle.none
             aCell.titleTextField.text = self.screenTitle
-             aCell.titleTextField.delegate = self
+            aCell.titleTextField.delegate = self
             return aCell
+        
         case 1:
             cellLabel = thermos?[indexPath.row].title
-            if(thermos?[indexPath.row].onDashboard == true){cell.accessoryType = UITableViewCellAccessoryType.checkmark}
+            if(thermos?[indexPath.row].partOfScenes?.contains(aScene!) == true)
+            {cell.accessoryType = UITableViewCellAccessoryType.checkmark}
             else{cell.accessoryType = UITableViewCellAccessoryType.none}
             
         case 2:
             cellLabel = switches?[indexPath.row].title
-            if(switches?[indexPath.row].onDashboard == true){cell.accessoryType = UITableViewCellAccessoryType.checkmark}
+            if(switches?[indexPath.row].partOfScenes?.contains(aScene!) == true)
+            {cell.accessoryType = UITableViewCellAccessoryType.checkmark}
             else{cell.accessoryType = UITableViewCellAccessoryType.none}
             
         default:
@@ -161,6 +174,9 @@ class NewSceneController: UITableViewController, UITextFieldDelegate {
         repeat { v = v.superview! } while !(v is UITableViewCell)
         let cell = v as! SceneCell
         self.title = cell.titleTextField.text!
+        aScene?.title = cell.titleTextField.text!
+        do{try context.save()} catch {print(error)}
+        
     }
     func textFieldShouldClear(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()

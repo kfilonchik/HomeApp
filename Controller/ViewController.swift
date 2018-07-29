@@ -79,10 +79,10 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
 
             aCell.thermoTileTitle.text = aThermo?.title
             if aThermo?.target_temp != nil{
-                aCell.targetTemp.text = String(aThermo!.target_temp)
+                aCell.targetTemp.text = temperatureCalculationForGUI(aThermo!.target_temp)
             }
             if aThermo?.actual_temp != nil{
-                 aCell.currentTemp.text = String(aThermo!.actual_temp)
+                 aCell.currentTemp.text = temperatureCalculationForGUI(aThermo!.actual_temp)
             }
             aCell.delegate = self
             aCell.connectedEntity = aThermo
@@ -113,7 +113,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
             
             aCell.titleThermoGroup.text = aThermoGroup?.title
             aCell.targetTempThermoGroup.text = "-1"
-            aCell.thermosOnTarget.text = "-1"
+            aCell.thermosOnTarget.text = temperatureCalculationForGUI(aThermoGroup!.target_temp)
             aCell.thermosNotOnTarget.text = "-1"
             aCell.delegate = self
             aCell.connectedEntity = aThermoGroup
@@ -317,5 +317,15 @@ extension ViewController: CollectionCellViewControllerDelegate{
     }
     func plusButton(addNewTile cell: CollectionCellViewController) {
         self.performSegue(withIdentifier: "createNewTile", sender: self)
+    }
+    
+    func temperatureCalculationForGUI(_ theTemp: Float) -> String{
+        var result = ""
+        switch theTemp{
+        case 254: result = "On"
+        case 253: result = "Off"
+        default: result = String(roundf(theTemp * 2)/2)
+        }
+        return result
     }
 }
