@@ -12,7 +12,7 @@ class CollectionCellViewController: UICollectionViewCell {
     weak var delegate: CollectionCellViewControllerDelegate?
     var connectedEntity: DashboardTile?
 
-    
+   
     @IBAction func makeNewTile(_ sender: Any) {
         delegate?.plusButton(addNewTile: self)
     }
@@ -57,8 +57,9 @@ class CollectionCellViewController: UICollectionViewCell {
     @IBOutlet weak var targetTemp: UILabel!
     @IBOutlet weak var currentTemp: UILabel!
 
-}
 
+
+}
 protocol CollectionCellViewControllerDelegate: class {
     func plusButton(addNewTile cell: CollectionCellViewController)
     func switchUsed(switchedEntity: DashboardTile, state: Bool)

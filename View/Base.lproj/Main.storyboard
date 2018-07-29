@@ -1167,13 +1167,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <navigationItem key="navigationItem" id="Gh0-9B-Td7">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="6k7-sS-YRI">
-                            <connections>
-                                <action selector="addNewTile:" destination="BYZ-38-t0r" id="27w-hN-vh4"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" id="Gh0-9B-Td7"/>
                     <connections>
                         <outlet property="collectionView" destination="P0k-Ry-w1O" id="kAG-ul-0S7"/>
                         <segue destination="clW-tx-tib" kind="presentation" identifier="mainPage" id="UZ7-hp-8yw"/>

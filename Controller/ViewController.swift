@@ -12,7 +12,9 @@ import CoreData
 
 class ViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
     
+
     fileprivate var longPressGesture: UILongPressGestureRecognizer!
+    
 
     
     @IBOutlet weak var collectionView: UICollectionView!
@@ -25,12 +27,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     var theCollectionView: UICollectionView?
     var faderDestination: DashboardTile?
     var nextOrder: Int16 = 0
-    
-    //small "+" in upper right corner ---can we delete it?
-    @IBAction func addNewTile(_ sender: UIBarButtonItem) {
-        self.performSegue(withIdentifier: "createNewTile", sender: self)
-    }
-    
+
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         theCollectionView = collectionView
         dashboardTilesRequest.predicate = NSPredicate(format: "onDashboard == true")
@@ -89,6 +86,8 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
             }
             aCell.delegate = self
             aCell.connectedEntity = aThermo
+            
+        
             return aCell
         }
         
@@ -103,6 +102,8 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
             aCell.labelBottom.text = "-1"
             aCell.delegate = self
             aCell.connectedEntity = aSwitchGroup
+            
+            
             return aCell
         }
         else if (aThermoGroup != nil){
@@ -216,7 +217,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         switch(gesture.state) {
             
         case .began:
-            guard let selectedIndexPath = collectionView.indexPathForItem(at: gesture.location(in: collectionView)) else {
+            guard let selectedIndexPath = collectionView.indexPathForItem(at: gesture.location(in: collectionView))  else {
                 break
             }
             collectionView.beginInteractiveMovementForItem(at: selectedIndexPath)
@@ -225,15 +226,18 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
 
             collectionView.updateInteractiveMovementTargetPosition(gesture.location(in: gesture.view!))
         case .ended:
-
+            
             collectionView.endInteractiveMovement()
+    
             self.collectionView.reloadData()
 
         default:
             collectionView.cancelInteractiveMovement()
         }
     }
-   
+    
+ 
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
