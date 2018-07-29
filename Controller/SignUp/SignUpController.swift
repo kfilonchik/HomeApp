@@ -59,6 +59,12 @@ class SignUpController: UIViewController {
     self.dismiss(animated: true, completion: nil)
     }
     
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.endEditing(true)
+        return false
+    }
+    
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         
         textField.resignFirstResponder()
