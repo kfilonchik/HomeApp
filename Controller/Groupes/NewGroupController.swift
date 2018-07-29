@@ -149,14 +149,16 @@ class NewGroupController: UITableViewController,  UITextFieldDelegate  {
 
 
             
-        case 1:
+        case 1: // New Group Thermos
+            print("in Case 1")
             cellLabel = thermos?[indexPath.row].title
             cell.accessoryType = UITableViewCellAccessoryType.none
 
             //if(thermos?[indexPath.row].onDashboard == true){cell.accessoryType = UITableViewCellAccessoryType.checkmark}
             //else{cell.accessoryType = UITableViewCellAccessoryType.none}
             
-        case 2:
+        case 2: // New Group Switches
+            print("in Case 2")
             cell.accessoryType = UITableViewCellAccessoryType.none
             cellLabel = switches?[indexPath.row].title
             
