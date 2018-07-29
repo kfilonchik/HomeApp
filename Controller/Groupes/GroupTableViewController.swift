@@ -22,11 +22,12 @@ class GroupTableViewController: UITableViewController {
     var switchGrToTransfer: SwitchGroup?
     var thermoGrToTransfer: ThermostatGroup?
     let rowHeight:CGFloat = 44
+    var theTableView: UITableView?
     
     
     override func viewWillAppear(_ animated: Bool) {
-        print("in Will appear")
         refreshData()
+        theTableView?.reloadData()
     }
     
     override func viewDidLoad() {
@@ -40,7 +41,6 @@ class GroupTableViewController: UITableViewController {
     }
     
     func refreshData(){
-        print("In refresh Data")
         groupsSwitch = try? context.fetch(groupSwitchRequest)
         groupsThermostat = try? context.fetch(groupThermostatRequest)
     }
@@ -93,26 +93,27 @@ class GroupTableViewController: UITableViewController {
         }
     }
     
-
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 2
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        refreshData()
+        theTableView = tableView
+
         if section == 0 {
+            groupsThermostat = try? context.fetch(groupThermostatRequest)
             return (groupsThermostat?.count)!
         }
    
         if section == 1 {
+            groupsSwitch = try? context.fetch(groupSwitchRequest)
             return (groupsSwitch?.count)!
         }
         return super.tableView(tableView, numberOfRowsInSection: section)
     }
 
-    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        refreshData()
+
         if indexPath.section == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "GroupThermostat") as! GroupTableViewCell
          cell.GroupTitleThermostat.text = groupsThermostat?[indexPath.item].title
@@ -127,20 +128,16 @@ class GroupTableViewController: UITableViewController {
         return super.tableView(tableView, cellForRowAt: indexPath)
     }
     
-    
-    
     //wird zuerst aufgerufen
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == 0 { // Thermo Group
             //print("in prepare th")
-            //let cell = tableView.dequeueReusableCell(withIdentifier: "GroupThermostat") as! GroupTableViewCell
             self.titleOfNewGroup = groupsThermostat?[indexPath.row].title
             thermoGrToTransfer = groupsThermostat?[indexPath.row]
             self.performSegue(withIdentifier: "editFirstCell", sender: self)
             
         } else if indexPath.section == 1 { //SwitchGroup
             //print("in prepare Sw")
-            //let cell = tableView.dequeueReusableCell(withIdentifier: "GroupSwitch") as! GroupTableViewCell
             self.titleOfNewGroup = groupsSwitch?[indexPath.row].title
             switchGrToTransfer = groupsSwitch?[indexPath.row]
             self.performSegue(withIdentifier: "editSecondCell", sender: self)
@@ -183,6 +180,7 @@ class GroupTableViewController: UITableViewController {
                 tableView.deleteRows(at: [indexPath], with: .fade)
             }
             do{try context.save()} catch {print(error)}
+            refreshData()
         }
     }
 }
