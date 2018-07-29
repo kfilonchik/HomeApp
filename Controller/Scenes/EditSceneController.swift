@@ -79,12 +79,10 @@ class EditSceneController: UITableViewController {
         if segue.identifier == "editTemperature" {
             let editTemperatureViewController = segue.destination  as? FaderViewController
         } else if segue.identifier == "editDevices" {
-            if let navController = segue.destination as? UINavigationController {
-                let NewSceneViewController = navController.topViewController as? NewSceneController
-            if let svc = NewSceneViewController {
+                let EditDevicesSceneViewController = segue.destination as? NewSceneController
+            if let svc = EditDevicesSceneViewController {
                 svc.data = titel
             }
-        }
     }
 }
 
@@ -92,8 +90,7 @@ class EditSceneController: UITableViewController {
         if indexPath.section == 0 {
             let aCell = tableView.dequeueReusableCell(withIdentifier: "titleOfScene") as! EditSceneCellController
             aCell.titleOfScene.text = self.title
-        
-            self.performSegue(withIdentifier: "editDevices", sender: self)
+
             
         }
         
