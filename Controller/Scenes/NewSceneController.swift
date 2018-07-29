@@ -23,8 +23,19 @@ class NewSceneController: UITableViewController, UITextFieldDelegate {
     var thermos: [Thermostat]?
     var scenes: [Scene]?
     
-    var data: String?
-    var titel: String?
+    var screenTitle: String?
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.title = screenTitle
+        refreshData()
+        
+        //self.navigationItem.rightBarButtonItem = self.editButtonItem
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+    }
     
     func refreshData(){
         switches = try? context.fetch(switchReq)
@@ -45,24 +56,9 @@ class NewSceneController: UITableViewController, UITextFieldDelegate {
         if segue.identifier == "getDevices" {
             let editSceneViewController = segue.destination  as? EditSceneController
             if let svc = editSceneViewController {
-                svc.data = titel
+                svc.data = screenTitle
             }
         }
-    }
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        refreshData()
-  
-        //Get titel of Scene from Alert
-        if let concreteData = data {
-            titel = concreteData
-        }
-        //self.navigationItem.rightBarButtonItem = self.editButtonItem
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
     }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -99,9 +95,9 @@ class NewSceneController: UITableViewController, UITextFieldDelegate {
             
         case 0:
             let aCell = tableView.dequeueReusableCell(withIdentifier: "titlePrototypeCell", for: indexPath) as! SceneCell
-            cellLabel = titel
+            cellLabel = screenTitle
            aCell.selectionStyle = UITableViewCellSelectionStyle.none
-            aCell.titleTextField.text = self.titel
+            aCell.titleTextField.text = self.screenTitle
              aCell.titleTextField.delegate = self
             return aCell
         case 1:
@@ -118,51 +114,10 @@ class NewSceneController: UITableViewController, UITextFieldDelegate {
             print("default in override func tableView")
         }
         cell.textLabel?.text = cellLabel
-
         return cell
     
     }
-    
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.endEditing(true)
-        return false
-    }
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        // some cell's text field has finished editing; which cell?
-        var v : UIView = textField
-        repeat { v = v.superview! } while !(v is UITableViewCell)
-        let cell = v as! SceneCell
-        // what row is that?
-        let ip = self.tableView.indexPath(for:cell)!
-        // update data model to match
-        if ip.section == 0 {
-            self.title = cell.titleTextField.text!
-        } else if ip.section == 0 {
-            self.title = cell.titleTextField.text!
-        }
-        
-    }
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        //or
-        //self.view.endEditing(true)
-        return true
-    }
-    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        switch section {
-        case 0:
-            return "Title"
-        case 1:
-            return "Thermostats"
-        case 2:
-            return "Switches"
-        default:
-            return "Some problems!"
-        }
-        
-    }
    
-    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         switch indexPath.section{
@@ -195,9 +150,35 @@ class NewSceneController: UITableViewController, UITextFieldDelegate {
         default:
             print("default in override func tableView")
         }
-        
     }
     
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.endEditing(true)
+        return false
+    }
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        var v : UIView = textField
+        repeat { v = v.superview! } while !(v is UITableViewCell)
+        let cell = v as! SceneCell
+        self.title = cell.titleTextField.text!
+    }
+    func textFieldShouldClear(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        switch section {
+        case 0:
+            return "Title"
+        case 1:
+            return "Thermostats"
+        case 2:
+            return "Switches"
+        default:
+            return "Some problems!"
+        }
+    }
 }
 
 

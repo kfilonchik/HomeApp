@@ -41,7 +41,7 @@ class SceneTableViewController: UITableViewController {
         if let navController = segue.destination as? UINavigationController {
             let newSceneViewController = navController.topViewController as? NewSceneController
             if let svc = newSceneViewController {
-                svc.data = titel
+                svc.screenTitle = titel
                 }
             }
         } else if segue.identifier == "editCell" {
