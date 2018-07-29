@@ -348,7 +348,7 @@
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="titleOfScene" destination="sBS-kZ-lxz" id="s7V-EZ-2ru"/>
-                                    <segue destination="c7q-tv-1cq" kind="presentation" identifier="editDevices" trigger="accessoryAction" id="4f8-IZ-VQJ"/>
+                                    <segue destination="mJk-GF-o6u" kind="presentation" identifier="editDevices" id="Pgg-Bk-87u"/>
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="termostatScene" id="ZOA-cZ-vxf" customClass="EditSceneCellController" customModule="Domovoi" customModuleProvider="target">
@@ -487,22 +487,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Yrp-LU-0vk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-241" y="2419"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="Ibn-F0-rZm">
-            <objects>
-                <navigationController id="c7q-tv-1cq" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="dX6-DT-ALq">
-                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <connections>
-                        <segue destination="pPe-HY-GRb" kind="relationship" relationship="rootViewController" id="kgN-vU-5Xq"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="XFH-ma-fSo" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1750" y="1989"/>
         </scene>
         <!--DBStuff-->
         <scene sceneID="woa-so-TNk">
@@ -1426,7 +1410,7 @@
     <inferredMetricsTieBreakers>
         <segue reference="vhc-GL-xdw"/>
         <segue reference="Bac-Z4-nBg"/>
-        <segue reference="kgN-vU-5Xq"/>
         <segue reference="BOC-3T-jTb"/>
+        <segue reference="Pgg-Bk-87u"/>
     </inferredMetricsTieBreakers>
 </document>
