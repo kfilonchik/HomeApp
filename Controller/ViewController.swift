@@ -156,22 +156,28 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         var newPos: Int?
         
         //store drap and drop
-        if(start != noOfTiles && end != noOfTiles){ //+ cell is not moveable
+        if(start + end == 1){
+            dashboardTiles![start].order = Int16(end)
+            dashboardTiles![end].order   = Int16(start)
+        }
+        
+        else if(start != noOfTiles && end != noOfTiles){ //+ cell is not moveable
             
             for aTile in dashboardTiles!{
+
+                
                 if(aTile.order <= end && aTile.order > start && aTile.order != start && start < end){ // forward
                     newPos = end
                     aTile.order -= 1
                 }
-                if(aTile.order >= end && aTile.order < start && aTile.order != start && start > end){ // move backwards
+                else if(aTile.order >= end && aTile.order < start && aTile.order != start && start > end){ // move backwards
                     newPos = end
                     aTile.order += 1
                 }
             }
             dashboardTiles![start].order = Int16(newPos!)
-            do{try context.save()} catch {print(error)}
-            
         }
+        do{try context.save()} catch {print(error)}
     }
     
     //Navigation function, we need to write conditions

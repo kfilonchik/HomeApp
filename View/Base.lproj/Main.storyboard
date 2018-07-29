@@ -292,7 +292,6 @@
         <!--Navigation Controller-->
         <scene sceneID="4Dc-j0-eiT">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Fwd-Jt-lNx" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController id="mJk-GF-o6u" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="64e-Uy-o1l">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
@@ -302,6 +301,7 @@
                         <segue destination="pPe-HY-GRb" kind="relationship" relationship="rootViewController" id="DRi-Ws-C50"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Fwd-Jt-lNx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1161" y="1796"/>
         </scene>
@@ -1426,7 +1426,7 @@
     <inferredMetricsTieBreakers>
         <segue reference="vhc-GL-xdw"/>
         <segue reference="Bac-Z4-nBg"/>
-        <segue reference="kgN-vU-5Xq"/>
+        <segue reference="DRi-Ws-C50"/>
         <segue reference="BOC-3T-jTb"/>
     </inferredMetricsTieBreakers>
 </document>
