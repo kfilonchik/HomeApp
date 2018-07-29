@@ -16,14 +16,21 @@ class SceneTableViewController: UITableViewController {
     let sceneRequest: NSFetchRequest<Scene> = Scene.fetchRequest()
     var scenes: [Scene]?
     var aSceneForTransfer: Scene?
+    var theTableView: UITableView?
     
     
     override func viewDidLoad() {
         print("in SceneTableViewController")
         super.viewDidLoad()
         refreshData()
+        
         tableView.register(UINib(nibName: "SceneCell", bundle: nil), forCellReuseIdentifier: "SceneCell")
         //self.navigationItem.rightBarButtonItem = self.editButtonItem
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        refreshData()
+        theTableView?.reloadData()
     }
     
     override func didReceiveMemoryWarning() {
@@ -70,7 +77,6 @@ class SceneTableViewController: UITableViewController {
 }
     func refreshData(){
         scenes = try? context.fetch(sceneRequest)
-        
     }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -88,8 +94,9 @@ class SceneTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        theTableView = tableView
       // let sceneRequest: NSFetchRequest<Scene> = Scene.fetchRequest()
-      //  let scenes = try? context.fetch(sceneRequest)
+      // let scenes = try? context.fetch(sceneRequest)
         
         if indexPath.section == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "SceneCell") as! SceneCell

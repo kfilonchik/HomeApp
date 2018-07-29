@@ -11,7 +11,7 @@ import UIKit
 class EditSceneController: UITableViewController {
     
     var data: String?
-    var titel: String?
+    var viewControllerTitle: String?
     var reveivedScene: Scene?
 
     
@@ -22,11 +22,8 @@ class EditSceneController: UITableViewController {
     override func viewDidLoad() {
         print("in EditSceneController")
         self.title = reveivedScene?.title
+        viewControllerTitle = reveivedScene?.title
         super.viewDidLoad()
-        
-        if let concreteData = data {
-            titel = concreteData
-        }
         
         self.navigationItem.hidesBackButton = true
     }
@@ -85,7 +82,7 @@ class EditSceneController: UITableViewController {
         else if segue.identifier == "editDevices" {
             let EditDevicesSceneViewController = segue.destination as? NewSceneController
             if let svc = EditDevicesSceneViewController {
-                svc.screenTitle = titel
+                svc.screenTitle = viewControllerTitle
                 svc.aScene = reveivedScene
             }
     }
@@ -95,10 +92,17 @@ class EditSceneController: UITableViewController {
         if indexPath.section == 0 {
             let aCell = tableView.dequeueReusableCell(withIdentifier: "titleOfScene") as! EditSceneCellController
             aCell.titleOfScene.text = self.title
-
-            
         }
-        
+    }
+    
+    func temperatureCalculationForGUI(_ theTemp: Float) -> String{
+        var result = ""
+        switch theTemp{
+        case 254: result = "On"
+        case 253: result = "Off"
+        default: result = String(roundf(theTemp * 2)/2)
+        }
+        return result
     }
     
     /*
