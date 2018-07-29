@@ -148,8 +148,8 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     }
     
     func collectionView(_ collectionView: UICollectionView, moveItemAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
-        print("Starting Index: \(sourceIndexPath.item)")
-        print("Ending Index: \(destinationIndexPath.item)")
+        //print("Starting Index: \(sourceIndexPath.item)")
+        //print("Ending Index: \(destinationIndexPath.item)")
         let start   = sourceIndexPath.item
         let end     = destinationIndexPath.item
         var newPos: Int?
