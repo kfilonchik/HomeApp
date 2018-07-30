@@ -96,7 +96,6 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
             var aCell = collectionView.dequeueReusableCell(withReuseIdentifier: "uiSwitchGroup", for: indexPath as IndexPath) as! CollectionCellViewController
             
             aCell = cellDesigner(aCell)
-            
             aCell.titleSwitchGroup.text = aSwitchGroup?.title
             aCell.labelTop.text = "-1"
             aCell.labelBottom.text = "-1"
