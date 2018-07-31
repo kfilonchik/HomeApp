@@ -12,7 +12,14 @@ class CollectionCellViewController: UICollectionViewCell {
     weak var delegate: CollectionCellViewControllerDelegate?
     var connectedEntity: DashboardTile?
 
-   
+    //For Tiles elements
+    @IBOutlet weak var uiSwitchOfScene: UISwitch!
+    @IBOutlet weak var uiStatusOfScene: UIImageView!
+    
+    @IBOutlet weak var uiImageOfThermostatGroup: UIImageView!
+    
+    @IBOutlet weak var uiImageOfTileSwitchGroup: UIImageView!
+    
     @IBAction func makeNewTile(_ sender: Any) {
         delegate?.plusButton(addNewTile: self)
     }

@@ -95,6 +95,14 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
             
             var aCell = collectionView.dequeueReusableCell(withReuseIdentifier: "uiSwitchGroup", for: indexPath as IndexPath) as! CollectionCellViewController
             
+            
+            /*
+            if aSwitch?.partOfGroups == nil {
+                let image = UIImage(named: "x-button")
+                aCell.uiImageOfTileSwitchGroup.image = image
+            }
+            */
+            
             aCell = cellDesigner(aCell)
             aCell.titleSwitchGroup.text = aSwitchGroup?.title
             aCell.labelTop.text = "-1"
@@ -110,6 +118,17 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
             
             aCell = cellDesigner(aCell)
             
+            
+            
+            //condition of active/non-active image
+            /*
+            if ((aThermo?.partOfGroups) != nil) {
+             let image = UIImage(named: "verification-checkmark-symbol-in-black-circular-button-2")
+             
+             aCell.uiImageOfThermostatGroup.image = image
+            }
+            */
+            
             aCell.titleThermoGroup.text = aThermoGroup?.title
             aCell.targetTempThermoGroup.text = "-1"
             aCell.thermosOnTarget.text = temperatureCalculationForGUI(aThermoGroup!.target_temp)
@@ -123,6 +142,16 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
             
             aCell = cellDesigner(aCell)
             
+            //Condition of activating switches. If switch part of scene, then
+            /*
+            if aScene?.switchDevices != nil {
+                aCell.uiSwitchOfScene.isEnabled = true
+                aCell.uiStatusOfScene.backgroundColor = UIColor.green
+
+            } else {
+                 aCell.uiSwitchOfScene.isEnabled = false
+            }
+            */
             
             aCell.titleSceneTile.text = aScene?.title
             aCell.labelLeft.text = "-1"
@@ -131,8 +160,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
             aCell.connectedEntity = aScene
             return aCell
         }
-    
-        //Conditions of "add newTile" cell...?
+
         else{
              var aCell = collectionView.dequeueReusableCell(withReuseIdentifier: "uiNewTile", for: indexPath as IndexPath) as! CollectionCellViewController
             
