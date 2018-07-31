@@ -17,6 +17,7 @@ class SceneTableViewController: UITableViewController {
     var scenes: [Scene]?
     var aSceneForTransfer: Scene?
     var theTableView: UITableView?
+    let cellHeight:CGFloat = 44
     
     
     override func viewDidLoad() {
@@ -28,13 +29,19 @@ class SceneTableViewController: UITableViewController {
         //self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
     
-    override func viewDidAppear(_ animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
+        print("in SceneTableViewController will appear")
         refreshData()
+        self.title = aSceneForTransfer?.title
         theTableView?.reloadData()
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    
+    func refreshData(){
+        scenes = try? context.fetch(sceneRequest)
     }
     
 //aler make new scene
@@ -70,14 +77,12 @@ class SceneTableViewController: UITableViewController {
                 let editSceneViewController = navController.topViewController as? EditSceneController
                 if let svc = editSceneViewController {
                     svc.data = titel
-                    svc.reveivedScene = aSceneForTransfer
+                    svc.receivedScene = aSceneForTransfer
                 }
             }
     }
 }
-    func refreshData(){
-        scenes = try? context.fetch(sceneRequest)
-    }
+
 
     override func numberOfSections(in tableView: UITableView) -> Int {
 
@@ -86,6 +91,7 @@ class SceneTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
+            refreshData()
             return (scenes?.count)!
             
         }
@@ -95,8 +101,6 @@ class SceneTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         theTableView = tableView
-      // let sceneRequest: NSFetchRequest<Scene> = Scene.fetchRequest()
-      // let scenes = try? context.fetch(sceneRequest)
         
         if indexPath.section == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "SceneCell") as! SceneCell
@@ -133,7 +137,7 @@ class SceneTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.section == 0  {
-            return 44
+            return cellHeight
         }
       
         return super.tableView(tableView, heightForRowAt: indexPath)
@@ -142,8 +146,11 @@ class SceneTableViewController: UITableViewController {
     //delete button, it works but we need to delete scene by the right way...
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            self.scenes!.remove(at: indexPath.row)
+
+            context.delete(scenes![indexPath.row])
             tableView.deleteRows(at: [indexPath], with: .fade)
+            do{try context.save()} catch {print(error)}
+            
         }
     }
 

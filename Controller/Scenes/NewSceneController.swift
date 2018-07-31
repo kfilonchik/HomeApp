@@ -138,24 +138,24 @@ class NewSceneController: UITableViewController, UITextFieldDelegate {
             
             tableView.setEditing(cellStyleForEditing == .insert, animated: true)
 
-        case 1:
-            if(tableView.cellForRow(at: indexPath)?.accessoryType == UITableViewCellAccessoryType.checkmark){ // delete a tile
-                thermos?[indexPath.row].onDashboard = false
+        case 1: // adding and remocing a thermo from Scenes
+            if(tableView.cellForRow(at: indexPath)?.accessoryType == UITableViewCellAccessoryType.checkmark){
+                thermos?[indexPath.row].removeFromPartOfScenes(aScene!)
                 tableView.cellForRow(at: indexPath)?.accessoryType = UITableViewCellAccessoryType.none
-                
             }
-            else{ // create a tile
-                thermos?[indexPath.row].onDashboard = true
+            else{
+                thermos?[indexPath.row].addToPartOfScenes(aScene!)
                 tableView.cellForRow(at: indexPath)?.accessoryType = UITableViewCellAccessoryType.checkmark
             }
             do{try context.save()} catch {print(error)}
-        case 2:
-            if(tableView.cellForRow(at: indexPath)?.accessoryType == UITableViewCellAccessoryType.checkmark){ // delete a tile
-                switches?[indexPath.row].onDashboard = false
+            
+        case 2: // Adding and removing a switch from Scnes
+            if(tableView.cellForRow(at: indexPath)?.accessoryType == UITableViewCellAccessoryType.checkmark){
+                switches?[indexPath.row].removeFromPartOfScenes(aScene!)
                 tableView.cellForRow(at: indexPath)?.accessoryType = UITableViewCellAccessoryType.none
             }
-            else{ // create a tile
-                switches?[indexPath.row].onDashboard = true
+            else{
+                switches?[indexPath.row].addToPartOfScenes(aScene!)
                 tableView.cellForRow(at: indexPath)?.accessoryType = UITableViewCellAccessoryType.checkmark
             }
             do{try context.save()} catch {print(error)}
