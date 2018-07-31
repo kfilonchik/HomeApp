@@ -174,6 +174,12 @@ class NewGroupController: UITableViewController,  UITextFieldDelegate  {
                 }
                 else if(receivedSwitchGroup != nil){
                     switches?[indexPath.row].removeFromPartOfGroups(receivedSwitchGroup!)
+                    print("in remove from groups Switch")
+                }
+                else if(receivedThermoGroup == nil){
+                    thermos?[indexPath.row].removeFromPartOfGroups(newThermoGroup!)
+                    print("delte from new Group")
+
                 }
                 
                 tableView.cellForRow(at: indexPath)?.accessoryType = UITableViewCellAccessoryType.none
@@ -182,18 +188,20 @@ class NewGroupController: UITableViewController,  UITextFieldDelegate  {
             else{ // add device to the group
                 
                 if(receivedThermoGroup != nil){
+                    print("Thermostat in Gruppe adden")
                     thermos?[indexPath.row].addToPartOfGroups(receivedThermoGroup!)
                 }
                 else if(receivedSwitchGroup != nil){
                     switches?[indexPath.row].addToPartOfGroups(receivedSwitchGroup!)
+                    print("sollte nein sein")
                 }
                 
                 else if (receivedSwitchGroup == nil && receivedThermoGroup == nil){ //create a swich Group and deselect all other
-                    print("create a new Thermostat Group")
                     
                     if (newThermoGroup == nil){
                         newThermoGroup = ThermostatGroup(context: context)
                         newThermoGroup?.title = newGrTitle
+                        print("created new ThermoGroup")
                     }
                     thermos?[indexPath.row].addToPartOfGroups(newThermoGroup!)
                     if(newSwitchGroup != nil){
@@ -216,11 +224,13 @@ class NewGroupController: UITableViewController,  UITextFieldDelegate  {
             
             if(tableView.cellForRow(at: indexPath)?.accessoryType == UITableViewCellAccessoryType.checkmark){ // Delete from Group
                 tableView.cellForRow(at: indexPath)?.accessoryType = UITableViewCellAccessoryType.none
+                switches?[indexPath.row].removeFromPartOfGroups(newSwitchGroup!)
             }
             else{ // create a new Group and add sw
                 if(newSwitchGroup == nil){
                     newSwitchGroup = SwitchGroup(context: context)
                     newSwitchGroup?.title = newGrTitle
+                    print("Created new Switch Group")
                 }
                 switches?[indexPath.row].addToPartOfGroups(newSwitchGroup!)
                 
@@ -228,6 +238,7 @@ class NewGroupController: UITableViewController,  UITextFieldDelegate  {
                     //Show a Popup here "Groups can only contain Switches or Thermostats, use a Scene if you want to Combine"
                     context.delete(newThermoGroup!)
                 }
+                newThermoGroup = nil
                 let counter = tableView.numberOfRows(inSection: 1)
                 for i in 0 ... counter - 1{
                     tableView.cellForRow(at: [1,i])?.accessoryType = UITableViewCellAccessoryType.none
