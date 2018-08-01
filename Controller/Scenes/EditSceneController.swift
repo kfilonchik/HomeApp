@@ -175,6 +175,9 @@ class EditSceneController: UITableViewController {
             aCell.switchButton.isOn = swState
             aCell.switchButton.isUserInteractionEnabled = false
             
+            scenSetSwitchesReq.predicate = NSPredicate(format: "scene == %@ AND switchDevice == %@", (receivedScene?.objectID)!, (switchesFilter[indexPath.row].objectID))
+            scenSetSwitches = try? context.fetch(scenSetSwitchesReq)
+            
             if((scenSetSwitches?.count)! == 0){
                 
                 let aScenSetSwitch = SceneSwitchSetting(context: context)
@@ -233,7 +236,7 @@ class EditSceneController: UITableViewController {
             scenSetSwitches = try? context.fetch(scenSetSwitchesReq)
 
             
-            if((scenSetSwitches?.count)! > 0 && (   scenSetSwitches?[0].scene == receivedScene!    )){
+            if((scenSetSwitches?.count)! > 0 ){
                 print("Tupel vorhanden")
                 scenSetSwitches![0].state = !scenSetSwitches![0].state
                 do{try context.save()} catch {print(error)}

@@ -27,7 +27,49 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     var theCollectionView: UICollectionView?
     var faderDestination: DashboardTile?
     var nextOrder: Int16 = 0
+    var check: Bool = false
 
+    override func viewDidLoad() {
+        print("in did load view controller")
+        super.viewDidLoad()
+        
+        let context = AppDelegate.viewContext
+        let fetchRequest: NSFetchRequest<AppSettings> = AppSettings.fetchRequest()
+        let result = try? context.fetch(fetchRequest)
+        
+        if((result?.count)! == 0){
+            print("goto login")
+            self.performSegue(withIdentifier: "mainPage", sender: self)
+        }
+        else if ((result?.count)! == 1){
+            print("regular startup with settings")
+            aConnector.startUpConnector()
+        }
+        
+        let itemSize = UIScreen.main.bounds.width / 2 - 20
+        print(itemSize)
+        
+        //Tiles Layout
+        let layout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
+        layout.minimumLineSpacing = 10
+        layout.itemSize = CGSize(width: itemSize, height: itemSize)
+        layout.minimumInteritemSpacing = 5
+        collectionView.contentInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right:10)
+        
+        //For Drag and Drop
+        longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(self.handleLongGesture(gesture:)))
+        collectionView.addGestureRecognizer(longPressGesture)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        print("in View Will apper ViewController")
+        dashboardTiles = try? context.fetch(dashboardTilesRequest)
+        if theCollectionView != nil{
+            self.theCollectionView!.reloadData()
+        }
+        aConnector.startUpFromGUI()
+    }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         theCollectionView = collectionView
         dashboardTilesRequest.predicate = NSPredicate(format: "onDashboard == true")
@@ -200,8 +242,6 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         else if(start != noOfTiles && end != noOfTiles){ //+ cell is not moveable
             
             for aTile in dashboardTiles!{
-
-                
                 if(aTile.order <= end && aTile.order > start && aTile.order != start && start < end){ // forward
                     newPos = end
                     aTile.order -= 1
@@ -229,34 +269,6 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     }
     
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        let context = AppDelegate.viewContext
-        let fetchRequest: NSFetchRequest<AppSettings> = AppSettings.fetchRequest()
-        let result = try? context.fetch(fetchRequest)
-        
-        if((result?.count)! == 0){
-            self.performSegue(withIdentifier: "mainPage", sender: self)
-            
-        }
-        else if ((result?.count)! == 1){
-            aConnector.startUpConnector()
-            let itemSize = UIScreen.main.bounds.width / 2 - 20
-            print(itemSize)
-            //Tiles Layout
-            let layout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
-            layout.minimumLineSpacing = 10
-            layout.itemSize = CGSize(width: itemSize, height: itemSize)
-            layout.minimumInteritemSpacing = 5
-            collectionView.contentInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right:10)
-            
-            //For Drag and Drop
-            longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(self.handleLongGesture(gesture:)))
-            collectionView.addGestureRecognizer(longPressGesture)
-
-        }
-    }
     @objc func handleLongGesture(gesture: UILongPressGestureRecognizer) {
         switch(gesture.state) {
             
@@ -291,14 +303,6 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     override func viewDidAppear(_ animated: Bool) {
         dashboardTiles = try? context.fetch(dashboardTilesRequest)
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        dashboardTiles = try? context.fetch(dashboardTilesRequest)
-        if theCollectionView != nil{
-            self.theCollectionView!.reloadData()
-        }
-    }
-    
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
@@ -351,6 +355,7 @@ extension ViewController: CollectionCellViewControllerDelegate{
             }
         }
     }
+    
     func plusButton(addNewTile cell: CollectionCellViewController) {
         self.performSegue(withIdentifier: "createNewTile", sender: self)
     }

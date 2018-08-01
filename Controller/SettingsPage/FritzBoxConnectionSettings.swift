@@ -23,7 +23,8 @@ class FritzBoxConnectionSettings: UITableViewController, UITextFieldDelegate {
         } catch {
             // Error Handling
         }
-         context.reset()
+        context.reset()
+        
         
         textFieldFritzId.text = ""
         textFieldUser.text = ""
@@ -32,7 +33,6 @@ class FritzBoxConnectionSettings: UITableViewController, UITextFieldDelegate {
     @IBAction func saveBtn(_ sender: UIButton) {
         
         let stdAppSettings = AppSettings(context: context)
-       
        
         stdAppSettings.fritzID = textFieldFritzId.text
         stdAppSettings.passWord = textFieldPassword.text
