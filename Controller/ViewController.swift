@@ -111,6 +111,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
             aCell.titleSwitch.text = aSwitch?.title
             aCell.delegate = self
             aCell.connectedEntity = aSwitch
+            aCell.uiSwitchTile.isOn = (aSwitch?.state)!
           
             return aCell
         }
@@ -354,6 +355,7 @@ extension ViewController: CollectionCellViewControllerDelegate{
                 switchCast.lasteChangeByAllDevRec = false
             }
         }
+        self.theCollectionView!.reloadData()
     }
     
     func plusButton(addNewTile cell: CollectionCellViewController) {
