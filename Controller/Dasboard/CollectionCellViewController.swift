@@ -12,6 +12,10 @@ class CollectionCellViewController: UICollectionViewCell {
     weak var delegate: CollectionCellViewControllerDelegate?
     var connectedEntity: DashboardTile?
 
+    @IBOutlet weak var uiSwitchGroup: UISwitch!
+    
+    @IBOutlet weak var uiSwitchTile: UISwitch!
+    
     //For Tiles elements
     @IBOutlet weak var uiSwitchOfScene: UISwitch!
     @IBOutlet weak var uiStatusOfScene: UIImageView!

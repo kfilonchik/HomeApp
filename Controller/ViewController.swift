@@ -64,7 +64,8 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
             var aCell = collectionView.dequeueReusableCell(withReuseIdentifier: "uiSwitch", for: indexPath as IndexPath) as! CollectionCellViewController
             
             aCell = cellDesigner(aCell)
-      
+           
+            aCell.uiSwitchTile.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
             aCell.titleSwitch.text = aSwitch?.title
             aCell.delegate = self
             aCell.connectedEntity = aSwitch
@@ -94,6 +95,9 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         else if (aSwitchGroup != nil){
             
             var aCell = collectionView.dequeueReusableCell(withReuseIdentifier: "uiSwitchGroup", for: indexPath as IndexPath) as! CollectionCellViewController
+            
+            
+            aCell.uiSwitchGroup.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
             
             
             /*
@@ -143,16 +147,19 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
             aCell = cellDesigner(aCell)
             
             //Condition of activating switches. If switch part of scene, then
-            /*
+            
             if aScene?.switchDevices != nil {
                 aCell.uiSwitchOfScene.isEnabled = true
-                aCell.uiStatusOfScene.backgroundColor = UIColor.green
+                aCell.uiStatusOfScene.backgroundColor = UIColor.orange
+                aCell.uiStatusOfScene.layer.cornerRadius = 8.0
+            
 
             } else {
                  aCell.uiSwitchOfScene.isEnabled = false
+                 aCell.uiStatusOfScene.backgroundColor = UIColor.gray
+                aCell.uiStatusOfScene.layer.cornerRadius = 8.0
             }
-            */
-            
+           
             aCell.titleSceneTile.text = aScene?.title
             aCell.labelLeft.text = "-1"
             aCell.labelRight.text = "-1"
