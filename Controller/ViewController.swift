@@ -64,7 +64,8 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
             var aCell = collectionView.dequeueReusableCell(withReuseIdentifier: "uiSwitch", for: indexPath as IndexPath) as! CollectionCellViewController
             
             aCell = cellDesigner(aCell)
-      
+           
+            aCell.uiSwitchTile.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
             aCell.titleSwitch.text = aSwitch?.title
             aCell.delegate = self
             aCell.connectedEntity = aSwitch
@@ -94,6 +95,9 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         else if (aSwitchGroup != nil){
             
             var aCell = collectionView.dequeueReusableCell(withReuseIdentifier: "uiSwitchGroup", for: indexPath as IndexPath) as! CollectionCellViewController
+            
+            
+            aCell.uiSwitchGroup.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
             
             
             /*
