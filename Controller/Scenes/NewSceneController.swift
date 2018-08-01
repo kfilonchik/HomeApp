@@ -25,6 +25,7 @@ class NewSceneController: UITableViewController, UITextFieldDelegate {
     
     var screenTitle: String?
     var aScene: Scene?
+    var theTableView: UITableView?
     
     override func viewDidLoad() {
         print("in NewSceneController")
@@ -36,11 +37,15 @@ class NewSceneController: UITableViewController, UITextFieldDelegate {
             aScene?.title = screenTitle
             print("created a new Scene")
         }
-        
-        
         refreshData()
-        
-        //self.navigationItem.rightBarButtonItem = self.editButtonItem
+
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        print("in NewSceneController will appear")
+        refreshData()
+        self.title = aScene?.title
+        theTableView?.reloadData()
     }
     
     override func didReceiveMemoryWarning() {
@@ -67,6 +72,7 @@ class NewSceneController: UITableViewController, UITextFieldDelegate {
             let editSceneViewController = segue.destination  as? EditSceneController
             if let svc = editSceneViewController {
                 svc.data = screenTitle
+                svc.receivedScene = aScene
             }
         }
     }
@@ -77,6 +83,7 @@ class NewSceneController: UITableViewController, UITextFieldDelegate {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        self.theTableView = tableView
         switch section {
         case 0:
             return 1
@@ -153,6 +160,7 @@ class NewSceneController: UITableViewController, UITextFieldDelegate {
             if(tableView.cellForRow(at: indexPath)?.accessoryType == UITableViewCellAccessoryType.checkmark){
                 switches?[indexPath.row].removeFromPartOfScenes(aScene!)
                 tableView.cellForRow(at: indexPath)?.accessoryType = UITableViewCellAccessoryType.none
+                print("removed switch from Scene")
             }
             else{
                 switches?[indexPath.row].addToPartOfScenes(aScene!)

@@ -20,10 +20,14 @@ class EditSceneController: UITableViewController {
     
     let switchReq: NSFetchRequest<SwitchDevice> = SwitchDevice.fetchRequest()
     let thermoReq: NSFetchRequest<Thermostat> = Thermostat.fetchRequest()
-    let sceneReq: NSFetchRequest<Scene> = Scene.fetchRequest()
+    let scenSetThermosReq: NSFetchRequest<SceneThermostatSetting> = SceneThermostatSetting.fetchRequest()
+    let scenSetSwitchesReq: NSFetchRequest<SceneSwitchSetting> = SceneSwitchSetting.fetchRequest()
+    //let sceneReq: NSFetchRequest<Scene> = Scene.fetchRequest()
     
     var switches: [SwitchDevice]?
     var thermos: [Thermostat]?
+    var scenSetThermos: [SceneThermostatSetting]?
+    var scenSetSwitches: [SceneSwitchSetting]?
     
     @IBAction func goToMainPage(_ sender: UIBarButtonItem) {
          self.dismiss(animated: true, completion: nil)
@@ -48,6 +52,8 @@ class EditSceneController: UITableViewController {
     func refreshData(){
         switches = try? context.fetch(switchReq)
         thermos = try? context.fetch(thermoReq)
+        scenSetThermos = try? context.fetch(scenSetThermosReq)
+        scenSetSwitches = try? context.fetch(scenSetSwitchesReq)
     }
     
     override func didReceiveMemoryWarning() {
@@ -68,7 +74,8 @@ class EditSceneController: UITableViewController {
         else if(section == 1){
             var count = 0
             for aThermo in thermos!{
-                if(aThermo.partOfScenes?.contains(receivedScene!))!{
+                let b = aThermo.partOfScenes?.contains(receivedScene!)
+                if(b == true){
                     count += 1
                 }
             }
@@ -77,7 +84,8 @@ class EditSceneController: UITableViewController {
         else{
             var count = 0
             for aSwitch in switches!{
-                if(aSwitch.partOfScenes?.contains(receivedScene!))!{
+                let b = aSwitch.partOfScenes?.contains(receivedScene!)
+                if(b == true){
                     count += 1
                 }
             }
@@ -97,14 +105,23 @@ class EditSceneController: UITableViewController {
             return aCell
         case 1:
             let aCell = tableView.dequeueReusableCell(withIdentifier: "termostatScene", for: indexPath) as! EditSceneCellController
-            aCell.titleThermostat.text = "Thermostat1"
-            aCell.actualTemp.text = "23,5"
+            aCell.titleThermostat.text = thermos![indexPath.row].title
+            var targetTemp = "not yet set"
+            //get target Temp of
+            for aThermoTarget in scenSetThermos!{
+                if(aThermoTarget.thermostat == thermos![indexPath.row]){
+                    targetTemp = temperatureCalculationForGUI(aThermoTarget.target_temp)
+                }
+            }
+            
+            aCell.actualTemp.text = targetTemp
             return aCell
             
         case 2:
+            print("in case 2 render cells")
             let aCell = tableView.dequeueReusableCell(withIdentifier: "switchScene", for: indexPath) as! EditSceneCellController
             aCell.titleSwitch.text = "Switch1"
-            aCell.switchButton.isOn = true
+            aCell.switchButton.isOn = false
         
         default:
             print("default in override func tableView")
