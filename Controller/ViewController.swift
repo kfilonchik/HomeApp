@@ -147,16 +147,19 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
             aCell = cellDesigner(aCell)
             
             //Condition of activating switches. If switch part of scene, then
-            /*
+            
             if aScene?.switchDevices != nil {
                 aCell.uiSwitchOfScene.isEnabled = true
-                aCell.uiStatusOfScene.backgroundColor = UIColor.green
+                aCell.uiStatusOfScene.backgroundColor = UIColor.orange
+                aCell.uiStatusOfScene.layer.cornerRadius = 8.0
+            
 
             } else {
                  aCell.uiSwitchOfScene.isEnabled = false
+                 aCell.uiStatusOfScene.backgroundColor = UIColor.gray
+                aCell.uiStatusOfScene.layer.cornerRadius = 8.0
             }
-            */
-            
+           
             aCell.titleSceneTile.text = aScene?.title
             aCell.labelLeft.text = "-1"
             aCell.labelRight.text = "-1"
