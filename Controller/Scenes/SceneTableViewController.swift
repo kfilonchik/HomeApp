@@ -35,6 +35,8 @@ class SceneTableViewController: UITableViewController {
         refreshData()
         
         self.title = aSceneForTransfer?.title
+        self.navigationItem.title = "Scenes"
+        self.tabBarController?.cleanTitles()
         theTableView?.reloadData()
     }
     
@@ -157,4 +159,15 @@ class SceneTableViewController: UITableViewController {
 
 }
 
+extension UITabBarController {
+    func cleanTitles() {
+        guard let items = self.tabBar.items else {
+            return
+        }
+        for item in items {
+            item.title = ""
+            //item.imageInsets = UIEdgeInsetsMake(6, 0, -6, 0)
+        }
+    }
+}
 
