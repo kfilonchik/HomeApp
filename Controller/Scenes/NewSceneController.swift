@@ -36,6 +36,8 @@ class NewSceneController: UITableViewController, UITextFieldDelegate {
             aScene = Scene(context: context)
             aScene?.title = screenTitle
             print("created a new Scene")
+            do{try context.save()} catch {print(error)}
+            
         }
         refreshData()
 
@@ -149,6 +151,15 @@ class NewSceneController: UITableViewController, UITextFieldDelegate {
             if(tableView.cellForRow(at: indexPath)?.accessoryType == UITableViewCellAccessoryType.checkmark){
                 thermos?[indexPath.row].removeFromPartOfScenes(aScene!)
                 tableView.cellForRow(at: indexPath)?.accessoryType = UITableViewCellAccessoryType.none
+
+                let toDelReq: NSFetchRequest<SceneThermostatSetting> = SceneThermostatSetting.fetchRequest()
+                toDelReq.predicate = NSPredicate(format: "scene == %@ AND thermostat == %@", aScene!.objectID, thermos![indexPath.row].objectID)
+                let delCand = try? context.fetch(toDelReq)
+                
+                for object in (delCand)! {
+                    context.delete(object)
+                }
+                print("removed thermo from Scene and SceneSettings")
             }
             else{
                 thermos?[indexPath.row].addToPartOfScenes(aScene!)
@@ -160,7 +171,17 @@ class NewSceneController: UITableViewController, UITextFieldDelegate {
             if(tableView.cellForRow(at: indexPath)?.accessoryType == UITableViewCellAccessoryType.checkmark){
                 switches?[indexPath.row].removeFromPartOfScenes(aScene!)
                 tableView.cellForRow(at: indexPath)?.accessoryType = UITableViewCellAccessoryType.none
-                print("removed switch from Scene")
+                print("removed switch from Scene and SceneSettings")
+                
+                let toDelReq: NSFetchRequest<SceneSwitchSetting> = SceneSwitchSetting.fetchRequest()
+                toDelReq.predicate = NSPredicate(format: "scene == %@ AND switchDevice == %@", aScene!.objectID, switches![indexPath.row].objectID)
+                let delCand = try? context.fetch(toDelReq)
+                
+                for object in (delCand)! {
+                    context.delete(object)
+                }
+                
+                
             }
             else{
                 switches?[indexPath.row].addToPartOfScenes(aScene!)

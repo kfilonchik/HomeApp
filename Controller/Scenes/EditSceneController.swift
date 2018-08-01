@@ -25,7 +25,9 @@ class EditSceneController: UITableViewController {
     //let sceneReq: NSFetchRequest<Scene> = Scene.fetchRequest()
     
     var switches: [SwitchDevice]?
+    var switchesFilter: [SwitchDevice] = []
     var thermos: [Thermostat]?
+    var thermosFilter: [Thermostat] = []
     var scenSetThermos: [SceneThermostatSetting]?
     var scenSetSwitches: [SceneSwitchSetting]?
     
@@ -50,17 +52,41 @@ class EditSceneController: UITableViewController {
     }
     
     func refreshData(){
+
         switches = try? context.fetch(switchReq)
         thermos = try? context.fetch(thermoReq)
+        
+        switchesFilter.removeAll()
+        thermosFilter.removeAll()
+        
+        for aSwitch in switches!{
+            if(aSwitch.partOfScenes?.contains(receivedScene!) == true){
+                switchesFilter.append(aSwitch)
+            }
+        }
+        
+        for aThermo in thermos!{
+            if(aThermo.partOfScenes?.contains(receivedScene!) == true){
+                thermosFilter.append(aThermo)
+            }
+        }
+        
+        
+        //To test if works
+        scenSetThermosReq.predicate = NSPredicate(format: "scene == %@", (receivedScene?.objectID)!)
+        scenSetSwitchesReq.predicate = NSPredicate(format: "scene == %@", (receivedScene?.objectID)!)
+     
         scenSetThermos = try? context.fetch(scenSetThermosReq)
         scenSetSwitches = try? context.fetch(scenSetSwitchesReq)
+        
+
+        
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
 
     }
-    // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 3
@@ -97,6 +123,7 @@ class EditSceneController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         theTableView = tableView
         let aCell = tableView.dequeueReusableCell(withIdentifier: "switchScene", for: indexPath) as! EditSceneCellController
+        refreshData()
         switch indexPath.section {
         case 0:
              let aCell = tableView.dequeueReusableCell(withIdentifier: "titleOfScene", for: indexPath) as! EditSceneCellController
@@ -105,11 +132,11 @@ class EditSceneController: UITableViewController {
             return aCell
         case 1:
             let aCell = tableView.dequeueReusableCell(withIdentifier: "termostatScene", for: indexPath) as! EditSceneCellController
-            aCell.titleThermostat.text = thermos![indexPath.row].title
+            aCell.titleThermostat.text = thermosFilter[indexPath.row].title
             var targetTemp = "not yet set"
             //get target Temp of
             for aThermoTarget in scenSetThermos!{
-                if(aThermoTarget.thermostat == thermos![indexPath.row]){
+                if(aThermoTarget.thermostat == thermosFilter[indexPath.row]){
                     targetTemp = temperatureCalculationForGUI(aThermoTarget.target_temp)
                 }
             }
@@ -120,8 +147,32 @@ class EditSceneController: UITableViewController {
         case 2:
             print("in case 2 render cells")
             let aCell = tableView.dequeueReusableCell(withIdentifier: "switchScene", for: indexPath) as! EditSceneCellController
-            aCell.titleSwitch.text = "Switch1"
-            aCell.switchButton.isOn = false
+            aCell.titleSwitch.text = switchesFilter[indexPath.row].title
+            
+            var swState = false
+            for aSwitchTarget in scenSetSwitches!{
+                if(aSwitchTarget.switchDevice == switchesFilter[indexPath.row]){
+                   swState = !aSwitchTarget.state
+                }
+            }
+            print(swState)
+            
+            aCell.switchButton.isOn = swState
+            aCell.switchButton.isUserInteractionEnabled = false
+            
+            if((scenSetSwitches?.count)! == 0){
+                
+                let aScenSetSwitch = SceneSwitchSetting(context: context)
+                aScenSetSwitch.switchDevice = switchesFilter[indexPath.row]
+                aScenSetSwitch.scene = receivedScene!
+                aScenSetSwitch.state = true
+                do{try context.save()} catch {print(error)}
+                theTableView?.reloadData()
+                print("Tupel noch nicht vorhanden, erstellt")
+                
+            }
+            
+            
             return aCell
         
         default:
@@ -134,6 +185,7 @@ class EditSceneController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "editTemperature" {
             let editTemperatureViewController = segue.destination as? FaderViewController
+            //daten für FaderViewController hierher
         }
         else if segue.identifier == "editDevices" {
             let EditDevicesSceneViewController = segue.destination as? NewSceneController
@@ -146,8 +198,43 @@ class EditSceneController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == 0 {
-            let aCell = tableView.dequeueReusableCell(withIdentifier: "titleOfScene") as! EditSceneCellController
-            aCell.titleOfScene.text = self.title
+            /*let aCell = tableView.dequeueReusableCell(withIdentifier: "titleOfScene") as! EditSceneCellController
+            aCell.titleOfScene.text = self.title */
+        }
+        else if (indexPath.section == 1){
+            print("in select row setion 1")
+        }
+        else if (indexPath.section == 2){
+            //add to scene settings if not available, alternate else
+            /*let aCell = tableView.dequeueReusableCell(withIdentifier: "switchScene") as! EditSceneCellController
+            
+            tableView.cellForRow(at: indexPath)?.*/
+            print("in select row setion 2")
+            scenSetSwitchesReq.predicate = NSPredicate(format: "scene == %@ AND switchDevice == %@", (receivedScene?.objectID)!, (switchesFilter[indexPath.row].objectID))
+            scenSetSwitches = try? context.fetch(scenSetSwitchesReq)
+            
+            print(receivedScene!.title)
+            for ss in scenSetSwitches!{
+                print(ss.scene?.title)
+                print(ss.switchDevice?.title)
+                print(ss.state)
+            }
+
+            
+            if((scenSetSwitches?.count)! > 0 && (   scenSetSwitches?[0].scene == receivedScene!    )){
+                print("Tupel vorhanden")
+                scenSetSwitches![0].state = !scenSetSwitches![0].state
+                do{try context.save()} catch {print(error)}
+                theTableView?.reloadData()
+            }
+            
+            else{
+                print("komisch anzahl Items")
+                print(self.scenSetSwitches?.count)
+            }
+            //aCell.switchButton.isOn = true
+            
+            
         }
     }
     

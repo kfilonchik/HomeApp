@@ -79,6 +79,7 @@ class FaderViewController: UIViewController {
             panRecognizer.setTranslation(CGPoint(x:0,y:0), in: faderView)
             faderValue = faderView?.faderValue
             doChangeAfterFingerUp(targetTemp: Float(faderValue!))
+            print("in case ended")
         default:
             break
         }

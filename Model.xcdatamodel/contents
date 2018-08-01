@@ -36,13 +36,13 @@
     </entity>
     <entity name="SceneSwitchSetting" representedClassName=".SceneSwitchSetting" syncable="YES" codeGenerationType="class">
         <attribute name="state" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
-        <relationship name="scene" maxCount="1" deletionRule="Cascade" destinationEntity="Scene" syncable="YES"/>
-        <relationship name="switchDevice" maxCount="1" deletionRule="Cascade" destinationEntity="SwitchDevice" syncable="YES"/>
+        <relationship name="scene" maxCount="1" deletionRule="Nullify" destinationEntity="Scene" syncable="YES"/>
+        <relationship name="switchDevice" maxCount="1" deletionRule="Nullify" destinationEntity="SwitchDevice" syncable="YES"/>
     </entity>
     <entity name="SceneThermostatSetting" representedClassName=".SceneThermostatSetting" syncable="YES" codeGenerationType="class">
         <attribute name="target_temp" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
-        <relationship name="scene" maxCount="1" deletionRule="Cascade" destinationEntity="Scene" syncable="YES"/>
-        <relationship name="thermostat" maxCount="1" deletionRule="Cascade" destinationEntity="Thermostat" syncable="YES"/>
+        <relationship name="scene" maxCount="1" deletionRule="Nullify" destinationEntity="Scene" syncable="YES"/>
+        <relationship name="thermostat" maxCount="1" deletionRule="Nullify" destinationEntity="Thermostat" syncable="YES"/>
     </entity>
     <entity name="SwitchDevice" representedClassName=".SwitchDevice" parentEntity="Device" syncable="YES" codeGenerationType="class">
         <attribute name="state" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>

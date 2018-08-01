@@ -191,8 +191,10 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         
         //store drap and drop
         if(start + end == 1){
-            dashboardTiles![start].order = Int16(end)
-            dashboardTiles![end].order   = Int16(start)
+            if((dashboardTiles?.count)! > 1){
+                dashboardTiles![start].order = Int16(end)
+                dashboardTiles![end].order   = Int16(start)
+            }
         }
         
         else if(start != noOfTiles && end != noOfTiles){ //+ cell is not moveable
