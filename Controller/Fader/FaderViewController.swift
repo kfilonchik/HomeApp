@@ -112,6 +112,7 @@ class FaderViewController: UIViewController {
     
     func doChangeAfterFingerUp(targetTemp: Float){
         //print(targetTemp)
+        
         if(aThermoGroup != nil){
             //print("it is a group")
             let thermostats = aThermoGroup?.thermostats
@@ -122,11 +123,13 @@ class FaderViewController: UIViewController {
             }
             aThermoGroup?.target_temp = calculateTemperature(faderValue!)
         }
-        if(aThermostat != nil){
+        else if(aThermostat != nil){
             //print("it is a thermostat")
             aThermostat?.target_temp = calculateTemperature(faderValue!)
             aThermostat?.lasteChangeByAllDevRec = false
-            
+        }
+        else if(aThermoSceneSetting != nil){
+            aThermoSceneSetting?.target_temp = calculateTemperature(faderValue!)
         }
         
         do{ // persist data
