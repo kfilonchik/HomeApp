@@ -31,6 +31,9 @@ class EditSceneController: UITableViewController {
     var scenSetThermos: [SceneThermostatSetting]?
     var scenSetSwitches: [SceneSwitchSetting]?
     
+    var thermosSceneSetToTransfer: SceneThermostatSetting?
+    var editTemperatureViewController: FaderViewController?
+    
     @IBAction func goToMainPage(_ sender: UIBarButtonItem) {
          self.dismiss(animated: true, completion: nil)
     }
@@ -40,7 +43,6 @@ class EditSceneController: UITableViewController {
         self.title = receivedScene?.title
         viewControllerTitle = receivedScene?.title
         super.viewDidLoad()
-        
         self.navigationItem.hidesBackButton = true
     }
 
@@ -71,8 +73,6 @@ class EditSceneController: UITableViewController {
             }
         }
         
-        
-        //To test if works
         scenSetThermosReq.predicate = NSPredicate(format: "scene == %@", (receivedScene?.objectID)!)
         scenSetSwitchesReq.predicate = NSPredicate(format: "scene == %@", (receivedScene?.objectID)!)
      
@@ -142,6 +142,21 @@ class EditSceneController: UITableViewController {
             }
             
             aCell.actualTemp.text = targetTemp
+            
+            scenSetThermosReq.predicate = NSPredicate(format: "scene == %@ AND thermostat == %@", (receivedScene?.objectID)!, (thermosFilter[indexPath.row].objectID))
+            scenSetThermos = try? context.fetch(scenSetThermosReq)
+            
+            if((scenSetThermos?.count)! == 0){
+                
+                let aScenSetThermo = SceneThermostatSetting(context: context)
+                aScenSetThermo.thermostat = thermosFilter[indexPath.row]
+                aScenSetThermo.scene = receivedScene!
+                aScenSetThermo.target_temp = 22
+                do{try context.save()} catch {print(error)}
+                theTableView?.reloadData()
+                print("Thermo Scene Setting Tupel noch nicht vorhanden, erstellt")
+                
+            }
             return aCell
             
         case 2:
@@ -171,8 +186,6 @@ class EditSceneController: UITableViewController {
                 print("Tupel noch nicht vorhanden, erstellt")
                 
             }
-            
-            
             return aCell
         
         default:
@@ -184,8 +197,12 @@ class EditSceneController: UITableViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "editTemperature" {
-            let editTemperatureViewController = segue.destination as? FaderViewController
-            //daten für FaderViewController hierher
+            editTemperatureViewController = segue.destination as? FaderViewController
+            if let svc = editTemperatureViewController {
+                svc.aThermoSceneSetting = thermosSceneSetToTransfer
+                
+                print("im Segue")
+            }
         }
         else if segue.identifier == "editDevices" {
             let EditDevicesSceneViewController = segue.destination as? NewSceneController
@@ -198,27 +215,22 @@ class EditSceneController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == 0 {
-            /*let aCell = tableView.dequeueReusableCell(withIdentifier: "titleOfScene") as! EditSceneCellController
-            aCell.titleOfScene.text = self.title */
         }
         else if (indexPath.section == 1){
             print("in select row setion 1")
+            
+            scenSetThermosReq.predicate = NSPredicate(format: "scene == %@ AND thermostat == %@", (receivedScene?.objectID)!, (thermosFilter[indexPath.row].objectID))
+            scenSetThermos = try? context.fetch(scenSetThermosReq)
+            editTemperatureViewController?.aThermoSceneSetting = scenSetThermos?[0]
+            
+            
         }
         else if (indexPath.section == 2){
             //add to scene settings if not available, alternate else
-            /*let aCell = tableView.dequeueReusableCell(withIdentifier: "switchScene") as! EditSceneCellController
-            
-            tableView.cellForRow(at: indexPath)?.*/
+
             print("in select row setion 2")
             scenSetSwitchesReq.predicate = NSPredicate(format: "scene == %@ AND switchDevice == %@", (receivedScene?.objectID)!, (switchesFilter[indexPath.row].objectID))
             scenSetSwitches = try? context.fetch(scenSetSwitchesReq)
-            
-            print(receivedScene!.title)
-            for ss in scenSetSwitches!{
-                print(ss.scene?.title)
-                print(ss.switchDevice?.title)
-                print(ss.state)
-            }
 
             
             if((scenSetSwitches?.count)! > 0 && (   scenSetSwitches?[0].scene == receivedScene!    )){
@@ -230,11 +242,7 @@ class EditSceneController: UITableViewController {
             
             else{
                 print("komisch anzahl Items")
-                print(self.scenSetSwitches?.count)
             }
-            //aCell.switchButton.isOn = true
-            
-            
         }
     }
     

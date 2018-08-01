@@ -40,7 +40,7 @@
         <relationship name="switchDevice" maxCount="1" deletionRule="Nullify" destinationEntity="SwitchDevice" syncable="YES"/>
     </entity>
     <entity name="SceneThermostatSetting" representedClassName=".SceneThermostatSetting" syncable="YES" codeGenerationType="class">
-        <attribute name="target_temp" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="target_temp" attributeType="Float" defaultValueString="22" usesScalarValueType="YES" syncable="YES"/>
         <relationship name="scene" maxCount="1" deletionRule="Nullify" destinationEntity="Scene" syncable="YES"/>
         <relationship name="thermostat" maxCount="1" deletionRule="Nullify" destinationEntity="Thermostat" syncable="YES"/>
     </entity>
@@ -63,7 +63,7 @@
         <relationship name="thermostats" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Thermostat" inverseName="partOfGroups" inverseEntity="Thermostat" syncable="YES"/>
     </entity>
     <elements>
-        <element name="AppSettings" positionX="-9468" positionY="-837" width="128" height="88"/>
+        <element name="AppSettings" positionX="-9767" positionY="-864" width="128" height="88"/>
         <element name="DashboardTile" positionX="-10053" positionY="-918" width="128" height="88"/>
         <element name="Device" positionX="-10127" positionY="-736" width="128" height="88"/>
         <element name="Scene" positionX="-10026" positionY="-598" width="128" height="73"/>

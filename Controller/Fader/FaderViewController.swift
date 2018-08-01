@@ -17,6 +17,15 @@ class FaderViewController: UIViewController {
     var scale: CGFloat? {didSet {updateUI()}}
     var aThermoGroup: ThermostatGroup?
     var aThermostat: Thermostat?
+    var aThermoSceneSetting: SceneThermostatSetting? {
+        didSet{
+            if(aThermoSceneSetting != nil){
+                faderValue = calculateFaderValue((aThermoSceneSetting?.target_temp)!)
+                
+            }
+        }
+    }
+    
     var controlledEntity: DashboardTile? {
         didSet{
             aThermostat = controlledEntity as? Thermostat
@@ -42,6 +51,9 @@ class FaderViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         entityTitle.text = controlledEntity?.title
+        if(aThermoSceneSetting != nil){
+            entityTitle.text = aThermoSceneSetting?.thermostat?.title
+        }
     }
     
     @IBOutlet weak var faderView: FaderView!{
