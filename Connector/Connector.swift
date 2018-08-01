@@ -58,6 +58,7 @@ class Connector:NSObject {
         aSessionManager.requestSID(userName: userName!, passWord: passWord!, fritzID: fritzID!, baseURL: baseURL, caller: self)
         
     }
+    
     func starOperatorObject(){
         anOperation.setOperationReady(userName: userName!, passWord: passWord!, fritzID: fritzID!, baseURL: baseURL, delegate: self)
     }

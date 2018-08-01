@@ -170,7 +170,6 @@ class EditSceneController: UITableViewController {
                    swState = !aSwitchTarget.state
                 }
             }
-            print(swState)
             
             aCell.switchButton.isOn = swState
             aCell.switchButton.isUserInteractionEnabled = false

@@ -28,6 +28,15 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     var faderDestination: DashboardTile?
     var nextOrder: Int16 = 0
     var check: Bool = false
+    
+    override func viewWillAppear(_ animated: Bool) {
+        print("in View Will apper ViewController")
+        dashboardTiles = try? context.fetch(dashboardTilesRequest)
+        if theCollectionView != nil{
+            self.theCollectionView!.reloadData()
+        }
+        aConnector.startUpFromGUI()
+    }
 
     override func viewDidLoad() {
         print("in did load view controller")
@@ -61,14 +70,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         collectionView.addGestureRecognizer(longPressGesture)
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        print("in View Will apper ViewController")
-        dashboardTiles = try? context.fetch(dashboardTilesRequest)
-        if theCollectionView != nil{
-            self.theCollectionView!.reloadData()
-        }
-        aConnector.startUpFromGUI()
-    }
+
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         theCollectionView = collectionView
@@ -139,9 +141,8 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
             
             var aCell = collectionView.dequeueReusableCell(withReuseIdentifier: "uiSwitchGroup", for: indexPath as IndexPath) as! CollectionCellViewController
             
-            
             aCell.uiSwitchGroup.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
-            
+
             
             /*
             if aSwitch?.partOfGroups == nil {
@@ -152,8 +153,25 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
             
             aCell = cellDesigner(aCell)
             aCell.titleSwitchGroup.text = aSwitchGroup?.title
-            aCell.labelTop.text = "-1"
-            aCell.labelBottom.text = "-1"
+            
+            var ons = 0
+            var offs = 0
+            
+            for aSwitch in (aSwitchGroup?.switches)!{
+                let pars = aSwitch as! SwitchDevice
+                if pars.state == false{
+                    offs += 1
+                }
+                else{
+                    ons += 1
+                }
+            }
+            if(offs == 0){
+                
+            }
+            
+            aCell.labelTop.text = String(ons)
+            aCell.labelBottom.text = String(offs)
             aCell.delegate = self
             aCell.connectedEntity = aSwitchGroup
             
