@@ -27,12 +27,16 @@ class SceneTableViewController: UITableViewController {
         
         tableView.register(UINib(nibName: "SceneCell", bundle: nil), forCellReuseIdentifier: "SceneCell")
         //self.navigationItem.rightBarButtonItem = self.editButtonItem
+       
     }
     
     override func viewWillAppear(_ animated: Bool) {
         print("in SceneTableViewController will appear")
         refreshData()
+        
         self.title = aSceneForTransfer?.title
+        self.navigationItem.title = "Scenes"
+        self.tabBarController?.cleanTitles()
         theTableView?.reloadData()
     }
     
@@ -155,4 +159,15 @@ class SceneTableViewController: UITableViewController {
 
 }
 
+extension UITabBarController {
+    func cleanTitles() {
+        guard let items = self.tabBar.items else {
+            return
+        }
+        for item in items {
+            item.title = ""
+            //item.imageInsets = UIEdgeInsetsMake(6, 0, -6, 0)
+        }
+    }
+}
 
