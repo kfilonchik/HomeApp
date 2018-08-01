@@ -30,7 +30,7 @@ class NewSceneController: UITableViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         print("in NewSceneController")
         super.viewDidLoad()
-        self.title = screenTitle
+        //self.title = screenTitle
         
         if(aScene == nil){
             aScene = Scene(context: context)
@@ -180,8 +180,6 @@ class NewSceneController: UITableViewController, UITextFieldDelegate {
                 for object in (delCand)! {
                     context.delete(object)
                 }
-                
-                
             }
             else{
                 switches?[indexPath.row].addToPartOfScenes(aScene!)
