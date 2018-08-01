@@ -13,9 +13,6 @@ import CoreData
 class SettingsTableViewController: UITableViewController {
    
     var cellName = ["test"]
-
-  
-  
     
     override func viewDidLoad() {
         super.viewDidLoad()

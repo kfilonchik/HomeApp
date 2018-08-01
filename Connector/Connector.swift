@@ -24,6 +24,16 @@ class Connector:NSObject {
     var deviceList: [[String : String]]?
     var uiDelegate: LabelDelegate?
     var retry_counter = 0
+    var allreadyConnected = 0
+    
+    func startUpFromGUI(){
+        print("inStrup from gui")
+        if allreadyConnected < 2{
+            startUpConnector()
+            print(allreadyConnected)
+            allreadyConnected += 1
+        }
+    }
     
     func startUpConnector(){
         let context = AppDelegate.viewContext
