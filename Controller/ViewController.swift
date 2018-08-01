@@ -27,7 +27,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     var theCollectionView: UICollectionView?
     var faderDestination: DashboardTile?
     var nextOrder: Int16 = 0
-    var check: Bool = false
+    var redo: Bool = false
     
     override func viewWillAppear(_ animated: Bool) {
         print("in View Will apper ViewController")
@@ -35,14 +35,21 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         if theCollectionView != nil{
             self.theCollectionView!.reloadData()
         }
-        aConnector.startUpFromGUI()
+        
+        let fetchRequest: NSFetchRequest<AppSettings> = AppSettings.fetchRequest()
+        let result = try? context.fetch(fetchRequest)
+        if((result?.count)! == 1 && redo == false){
+            aConnector.startUpFromGUI()
+            redo = true
+        }
+        
     }
 
     override func viewDidLoad() {
         print("in did load view controller")
         super.viewDidLoad()
         
-        let context = AppDelegate.viewContext
+        //let context = AppDelegate.viewContext
         let fetchRequest: NSFetchRequest<AppSettings> = AppSettings.fetchRequest()
         let result = try? context.fetch(fetchRequest)
         
@@ -52,7 +59,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         }
         else if ((result?.count)! == 1){
             print("regular startup with settings")
-            aConnector.startUpConnector()
+            //aConnector.startUpConnector()
         }
         
         let itemSize = UIScreen.main.bounds.width / 2 - 20
