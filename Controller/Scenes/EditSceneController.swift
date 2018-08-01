@@ -122,6 +122,7 @@ class EditSceneController: UITableViewController {
             let aCell = tableView.dequeueReusableCell(withIdentifier: "switchScene", for: indexPath) as! EditSceneCellController
             aCell.titleSwitch.text = "Switch1"
             aCell.switchButton.isOn = false
+            return aCell
         
         default:
             print("default in override func tableView")
