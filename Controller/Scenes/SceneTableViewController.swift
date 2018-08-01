@@ -27,11 +27,13 @@ class SceneTableViewController: UITableViewController {
         
         tableView.register(UINib(nibName: "SceneCell", bundle: nil), forCellReuseIdentifier: "SceneCell")
         //self.navigationItem.rightBarButtonItem = self.editButtonItem
+       
     }
     
     override func viewWillAppear(_ animated: Bool) {
         print("in SceneTableViewController will appear")
         refreshData()
+        
         self.title = aSceneForTransfer?.title
         theTableView?.reloadData()
     }
