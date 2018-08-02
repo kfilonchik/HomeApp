@@ -167,7 +167,7 @@ class EditSceneController: UITableViewController {
             var swState = false
             for aSwitchTarget in scenSetSwitches!{
                 if(aSwitchTarget.switchDevice == switchesFilter[indexPath.row]){
-                   swState = !aSwitchTarget.state
+                   swState = aSwitchTarget.state
                 }
             }
             
@@ -182,7 +182,7 @@ class EditSceneController: UITableViewController {
                 let aScenSetSwitch = SceneSwitchSetting(context: context)
                 aScenSetSwitch.switchDevice = switchesFilter[indexPath.row]
                 aScenSetSwitch.scene = receivedScene!
-                aScenSetSwitch.state = true
+                aScenSetSwitch.state = false
                 do{try context.save()} catch {print(error)}
                 theTableView?.reloadData()
                 print("Tupel noch nicht vorhanden, erstellt")
@@ -237,7 +237,13 @@ class EditSceneController: UITableViewController {
             
             if((scenSetSwitches?.count)! > 0 ){
                 print("Tupel vorhanden")
-                scenSetSwitches![0].state = !scenSetSwitches![0].state
+                if scenSetSwitches![0].state == false{
+                    scenSetSwitches![0].state = true
+                }
+                else if scenSetSwitches![0].state == true{
+                    scenSetSwitches![0].state = false
+                }
+                //scenSetSwitches![0].state = !scenSetSwitches![0].state
                 do{try context.save()} catch {print(error)}
                 theTableView?.reloadData()
             }
