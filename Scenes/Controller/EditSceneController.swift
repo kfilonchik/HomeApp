@@ -22,7 +22,6 @@ class EditSceneController: UITableViewController {
     let thermoReq: NSFetchRequest<Thermostat> = Thermostat.fetchRequest()
     let scenSetThermosReq: NSFetchRequest<SceneThermostatSetting> = SceneThermostatSetting.fetchRequest()
     let scenSetSwitchesReq: NSFetchRequest<SceneSwitchSetting> = SceneSwitchSetting.fetchRequest()
-    //let sceneReq: NSFetchRequest<Scene> = Scene.fetchRequest()
     
     var switches: [SwitchDevice]?
     var switchesFilter: [SwitchDevice] = []

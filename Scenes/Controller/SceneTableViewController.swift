@@ -26,7 +26,6 @@ class SceneTableViewController: UITableViewController {
         refreshData()
         
         tableView.register(UINib(nibName: "SceneCell", bundle: nil), forCellReuseIdentifier: "SceneCell")
-        //self.navigationItem.rightBarButtonItem = self.editButtonItem
        
     }
     
@@ -166,7 +165,6 @@ extension UITabBarController {
         }
         for item in items {
             item.title = ""
-            //item.imageInsets = UIEdgeInsetsMake(6, 0, -6, 0)
         }
     }
 }

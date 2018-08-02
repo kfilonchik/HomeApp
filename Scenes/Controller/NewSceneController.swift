@@ -30,7 +30,6 @@ class NewSceneController: UITableViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         print("in NewSceneController")
         super.viewDidLoad()
-        //self.title = screenTitle
         
         if(aScene == nil){
             aScene = Scene(context: context)

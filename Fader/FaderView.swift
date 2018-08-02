@@ -81,10 +81,8 @@ class FaderView: UIView
     
     override func draw(_ rect: CGRect)
     {
-        //UIColor.green.setFill()
         UIColor.cyan.set()
         let theFaderValue = pathForTempInFader()
-        //theFaderValue.stroke()
         theFaderValue.fill()
         
         

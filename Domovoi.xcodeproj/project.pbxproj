@@ -18,6 +18,10 @@
 		04121A63210141B30043623A /* NewGroupController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04121A62210141B30043623A /* NewGroupController.swift */; };
 		04121A6821014C0F0043623A /* FaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04121A6721014C0F0043623A /* FaderView.swift */; };
 		04121A6C21014C770043623A /* FaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04121A6B21014C770043623A /* FaderViewController.swift */; };
+		041CFD402113388100D2ECEF /* SignUpPage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 041CFD3E2113388100D2ECEF /* SignUpPage.storyboard */; };
+		041CFD442113391D00D2ECEF /* SettingsPage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 041CFD432113391D00D2ECEF /* SettingsPage.storyboard */; };
+		041CFD4921133A1700D2ECEF /* ScenesPage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 041CFD4721133A1700D2ECEF /* ScenesPage.storyboard */; };
+		041CFD4D21133AD100D2ECEF /* GroupsPage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 041CFD4C21133AD100D2ECEF /* GroupsPage.storyboard */; };
 		04332CC520B816D000274E48 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04332CC420B816D000274E48 /* AppDelegate.swift */; };
 		04332CC720B816D000274E48 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04332CC620B816D000274E48 /* ViewController.swift */; };
 		04332CCF20B816D300274E48 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04332CCE20B816D300274E48 /* Assets.xcassets */; };
@@ -27,7 +31,6 @@
 		046A9A622107DF1500534B83 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 046A9A602107DF1500534B83 /* Main.storyboard */; };
 		0473BB71210E2D57001A4CB9 /* EditSceneController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0473BB70210E2D57001A4CB9 /* EditSceneController.swift */; };
 		0473BB73210E3573001A4CB9 /* EditSceneCellController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0473BB72210E3573001A4CB9 /* EditSceneCellController.swift */; };
-		04928F7320BFE4E1008A7978 /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04928F7220BFE4E1008A7978 /* DetailsViewController.swift */; };
 		04928F7D20C02EE2008A7978 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04928F7C20C02EE2008A7978 /* SettingsTableViewController.swift */; };
 		04991ECA20D42A8700667C1A /* SignUpController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04991EC920D42A8700667C1A /* SignUpController.swift */; };
 		04BF020120D3F1290094866E /* CollectionCellViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BF020020D3F1290094866E /* CollectionCellViewController.swift */; };
@@ -57,6 +60,10 @@
 		04121A62210141B30043623A /* NewGroupController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewGroupController.swift; sourceTree = "<group>"; };
 		04121A6721014C0F0043623A /* FaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaderView.swift; sourceTree = "<group>"; };
 		04121A6B21014C770043623A /* FaderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaderViewController.swift; sourceTree = "<group>"; };
+		041CFD3F2113388100D2ECEF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = View/Base.lproj/SignUpPage.storyboard; sourceTree = "<group>"; };
+		041CFD432113391D00D2ECEF /* SettingsPage.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SettingsPage.storyboard; sourceTree = "<group>"; };
+		041CFD4821133A1700D2ECEF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = View/Base.lproj/ScenesPage.storyboard; sourceTree = "<group>"; };
+		041CFD4C21133AD100D2ECEF /* GroupsPage.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = GroupsPage.storyboard; sourceTree = "<group>"; };
 		04332CC120B816D000274E48 /* Domovoi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Domovoi.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		04332CC420B816D000274E48 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		04332CC620B816D000274E48 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -68,7 +75,6 @@
 		046A9A612107DF1500534B83 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		0473BB70210E2D57001A4CB9 /* EditSceneController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditSceneController.swift; sourceTree = "<group>"; };
 		0473BB72210E3573001A4CB9 /* EditSceneCellController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditSceneCellController.swift; sourceTree = "<group>"; };
-		04928F7220BFE4E1008A7978 /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
 		04928F7C20C02EE2008A7978 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		04991EC920D42A8700667C1A /* SignUpController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpController.swift; sourceTree = "<group>"; };
 		04BF020020D3F1290094866E /* CollectionCellViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionCellViewController.swift; sourceTree = "<group>"; };
@@ -101,9 +107,8 @@
 		04121A482100CF940043623A /* Groupes */ = {
 			isa = PBXGroup;
 			children = (
-				04AC25C02104F4CF00E5E6E5 /* GroupCellView */,
-				04121A4A2100D07D0043623A /* GroupTableViewController.swift */,
-				04121A62210141B30043623A /* NewGroupController.swift */,
+				041CFD4F21133AEC00D2ECEF /* Controller */,
+				041CFD4E21133AE800D2ECEF /* View */,
 			);
 			path = Groupes;
 			sourceTree = "<group>";
@@ -111,11 +116,8 @@
 		04121A492100CFA00043623A /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
-				04AC25BF2104F4C100E5E6E5 /* CellView */,
-				04121A562100FB3E0043623A /* SceneTableViewController.swift */,
-				04121A5E2101112F0043623A /* NewSceneController.swift */,
-				0473BB70210E2D57001A4CB9 /* EditSceneController.swift */,
-				0473BB72210E3573001A4CB9 /* EditSceneCellController.swift */,
+				041CFD4A21133A4F00D2ECEF /* View */,
+				041CFD4B21133A6100D2ECEF /* Controller */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -129,12 +131,111 @@
 			path = Fader;
 			sourceTree = "<group>";
 		};
+		041CFD41211338B000D2ECEF /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				04991EC920D42A8700667C1A /* SignUpController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		041CFD42211338BF00D2ECEF /* View */ = {
+			isa = PBXGroup;
+			children = (
+				041CFD3E2113388100D2ECEF /* SignUpPage.storyboard */,
+				046A9A5C2107D78D00534B83 /* RoundButton.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		041CFD452113393E00D2ECEF /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				044057F9210CC99C0052956D /* FritzBoxConnectionSettings.swift */,
+				04928F7C20C02EE2008A7978 /* SettingsTableViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		041CFD462113394300D2ECEF /* View */ = {
+			isa = PBXGroup;
+			children = (
+				041CFD432113391D00D2ECEF /* SettingsPage.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		041CFD4A21133A4F00D2ECEF /* View */ = {
+			isa = PBXGroup;
+			children = (
+				041CFD4721133A1700D2ECEF /* ScenesPage.storyboard */,
+				04121A542100FB250043623A /* SceneCell.swift */,
+				04121A582100FB5A0043623A /* SceneCell.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		041CFD4B21133A6100D2ECEF /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				04121A562100FB3E0043623A /* SceneTableViewController.swift */,
+				04121A5E2101112F0043623A /* NewSceneController.swift */,
+				0473BB70210E2D57001A4CB9 /* EditSceneController.swift */,
+				0473BB72210E3573001A4CB9 /* EditSceneCellController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		041CFD4E21133AE800D2ECEF /* View */ = {
+			isa = PBXGroup;
+			children = (
+				041CFD4C21133AD100D2ECEF /* GroupsPage.storyboard */,
+				04121A502100DACA0043623A /* GroupTableViewCell.swift */,
+				04121A4E2100D3910043623A /* GroupThermostat.xib */,
+				04121A522100F5B40043623A /* GroupSwitch.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		041CFD4F21133AEC00D2ECEF /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				04121A4A2100D07D0043623A /* GroupTableViewController.swift */,
+				04121A62210141B30043623A /* NewGroupController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		041CFD5021133B7200D2ECEF /* View */ = {
+			isa = PBXGroup;
+			children = (
+				046A9A602107DF1500534B83 /* Main.storyboard */,
+				04332CD020B816D300274E48 /* LaunchScreen.storyboard */,
+				04332CCE20B816D300274E48 /* Assets.xcassets */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		041CFD5121133B7600D2ECEF /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				8948E6C32100BA39001D3F8D /* TileConfigTableViewController.swift */,
+				04BF020020D3F1290094866E /* CollectionCellViewController.swift */,
+				04332CC620B816D000274E48 /* ViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
 		04332CB820B816D000274E48 = {
 			isa = PBXGroup;
 			children = (
 				04CE5E0920DD4D170095A863 /* Connector */,
-				04928F7820C02D2F008A7978 /* View */,
-				04928F7920C02D35008A7978 /* Controller */,
+				04928F7A20C02D92008A7978 /* SettingsPage */,
+				04991ECB20D42A8D00667C1A /* SignUp */,
+				04121A492100CFA00043623A /* Scenes */,
+				04121A482100CF940043623A /* Groupes */,
+				04121A6621014BF40043623A /* Fader */,
+				04928F7B20C02DBF008A7978 /* Dasboard */,
 				894275A520E66EBA00CA3139 /* DevelopmentStuff */,
 				04332CC220B816D000274E48 /* Products */,
 				04CE5E2620DD73DB0095A863 /* Connector-header.h */,
@@ -152,36 +253,11 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		04928F7820C02D2F008A7978 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				046A9A602107DF1500534B83 /* Main.storyboard */,
-				04332CD020B816D300274E48 /* LaunchScreen.storyboard */,
-				04332CCE20B816D300274E48 /* Assets.xcassets */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		04928F7920C02D35008A7978 /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-				04121A6621014BF40043623A /* Fader */,
-				04121A492100CFA00043623A /* Scenes */,
-				04121A482100CF940043623A /* Groupes */,
-				04332CC620B816D000274E48 /* ViewController.swift */,
-				8948E6C32100BA39001D3F8D /* TileConfigTableViewController.swift */,
-				04991ECB20D42A8D00667C1A /* SignUp */,
-				04928F7B20C02DBF008A7978 /* Dasboard */,
-				04928F7A20C02D92008A7978 /* SettingsPage */,
-			);
-			path = Controller;
-			sourceTree = "<group>";
-		};
 		04928F7A20C02D92008A7978 /* SettingsPage */ = {
 			isa = PBXGroup;
 			children = (
-				04928F7C20C02EE2008A7978 /* SettingsTableViewController.swift */,
-				044057F9210CC99C0052956D /* FritzBoxConnectionSettings.swift */,
+				041CFD462113394300D2ECEF /* View */,
+				041CFD452113393E00D2ECEF /* Controller */,
 			);
 			path = SettingsPage;
 			sourceTree = "<group>";
@@ -189,8 +265,8 @@
 		04928F7B20C02DBF008A7978 /* Dasboard */ = {
 			isa = PBXGroup;
 			children = (
-				04928F7220BFE4E1008A7978 /* DetailsViewController.swift */,
-				04BF020020D3F1290094866E /* CollectionCellViewController.swift */,
+				041CFD5021133B7200D2ECEF /* View */,
+				041CFD5121133B7600D2ECEF /* Controller */,
 			);
 			path = Dasboard;
 			sourceTree = "<group>";
@@ -198,29 +274,10 @@
 		04991ECB20D42A8D00667C1A /* SignUp */ = {
 			isa = PBXGroup;
 			children = (
-				04991EC920D42A8700667C1A /* SignUpController.swift */,
-				046A9A5C2107D78D00534B83 /* RoundButton.swift */,
+				041CFD42211338BF00D2ECEF /* View */,
+				041CFD41211338B000D2ECEF /* Controller */,
 			);
 			path = SignUp;
-			sourceTree = "<group>";
-		};
-		04AC25BF2104F4C100E5E6E5 /* CellView */ = {
-			isa = PBXGroup;
-			children = (
-				04121A542100FB250043623A /* SceneCell.swift */,
-				04121A582100FB5A0043623A /* SceneCell.xib */,
-			);
-			path = CellView;
-			sourceTree = "<group>";
-		};
-		04AC25C02104F4CF00E5E6E5 /* GroupCellView */ = {
-			isa = PBXGroup;
-			children = (
-				04121A502100DACA0043623A /* GroupTableViewCell.swift */,
-				04121A4E2100D3910043623A /* GroupThermostat.xib */,
-				04121A522100F5B40043623A /* GroupSwitch.xib */,
-			);
-			path = GroupCellView;
 			sourceTree = "<group>";
 		};
 		04CE5E0920DD4D170095A863 /* Connector */ = {
@@ -314,13 +371,17 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				041CFD4D21133AD100D2ECEF /* GroupsPage.storyboard in Resources */,
 				046A9A622107DF1500534B83 /* Main.storyboard in Resources */,
 				04332CD220B816D300274E48 /* LaunchScreen.storyboard in Resources */,
 				8948360120FA7EB6001BF3A0 /* Default-568h@2x.png in Resources */,
 				04332CCF20B816D300274E48 /* Assets.xcassets in Resources */,
 				04121A4F2100D3910043623A /* GroupThermostat.xib in Resources */,
 				04121A592100FB5A0043623A /* SceneCell.xib in Resources */,
+				041CFD4921133A1700D2ECEF /* ScenesPage.storyboard in Resources */,
+				041CFD442113391D00D2ECEF /* SettingsPage.storyboard in Resources */,
 				04121A532100F5B40043623A /* GroupSwitch.xib in Resources */,
+				041CFD402113388100D2ECEF /* SignUpPage.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -350,7 +411,6 @@
 				894275A720E66F0600CA3139 /* ManageDB.swift in Sources */,
 				04CE5E0B20DD4F060095A863 /* Connector.swift in Sources */,
 				044057FA210CC99C0052956D /* FritzBoxConnectionSettings.swift in Sources */,
-				04928F7320BFE4E1008A7978 /* DetailsViewController.swift in Sources */,
 				04121A5F2101112F0043623A /* NewSceneController.swift in Sources */,
 				04CE5E1520DD4F730095A863 /* AllDevicesReceiver.swift in Sources */,
 				04121A572100FB3E0043623A /* SceneTableViewController.swift in Sources */,
@@ -366,6 +426,22 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		041CFD3E2113388100D2ECEF /* SignUpPage.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				041CFD3F2113388100D2ECEF /* Base */,
+			);
+			name = SignUpPage.storyboard;
+			sourceTree = "<group>";
+		};
+		041CFD4721133A1700D2ECEF /* ScenesPage.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				041CFD4821133A1700D2ECEF /* Base */,
+			);
+			name = ScenesPage.storyboard;
+			sourceTree = "<group>";
+		};
 		04332CD020B816D300274E48 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -512,7 +588,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = mathis.domovoi;
+				PRODUCT_BUNDLE_IDENTIFIER = kfilonchik.domovoi;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Connector-header.h";
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "Connector-header.h";
@@ -535,7 +611,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = mathis.domovoi;
+				PRODUCT_BUNDLE_IDENTIFIER = kfilonchik.domovoi;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Connector-header.h";
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "Connector-header.h";
