@@ -104,13 +104,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		04121A482100CF940043623A /* Groupes */ = {
+		04121A482100CF940043623A /* Groups */ = {
 			isa = PBXGroup;
 			children = (
 				041CFD4F21133AEC00D2ECEF /* Controller */,
 				041CFD4E21133AE800D2ECEF /* View */,
 			);
-			path = Groupes;
+			path = Groups;
 			sourceTree = "<group>";
 		};
 		04121A492100CFA00043623A /* Scenes */ = {
@@ -233,7 +233,7 @@
 				04928F7A20C02D92008A7978 /* SettingsPage */,
 				04991ECB20D42A8D00667C1A /* SignUp */,
 				04121A492100CFA00043623A /* Scenes */,
-				04121A482100CF940043623A /* Groupes */,
+				04121A482100CF940043623A /* Groups */,
 				04121A6621014BF40043623A /* Fader */,
 				04928F7B20C02DBF008A7978 /* Dasboard */,
 				894275A520E66EBA00CA3139 /* DevelopmentStuff */,
