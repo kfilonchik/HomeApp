@@ -21,12 +21,12 @@
 		041CFD402113388100D2ECEF /* SignUpPage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 041CFD3E2113388100D2ECEF /* SignUpPage.storyboard */; };
 		041CFD442113391D00D2ECEF /* SettingsPage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 041CFD432113391D00D2ECEF /* SettingsPage.storyboard */; };
 		041CFD4921133A1700D2ECEF /* ScenesPage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 041CFD4721133A1700D2ECEF /* ScenesPage.storyboard */; };
-		041CFD4D21133AD100D2ECEF /* GroupsPage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 041CFD4C21133AD100D2ECEF /* GroupsPage.storyboard */; };
 		04332CC520B816D000274E48 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04332CC420B816D000274E48 /* AppDelegate.swift */; };
 		04332CC720B816D000274E48 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04332CC620B816D000274E48 /* ViewController.swift */; };
 		04332CCF20B816D300274E48 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04332CCE20B816D300274E48 /* Assets.xcassets */; };
 		04332CD220B816D300274E48 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04332CD020B816D300274E48 /* LaunchScreen.storyboard */; };
 		044057FA210CC99C0052956D /* FritzBoxConnectionSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044057F9210CC99C0052956D /* FritzBoxConnectionSettings.swift */; };
+		04450A1321134FD400A400F6 /* GroupsPage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04450A1521134FD400A400F6 /* GroupsPage.storyboard */; };
 		046A9A5D2107D78D00534B83 /* RoundButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046A9A5C2107D78D00534B83 /* RoundButton.swift */; };
 		046A9A622107DF1500534B83 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 046A9A602107DF1500534B83 /* Main.storyboard */; };
 		0473BB71210E2D57001A4CB9 /* EditSceneController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0473BB70210E2D57001A4CB9 /* EditSceneController.swift */; };
@@ -63,7 +63,6 @@
 		041CFD3F2113388100D2ECEF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = View/Base.lproj/SignUpPage.storyboard; sourceTree = "<group>"; };
 		041CFD432113391D00D2ECEF /* SettingsPage.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SettingsPage.storyboard; sourceTree = "<group>"; };
 		041CFD4821133A1700D2ECEF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = View/Base.lproj/ScenesPage.storyboard; sourceTree = "<group>"; };
-		041CFD4C21133AD100D2ECEF /* GroupsPage.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = GroupsPage.storyboard; sourceTree = "<group>"; };
 		04332CC120B816D000274E48 /* Domovoi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Domovoi.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		04332CC420B816D000274E48 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		04332CC620B816D000274E48 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -71,6 +70,7 @@
 		04332CD120B816D300274E48 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		04332CD320B816D300274E48 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		044057F9210CC99C0052956D /* FritzBoxConnectionSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FritzBoxConnectionSettings.swift; sourceTree = "<group>"; };
+		04450A1421134FD400A400F6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/GroupsPage.storyboard; sourceTree = "<group>"; };
 		046A9A5C2107D78D00534B83 /* RoundButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundButton.swift; sourceTree = "<group>"; };
 		046A9A612107DF1500534B83 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		0473BB70210E2D57001A4CB9 /* EditSceneController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditSceneController.swift; sourceTree = "<group>"; };
@@ -189,7 +189,7 @@
 		041CFD4E21133AE800D2ECEF /* View */ = {
 			isa = PBXGroup;
 			children = (
-				041CFD4C21133AD100D2ECEF /* GroupsPage.storyboard */,
+				04450A1521134FD400A400F6 /* GroupsPage.storyboard */,
 				04121A502100DACA0043623A /* GroupTableViewCell.swift */,
 				04121A4E2100D3910043623A /* GroupThermostat.xib */,
 				04121A522100F5B40043623A /* GroupSwitch.xib */,
@@ -371,7 +371,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				041CFD4D21133AD100D2ECEF /* GroupsPage.storyboard in Resources */,
+				04450A1321134FD400A400F6 /* GroupsPage.storyboard in Resources */,
 				046A9A622107DF1500534B83 /* Main.storyboard in Resources */,
 				04332CD220B816D300274E48 /* LaunchScreen.storyboard in Resources */,
 				8948360120FA7EB6001BF3A0 /* Default-568h@2x.png in Resources */,
@@ -448,6 +448,14 @@
 				04332CD120B816D300274E48 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		04450A1521134FD400A400F6 /* GroupsPage.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				04450A1421134FD400A400F6 /* Base */,
+			);
+			name = GroupsPage.storyboard;
 			sourceTree = "<group>";
 		};
 		046A9A602107DF1500534B83 /* Main.storyboard */ = {
