@@ -151,32 +151,36 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
             aCell.uiSwitchGroup.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
 
             
-            /*
-            if aSwitch?.partOfGroups == nil {
-                let image = UIImage(named: "x-button")
-                aCell.uiImageOfTileSwitchGroup.image = image
-            }
-            */
-            
             aCell = cellDesigner(aCell)
             aCell.titleSwitchGroup.text = aSwitchGroup?.title
             
             var ons = 0
             var offs = 0
+            let count = aSwitchGroup?.switches?.count
             
             for aSwitch in (aSwitchGroup?.switches)!{
                 let pars = aSwitch as! SwitchDevice
-                if pars.state == false{
-                    offs += 1
-                }
-                else{
-                    ons += 1
-                }
+                if pars.state == false{offs += 1}
+                else{ons += 1}
+            }
+            aCell.uiSwitchGroup.isEnabled = false
+            var image = UIImage(named: "x-button")
+            
+            if(ons == 0){
+                aCell.uiSwitchGroup.isOn = false
             }
             if(offs == 0){
-                
+                aCell.uiSwitchGroup.isOn = true
             }
-            
+            if (offs == count && aSwitchGroup?.state == false){
+                aCell.uiSwitchGroup.isEnabled = true
+                image = UIImage(named: "verification-checkmark-symbol-in-black-circular-button-2")
+            }
+            if (ons == count && aSwitchGroup?.state == true){
+                aCell.uiSwitchGroup.isEnabled = true
+                image = UIImage(named: "verification-checkmark-symbol-in-black-circular-button-2")
+            }
+            aCell.uiImageOfTileSwitchGroup.image = image
             aCell.labelTop.text = String(ons)
             aCell.labelBottom.text = String(offs)
             aCell.delegate = self
@@ -201,10 +205,30 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
             }
             */
             
+            var min:Float = 100
+            var max:Float = 0
+            
+            for aThermo in (aThermoGroup?.thermostats)! {
+                let aThermoC = aThermo as! Thermostat
+                let currTemp = aThermoC.actual_temp
+                if(currTemp > max){
+                    max = currTemp
+                }
+                if(currTemp < min){
+                    min = currTemp
+                }
+            }
+            let target = aThermoGroup?.target_temp
+            if((min >= target! - 1) && (max <= target! + 1)){
+                let image = UIImage(named: "verification-checkmark-symbol-in-black-circular-button-2")
+                aCell.uiImageOfThermostatGroup.image = image
+            }
+            
+            
             aCell.titleThermoGroup.text = aThermoGroup?.title
-            aCell.targetTempThermoGroup.text = "-1"
-            aCell.thermosOnTarget.text = temperatureCalculationForGUI(aThermoGroup!.target_temp)
-            aCell.thermosNotOnTarget.text = "-1"
+            aCell.targetTempThermoGroup.text = temperatureCalculationForGUI(aThermoGroup!.target_temp)
+            aCell.thermosOnTarget.text = temperatureCalculationForGUI(min)
+            aCell.thermosNotOnTarget.text = temperatureCalculationForGUI(max)
             aCell.delegate = self
             aCell.connectedEntity = aThermoGroup
             return aCell
@@ -214,23 +238,52 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
             
             aCell = cellDesigner(aCell)
             
-            //Condition of activating switches. If switch part of scene, then
             
-            if aScene?.switchDevices != nil {
-                aCell.uiSwitchOfScene.isEnabled = true
-                aCell.uiStatusOfScene.backgroundColor = UIColor.orange
-                aCell.uiStatusOfScene.layer.cornerRadius = 8.0
+            aCell.uiSwitchOfScene.isEnabled = false
+            aCell.uiStatusOfScene.backgroundColor = UIColor.orange
+            aCell.uiStatusOfScene.layer.cornerRadius = 8.0
             
+            var swChecker = true
+            var thChecker = true
+            
+            //Check all Switches
+            for aSwitch in (aScene?.switchDevices)!{
 
-            } else {
-                 aCell.uiSwitchOfScene.isEnabled = false
-                 aCell.uiStatusOfScene.backgroundColor = UIColor.gray
+                let scenSetSwitchesReq: NSFetchRequest<SceneSwitchSetting> = SceneSwitchSetting.fetchRequest()
+                scenSetSwitchesReq.predicate = NSPredicate(format: "scene == %@ AND switchDevice == %@", (aScene?.objectID)!, ((aSwitch as AnyObject).objectID)!)
+                let scenSetSwitches = try? context.fetch(scenSetSwitchesReq)
+
+                if(scenSetSwitches![0].state != (aSwitch as AnyObject).state){
+                    swChecker = false
+                }
+            }
+            
+            //Check all Thermos
+            for aThermo in (aScene?.thermostats)!{
+                
+                let scenSetThermoReq: NSFetchRequest<SceneThermostatSetting> = SceneThermostatSetting.fetchRequest()
+                scenSetThermoReq.predicate = NSPredicate(format: "scene == %@ AND thermostat == %@", (aScene?.objectID)!, ((aThermo as AnyObject).objectID)!)
+                let scenSetThermos = try? context.fetch(scenSetThermoReq)
+            
+                if(  (scenSetThermos![0].target_temp + 1 <= (aThermo as AnyObject).target_temp)  ||
+                     (scenSetThermos![0].target_temp - 1 >= (aThermo as AnyObject).target_temp)   )
+                {
+                    thChecker = false
+                }
+            }
+            
+            if(swChecker == true && thChecker == true){
+                print("")
+                aCell.uiSwitchOfScene.isEnabled = false
+                aCell.uiStatusOfScene.backgroundColor = UIColor.green
                 aCell.uiStatusOfScene.layer.cornerRadius = 8.0
             }
            
             aCell.titleSceneTile.text = aScene?.title
-            aCell.labelLeft.text = "-1"
-            aCell.labelRight.text = "-1"
+            let noTher = aScene?.thermostats?.count
+            let noSw = aScene?.switchDevices?.count
+            aCell.labelLeft.text = String(noTher!)
+            aCell.labelRight.text = String(noSw!)
             aCell.delegate = self
             aCell.connectedEntity = aScene
             return aCell
@@ -290,7 +343,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         let aThermoGroup = connectedEntity as? ThermostatGroup
         
         if(aThermo != nil || aThermoGroup != nil){
-            self.performSegue(withIdentifier: "showFader", sender: self)
+            //self.performSegue(withIdentifier: "showFader", sender: self)
         }
     }
     
@@ -325,7 +378,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         // Dispose of any resources that can be recreated.
     }
     
-    //Show sign up page first
+
     override func viewDidAppear(_ animated: Bool) {
         dashboardTiles = try? context.fetch(dashboardTilesRequest)
     }
@@ -356,9 +409,53 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
 //---//
 
 extension ViewController: CollectionCellViewControllerDelegate{
+    func activateAScene(aScene: DashboardTile) {
+        print("inEvent")
+        let theScene = aScene as! Scene
+        //get Swichtes
+        let theScSw = theScene.switchDevices
+        let theScTh = theScene.thermostats
+        
+        for aSwitch in theScSw!{
+            let aRequ: NSFetchRequest<SceneSwitchSetting> = SceneSwitchSetting.fetchRequest()
+            aRequ.predicate = NSPredicate(format: "scene == %@ AND switchDevice == %@", (theScene.objectID), ((aSwitch as AnyObject).objectID)!)
+            let result = try? context.fetch(aRequ)
+            (aSwitch as! SwitchDevice).state = result![0].state
+            (aSwitch as! SwitchDevice).lasteChangeByAllDevRec = false
+            do{try context.save()} catch {print(error)}
+        }
+        
+        for aThermo in theScTh!{
+            let aRequ: NSFetchRequest<SceneThermostatSetting> = SceneThermostatSetting.fetchRequest()
+            aRequ.predicate = NSPredicate(format: "scene == %@ AND thermostat == %@", (theScene.objectID), ((aThermo as AnyObject).objectID)!)
+            let result = try? context.fetch(aRequ)
+            (aThermo as! Thermostat).target_temp = result![0].target_temp
+            (aThermo as! Thermostat).lasteChangeByAllDevRec = false
+            do{try context.save()} catch {print(error)}
+        }
+        
+        do{try context.save()} catch {print(error)}
+        self.theCollectionView!.reloadData()
+    }
+    
+
+    func handleGroupSwitch(toggledEntity: DashboardTile) {
+        if(toggledEntity as? SwitchGroup != nil){
+            let switchGrCast = toggledEntity as! SwitchGroup
+            switchGrCast.state = !switchGrCast.state
+            
+            for aSwitch in switchGrCast.switches!{
+                let aSwitchC = aSwitch as! SwitchDevice
+                aSwitchC.state = switchGrCast.state
+                aSwitchC.lasteChangeByAllDevRec = false
+            }
+        }
+        self.theCollectionView!.reloadData()
+    }
+    
     
     func goToFader(entityToFade: DashboardTile) {
-        //print("goToFaderGroup: \(entityToFade)")
+        //print("goToFaderGroup: \(entityToFade.title)")
         faderDestination = entityToFade
         self.performSegue(withIdentifier: "showFader", sender: self)
     }

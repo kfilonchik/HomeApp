@@ -44,6 +44,16 @@ class CollectionCellViewController: UICollectionViewCell {
         delegate?.switchUsed(switchedEntity: connectedEntity!, state: sender.isOn)
     }
     
+    @IBAction func doGrouSwitch(_ sender: UIButton) {
+        delegate?.handleGroupSwitch(toggledEntity: connectedEntity!)
+    }
+    
+    
+    @IBAction func activateScene(_ sender: UIButton) {
+        delegate?.activateAScene(aScene: connectedEntity!)
+    }
+    
+    
     //SwitchGroup
     @IBOutlet weak var titleSwitchGroup: UILabel!
     @IBOutlet weak var labelTop: UILabel!
@@ -76,4 +86,6 @@ protocol CollectionCellViewControllerDelegate: class {
     func plusButton(addNewTile cell: CollectionCellViewController)
     func switchUsed(switchedEntity: DashboardTile, state: Bool)
     func goToFader(entityToFade: DashboardTile)
+    func handleGroupSwitch(toggledEntity: DashboardTile)
+    func activateAScene(aScene: DashboardTile)
 }

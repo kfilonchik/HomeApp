@@ -186,15 +186,15 @@ class TileConfigTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         switch section {
         case 0:
-            return "Schalter"
+            return "Switches"
         case 1:
-            return "Thermostate"
+            return "Thermostats"
         case 2:
-            return "Gruppen: Schalter"
+            return "Groups: Switches"
         case 3:
-            return "Gruppen: Thermostate"
+            return "Groups: Thermostats"
         case 4:
-            return "Szenen"
+            return "Scenes"
         default:
             return "Fehler!"
         }
